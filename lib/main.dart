@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'app/modules/home/screen.dart';
+import 'app/modules/home/presenter/pages/home_page.dart';
 
 void main() {
   runApp(const Randomix());
@@ -17,7 +17,7 @@ class Randomix extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeScreen(),
+      home: const HomePage(),
     );
   }
 }
