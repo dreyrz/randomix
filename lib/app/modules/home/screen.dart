@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:randomix/app/modules/rounded_buttons.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -35,6 +36,14 @@ class HomeScreen extends StatelessWidget {
                 ),
               ),
             ),
+            const RoundedButton(
+              color: Color(0xffDD669F),
+              title: 'Continue',
+              style: TextStyle(
+                fontSize: 20,
+                color: Color(0xffFFF5F5),
+              ),
+            )
           ],
         ),
       ),
