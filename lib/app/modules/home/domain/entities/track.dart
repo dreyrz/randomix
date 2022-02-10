@@ -2,7 +2,7 @@ import 'album.dart';
 import 'artist.dart';
 
 class Track {
-  final int id;
+  final String id;
   final String name;
 
   final String type;
