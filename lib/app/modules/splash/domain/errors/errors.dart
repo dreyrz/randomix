@@ -1,9 +1,9 @@
 import '../../../../core/error/failure.dart';
 
-class TrackNoInternetConnection extends NoInternetConnection {}
+class SplashNoInternetConnection extends NoInternetConnection {}
 
-class TrackError extends Failure {
-  TrackError(
+class SplashError extends Failure {
+  SplashError(
     StackTrace? stackTrace,
     String? label,
     dynamic exception,
