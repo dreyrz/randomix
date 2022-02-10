@@ -5,7 +5,7 @@ import '../domain/usecase/get_token.dart';
 import '../external/spotify/datasource/splash_datasource.dart';
 import '../infra/datasources/splash_datasource_interface.dart';
 import '../infra/repositories/splash_repository.dart';
-import 'splash_controller.dart';
+import 'controller.dart';
 
 class SplashBinding implements Bindings {
   @override
