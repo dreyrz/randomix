@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../core/api/api.dart';
 import '../domain/usecases/get_random_track_by_genre.dart';
-import 'states/home_state.dart';
+import 'state/states.dart';
 
 class HomeController extends GetxController with HomeState {
   final GetRandomTrackByGenre _getRandomTrackByGenre;
@@ -24,7 +24,6 @@ class HomeController extends GetxController with HomeState {
   Future<void> getRandomTrackByGenre(String genre) async {
     isLoading.value = true;
 
-    x.value++;
     final res = await _getRandomTrackByGenre('pop');
     res.fold(
       (l) {

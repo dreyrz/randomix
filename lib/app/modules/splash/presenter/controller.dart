@@ -22,7 +22,7 @@ class SplashController extends GetxController {
     await Future.delayed(const Duration(seconds: 1));
     res.fold(
       (l) => log(l.toString()),
-      (token) => Get.offAllNamed(Routes.home, arguments: token),
+      (token) => Get.offAllNamed(Routes.about, arguments: token),
     );
   }
 }

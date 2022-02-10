@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 
 abstract class IApi<R> {
   Future<R> get(String path, {Map<String, dynamic>? queryParameters});
@@ -13,7 +14,7 @@ abstract class IApi<R> {
   set baseUrl(String value);
 }
 
-class DioApi implements IApi<Response> {
+class DioApi extends GetxService implements IApi<Response> {
   final Dio _dio;
   DioApi({required String baseUrl}) : _dio = Dio(BaseOptions(baseUrl: baseUrl));
 
