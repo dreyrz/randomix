@@ -2,7 +2,7 @@ import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';
 import '../../domain/entities/track.dart';
-import '../../domain/repositories/home_repository_interface.dart';
+import '../../domain/repositories/repository_interface.dart';
 import '../datasources/home_datasource_interface.dart';
 
 class HomeRepository implements IHomeRepository {

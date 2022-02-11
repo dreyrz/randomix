@@ -1,10 +1,10 @@
 import 'package:get/get.dart';
 
-import '../domain/repositories/splash_repository_interface.dart';
-import '../domain/usecase/get_token.dart';
+import '../domain/repositories/repository_interface.dart';
+import '../domain/usecases/get_token.dart';
 import '../external/spotify/datasource/splash_datasource.dart';
 import '../infra/datasources/splash_datasource_interface.dart';
-import '../infra/repositories/splash_repository.dart';
+import '../infra/repositories/repository.dart';
 import 'controller.dart';
 
 class SplashBinding implements Bindings {

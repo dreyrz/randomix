@@ -3,8 +3,8 @@ import 'dart:developer';
 import 'package:get/get.dart';
 
 import '../../../core/routes/routes.dart';
-import '../../../core/usecase/usecase.dart';
-import '../domain/usecase/get_token.dart';
+
+import '../domain/usecases/get_token.dart';
 
 class SplashController extends GetxController {
   final GetToken getToken;
@@ -17,7 +17,7 @@ class SplashController extends GetxController {
   }
 
   Future<void> getAuth() async {
-    final res = await getToken(NoParams());
+    final res = await getToken();
 
     await Future.delayed(const Duration(seconds: 1));
     res.fold(

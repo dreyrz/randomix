@@ -4,13 +4,12 @@ import 'package:mocktail/mocktail.dart';
 import 'package:randomix/app/core/error/failure.dart';
 
 import 'package:randomix/app/modules/home/infra/datasources/home_datasource_interface.dart';
-import 'package:randomix/app/modules/home/infra/repositories/home_repository.dart';
+import 'package:randomix/app/modules/home/infra/repositories/repository.dart';
 
+import '../../../../mocks/datasources.dart';
 import '../../../../mocks/entities_mock.dart';
 import '../../../../mocks/errors_mock.dart';
 import '../../../../mocks/utils_mock.dart';
-
-class HomeDatasourceMock extends Mock implements IHomeDatasource {}
 
 main() {
   late IHomeDatasource datasource;
@@ -29,7 +28,7 @@ main() {
     expect(result.fold(id, id), isA<TrackMock>());
   });
 
-  test('Expect to return a track when external throws a TrackError', () async {
+  test('Expect to get a Failure when external throws a Failure', () async {
     when(() => datasource.getRandomTrackByGenre(anyString))
         .thenThrow(FailureMock());
 
