@@ -6,7 +6,7 @@ import '../../../../core/error/failure.dart';
 import '../entities/track.dart';
 import '../repositories/home_repository_interface.dart';
 
-class GetRandomTrackByGenre implements UseCase<String, Track> {
+class GetRandomTrackByGenre implements IUseCase<String, Track> {
   final IHomeRepository _repository;
 
   GetRandomTrackByGenre(this._repository);

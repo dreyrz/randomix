@@ -9,7 +9,7 @@ import '../../../../core/usecase/usecase.dart';
 
 import '../repositories/splash_repository_interface.dart';
 
-class GetToken implements UseCase<NoParams, String> {
+class GetToken implements IUseCase<NoParams, String> {
   final ISplashRepository _repository;
 
   GetToken(this._repository);
