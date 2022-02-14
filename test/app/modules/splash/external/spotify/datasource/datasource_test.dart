@@ -35,12 +35,9 @@ main() {
   });
 
   test('Should throw a Failure when request fails', () async {
-    try {
-      when(() => api.post('', data: {"grant_type": "client_credentials"}))
-          .thenThrow(FailureMock());
-      final result = await datasource.getToken();
-      expect(result, throwsA(isA<Failure>()));
-    } catch (_) {}
+    when(() => api.post('', data: {"grant_type": "client_credentials"}))
+        .thenAnswer((_) async => throw FailureMock());
+    await expectLater(datasource.getToken(), throwsA(isA<Failure>()));
   });
 }
 
