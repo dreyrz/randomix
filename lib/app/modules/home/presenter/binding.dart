@@ -5,7 +5,7 @@ import 'package:randomix/app/modules/home/domain/usecases/get_random_track_by_ge
 import 'package:randomix/app/modules/home/external/spotify/datasource/home_datasource.dart';
 import 'package:randomix/app/modules/home/infra/repositories/repository.dart';
 
-import '../../../core/api/api.dart';
+import '../../../core/services/api.dart';
 import '../infra/datasources/home_datasource_interface.dart';
 import 'controller.dart';
 

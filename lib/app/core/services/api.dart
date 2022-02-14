@@ -2,13 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 
 abstract class IApi<R> {
-  Future<R> get(String path, {Map<String, dynamic>? queryParameters});
-  Future<R> post(String path, {Map<String, dynamic>? data});
-  Future<R> put(String path, {Map<String, dynamic>? data});
-  Future<R> del(String path, {Map<String, dynamic>? data});
-  Map<String, dynamic> get headers;
-  String get contentType;
-  String get baseUrl;
+  Future get(String path, {Map<String, dynamic>? queryParameters});
+  Future post(String path, {Map<String, dynamic>? data});
+  Future put(String path, {Map<String, dynamic>? data});
+  Future del(String path, {Map<String, dynamic>? data});
   set headers(Map<String, dynamic> value);
   set contentType(String value);
   set baseUrl(String value);
@@ -17,15 +14,6 @@ abstract class IApi<R> {
 class DioApi extends GetxService implements IApi<Response> {
   final Dio _dio;
   DioApi({required String baseUrl}) : _dio = Dio(BaseOptions(baseUrl: baseUrl));
-
-  @override
-  String get baseUrl => _dio.options.baseUrl;
-
-  @override
-  String get contentType => _dio.options.contentType ?? "Null";
-
-  @override
-  Map<String, dynamic> get headers => _dio.options.headers;
 
   @override
   set headers(Map<String, dynamic> value) => _dio.options.headers = value;

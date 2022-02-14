@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 
-import '../../../core/api/api.dart';
+import '../../../core/services/api.dart';
 import '../domain/usecases/get_random_track_by_genre.dart';
 import 'state/states.dart';
 

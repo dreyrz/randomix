@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:randomix/app/core/error/failure.dart';
+import 'package:randomix/app/core/errors/failure.dart';
 
 import 'package:randomix/app/modules/home/infra/datasources/home_datasource_interface.dart';
 import 'package:randomix/app/modules/home/infra/repositories/repository.dart';
@@ -9,7 +9,7 @@ import 'package:randomix/app/modules/home/infra/repositories/repository.dart';
 import '../../../../mocks/datasources.dart';
 import '../../../../mocks/entities_mock.dart';
 import '../../../../mocks/errors_mock.dart';
-import '../../../../mocks/utils_mock.dart';
+import '../../../../mocks/utils.dart';
 
 main() {
   late IHomeDatasource datasource;

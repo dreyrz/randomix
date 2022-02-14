@@ -2,6 +2,8 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 
+import '../../../core/services/api.dart';
+import '../../../core/config/config.dart';
 import '../../../core/routes/routes.dart';
 
 import '../domain/usecases/get_token.dart';
@@ -22,7 +24,10 @@ class SplashController extends GetxController {
     await Future.delayed(const Duration(seconds: 1));
     res.fold(
       (l) => log(l.toString()),
-      (token) => Get.offAllNamed(Routes.about, arguments: token),
+      (token) {
+        Get.find<IApi>().baseUrl = Config.baseUrl;
+        Get.offAllNamed(Routes.about, arguments: token);
+      },
     );
   }
 }
