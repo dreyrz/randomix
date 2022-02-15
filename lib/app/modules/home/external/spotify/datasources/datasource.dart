@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 
-import '../../../../../core/api/api.dart';
-import '../../../../../core/error/failure.dart';
+import '../../../../../core/services/api.dart';
+import '../../../../../core/errors/failure.dart';
 import '../../../domain/entities/track.dart';
 import '../../../domain/errors/errors.dart';
 import '../../../infra/datasources/home_datasource_interface.dart';
@@ -18,24 +18,25 @@ class HomeDataSource implements IHomeDatasource {
   }) async {
     try {
       final query = "?limit=$limit&market=$market&seed_genres=$genre";
-
       final response = await _api.get(query);
-
       return TrackModel.fromMap(response.data);
     } on DioError catch (e, stackTrace) {
       if (e.type == DioErrorType.connectTimeout ||
           e.type == DioErrorType.receiveTimeout) {
-        throw TrackNoInternetConnection();
+        throw TrackNoInternetConnection('getRandomTrackByGenre');
       } else {
         throw TrackError(
-          stackTrace,
-          'HomeDataSource getRandomTrackByGenre',
           e,
-          e.toString(),
+          stackTrace,
+          'getRandomTrackByGenre',
+          e.response.toString(),
         );
       }
-    } catch (e) {
-      throw UnknownError();
+    } catch (e, stackTrace) {
+      throw UnknownError(
+        e,
+        stackTrace,
+      );
     }
   }
 }

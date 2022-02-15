@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/failure.dart';
+import '../../../../core/errors/failure.dart';
 import '../../domain/entities/track.dart';
 import '../../domain/repositories/repository_interface.dart';
 import '../datasources/home_datasource_interface.dart';
@@ -19,9 +19,8 @@ class HomeRepository implements IHomeRepository {
       return Left(e);
     } on Exception catch (exception, stackTrace) {
       return Left(UnknownError(
-        exception: exception,
-        stackTrace: stackTrace,
-        label: 'homeRepository getRandomTrackByGenre',
+        exception,
+        stackTrace,
       ));
     }
   }

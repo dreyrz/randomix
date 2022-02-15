@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-import '../api/api.dart';
+import '../services/api.dart';
 import '../config/config.dart';
 import '../services/storage.dart';
 

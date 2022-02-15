@@ -3,6 +3,8 @@ import 'dart:developer';
 import 'package:get/get.dart';
 
 import '../../../core/constants/storage_keys.dart';
+import '../../../core/services/api.dart';
+import '../../../core/config/config.dart';
 import '../../../core/routes/routes.dart';
 
 import '../../../core/services/storage.dart';
@@ -25,9 +27,11 @@ class SplashController extends GetxController {
     await Future.delayed(const Duration(seconds: 1));
     res.fold(
       (l) => log(l.toString()),
-      (token) => Get.offAllNamed(
-          isFirstAppOpen == false ? Routes.home : Routes.about,
-          arguments: token),
+      (token) {
+        Get.find<IApi>().baseUrl = Config.baseUrl;
+        Get.offAllNamed(isFirstAppOpen == false ? Routes.home : Routes.about,
+            arguments: token);
+      },
     );
   }
 }

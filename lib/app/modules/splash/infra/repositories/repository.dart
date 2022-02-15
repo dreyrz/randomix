@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/failure.dart';
+import '../../../../core/errors/failure.dart';
 import '../../domain/repositories/repository_interface.dart';
 import '../datasources/splash_datasource_interface.dart';
 
@@ -10,18 +10,16 @@ class SplashRepository implements ISplashRepository {
   SplashRepository(this._datasource);
 
   @override
-  Future<Either<Failure, String>> getToken(
-      String base64clientIdAndSecret) async {
+  Future<Either<Failure, String>> getToken() async {
     try {
-      final result = await _datasource.getToken(base64clientIdAndSecret);
+      final result = await _datasource.getToken();
       return Right(result);
     } on Failure catch (e) {
       return Left(e);
     } on Exception catch (exception, stackTrace) {
       return Left(UnknownError(
-        exception: exception,
-        stackTrace: stackTrace,
-        label: 'homeRepository getRandomTrackByGenre',
+        exception,
+        stackTrace,
       ));
     }
   }

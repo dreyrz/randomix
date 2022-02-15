@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../error/failure.dart';
+import '../../errors/failure.dart';
 
 abstract class IUseCase<In, Out> {
   Future<Either<Failure, Out>> call(In params);

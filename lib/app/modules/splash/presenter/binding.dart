@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 
 import '../domain/repositories/repository_interface.dart';
 import '../domain/usecases/get_token.dart';
-import '../external/spotify/datasource/splash_datasource.dart';
+import '../external/spotify/datasources/datasource.dart';
 import '../infra/datasources/splash_datasource_interface.dart';
 import '../infra/repositories/repository.dart';
 import 'controller.dart';
