@@ -11,26 +11,28 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Home page")),
-      body: Obx(() => controller.isLoading.value
-          ? const Center(child: CircularProgressIndicator())
-          : Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: controller.trackList.length,
-                    itemBuilder: (context, index) => ListTile(
-                      title: Text(controller.trackList[index].name),
+      body: Obx(
+        () => controller.isLoading.value
+            ? const Center(child: CircularProgressIndicator())
+            : Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: controller.trackList.length,
+                      itemBuilder: (context, index) => ListTile(
+                        title: Text(controller.trackList[index].name),
+                      ),
                     ),
                   ),
-                ),
-                ElevatedButton(
-                    onPressed: () {
-                      controller.getRandomTrackByGenre('pop');
-                    },
-                    child: const Text("get random track by genre")),
-              ],
-            )),
+                  ElevatedButton(
+                      onPressed: () {
+                        controller.getRandomTrackByGenre('pop');
+                      },
+                      child: const Text("get random track by genre")),
+                ],
+              ),
+      ),
     );
   }
 }
