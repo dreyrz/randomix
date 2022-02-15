@@ -58,6 +58,4 @@ main() {
       expect(value, null);
     });
   });
-
-  //TODO: Test remove, test null error cases
 }
