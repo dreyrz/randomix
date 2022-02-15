@@ -16,8 +16,8 @@ class StorageService<K> extends GetxService implements IStorageService<K> {
   late final SharedPreferences _shared;
 
   @override
-  void onInit() {
-    init();
+  void onInit() async {
+    await init();
     super.onInit();
   }
 
@@ -51,3 +51,5 @@ class StorageService<K> extends GetxService implements IStorageService<K> {
     await _shared.setBool(key.toString(), value);
   }
 }
+
+//utilizar o controller do about, modules/about, 
