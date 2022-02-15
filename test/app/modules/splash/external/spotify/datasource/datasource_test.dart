@@ -6,7 +6,7 @@ import 'package:mocktail/mocktail.dart';
 import 'package:randomix/app/core/errors/failure.dart';
 
 import 'package:randomix/app/core/services/api.dart';
-import 'package:randomix/app/modules/splash/external/spotify/datasource.dart';
+import 'package:randomix/app/modules/splash/external/spotify/datasources/datasource.dart';
 import 'package:randomix/app/modules/splash/infra/datasources/splash_datasource_interface.dart';
 
 import '../../../../../mocks/errors_mock.dart';

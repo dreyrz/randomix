@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 
-import '../../../../core/errors/failure.dart';
-import '../../../../core/services/api.dart';
-import '../../domain/errors/errors.dart';
-import '../../infra/datasources/splash_datasource_interface.dart';
+import '../../../../../core/errors/failure.dart';
+import '../../../../../core/services/api.dart';
+import '../../../domain/errors/errors.dart';
+import '../../../infra/datasources/splash_datasource_interface.dart';
 
 class SplashDatasource implements ISplashDatasource {
   final IApi _api;
