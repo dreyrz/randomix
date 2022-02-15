@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
-import 'package:randomix/app/core/usecase/usecase.dart';
+import 'package:randomix/app/core/utils/interfaces/usecase.dart';
 
-import '../../../../core/error/failure.dart';
+import '../../../../core/errors/failure.dart';
 
 import '../entities/track.dart';
 import '../repositories/repository_interface.dart';

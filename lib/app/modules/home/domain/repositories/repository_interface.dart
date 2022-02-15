@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 
-import '../../../../core/error/failure.dart';
+import '../../../../core/errors/failure.dart';
 import '../entities/track.dart';
 
 abstract class IHomeRepository {
