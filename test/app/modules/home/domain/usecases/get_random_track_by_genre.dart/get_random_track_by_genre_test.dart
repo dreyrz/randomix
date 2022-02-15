@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:randomix/app/modules/home/domain/repositories/repository_interface.dart';
 
 import 'package:randomix/app/modules/home/domain/usecases/get_random_track_by_genre.dart';
 
@@ -10,7 +11,7 @@ import '../../../../../mocks/repositories_mock.dart';
 import '../../../../../mocks/utils_mock.dart';
 
 main() {
-  late final HomeRepositoryMock repository;
+  late final IHomeRepository repository;
   late final GetRandomTrackByGenre usecase;
 
   setUpAll(() {
@@ -27,6 +28,7 @@ main() {
     when(() => repository.getRandomTrackByGenre(anyString))
         .thenAnswer((_) async => Left(TrackErrorMock()));
     final result = await usecase(anyString);
+
     expect(result.fold(id, id), isA<TrackErrorMock>());
   });
 }

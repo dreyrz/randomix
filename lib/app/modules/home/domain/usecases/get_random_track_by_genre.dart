@@ -4,7 +4,7 @@ import 'package:randomix/app/core/usecase/usecase.dart';
 import '../../../../core/error/failure.dart';
 
 import '../entities/track.dart';
-import '../repositories/home_repository_interface.dart';
+import '../repositories/repository_interface.dart';
 
 class GetRandomTrackByGenre implements IUseCase<String, Track> {
   final IHomeRepository _repository;

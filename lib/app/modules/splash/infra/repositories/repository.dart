@@ -1,7 +1,7 @@
 import 'package:dartz/dartz.dart';
 
 import '../../../../core/error/failure.dart';
-import '../../domain/repositories/splash_repository_interface.dart';
+import '../../domain/repositories/repository_interface.dart';
 import '../datasources/splash_datasource_interface.dart';
 
 class SplashRepository implements ISplashRepository {

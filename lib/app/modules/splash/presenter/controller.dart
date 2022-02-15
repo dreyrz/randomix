@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 import '../../../core/constants/storage_keys.dart';
 import '../../../core/routes/routes.dart';
+
 import '../../../core/services/storage.dart';
-import '../../../core/usecase/usecase.dart';
-import '../domain/usecase/get_token.dart';
+import '../domain/usecases/get_token.dart';
 
 class SplashController extends GetxController {
   final GetToken getToken;
@@ -19,7 +19,7 @@ class SplashController extends GetxController {
   }
 
   Future<void> handleRedirect() async {
-    final res = await getToken(NoParams());
+    final res = await getToken();
     final isFirstAppOpen =
         Get.find<IStorageService>().readBool(StorageKeys.firstAppOpen);
     await Future.delayed(const Duration(seconds: 1));
