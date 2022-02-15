@@ -6,8 +6,8 @@ import 'package:randomix/app/core/services/api.dart';
 
 import 'package:randomix/app/modules/splash/domain/usecases/get_token.dart';
 
-import '../../../../mocks/errors_mock.dart';
-import '../../../../mocks/repositories_mock.dart';
+import '../../../../mocks/errors.dart';
+import '../../../../mocks/repositories.dart';
 import '../../../../mocks/services.dart';
 import '../../../../mocks/utils.dart';
 

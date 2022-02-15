@@ -9,7 +9,8 @@ import 'package:randomix/app/core/services/api.dart';
 import 'package:randomix/app/modules/splash/external/spotify/datasources/datasource.dart';
 import 'package:randomix/app/modules/splash/infra/datasources/splash_datasource_interface.dart';
 
-import '../../../../../mocks/errors_mock.dart';
+import '../../../../../mocks/errors.dart';
+import '../../../../../mocks/jsons.dart';
 import '../../../../../mocks/services.dart';
 import '../../../../../mocks/utils.dart';
 
@@ -26,7 +27,7 @@ main() {
   test('Should return a String when request is ok', () async {
     when(() => api.post('', data: {"grant_type": "client_credentials"}))
         .thenAnswer((_) async => Response(
-              data: jsonDecode(jsonResponse),
+              data: jsonDecode(getTokenJson),
               requestOptions: RequestOptions(path: anyString),
             ));
 
@@ -40,7 +41,3 @@ main() {
     await expectLater(datasource.getToken(), throwsA(isA<Failure>()));
   });
 }
-
-const jsonResponse = r'''
-{"access_token":"BQAWLmqUZmqw5BCDI_fY0rmPHIeyfffjFhxJuwE2k1byNDwc5CJjFV7JgcIXJMVP-hQg0KaeRWT4ql_JCn4","token_type":"Bearer","expires_in":3600}
-''';

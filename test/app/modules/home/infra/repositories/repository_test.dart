@@ -7,8 +7,8 @@ import 'package:randomix/app/modules/home/infra/datasources/home_datasource_inte
 import 'package:randomix/app/modules/home/infra/repositories/repository.dart';
 
 import '../../../../mocks/datasources.dart';
-import '../../../../mocks/entities_mock.dart';
-import '../../../../mocks/errors_mock.dart';
+import '../../../../mocks/entities.dart';
+import '../../../../mocks/errors.dart';
 import '../../../../mocks/utils.dart';
 
 main() {
