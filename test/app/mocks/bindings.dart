@@ -6,6 +6,6 @@ import 'services.dart';
 class MockInitialBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<IApi>(() => ApiMock());
+    Get.put<IApi>(ApiMock());
   }
 }

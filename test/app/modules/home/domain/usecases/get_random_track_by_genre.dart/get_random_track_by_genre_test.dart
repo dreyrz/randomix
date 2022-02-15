@@ -5,9 +5,9 @@ import 'package:randomix/app/modules/home/domain/repositories/repository_interfa
 
 import 'package:randomix/app/modules/home/domain/usecases/get_random_track_by_genre.dart';
 
-import '../../../../../mocks/entities_mock.dart';
-import '../../../../../mocks/errors_mock.dart';
-import '../../../../../mocks/repositories_mock.dart';
+import '../../../../../mocks/entities.dart';
+import '../../../../../mocks/errors.dart';
+import '../../../../../mocks/repositories.dart';
 import '../../../../../mocks/utils.dart';
 
 main() {

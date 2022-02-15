@@ -6,7 +6,7 @@ import 'package:randomix/app/modules/splash/infra/datasources/splash_datasource_
 import 'package:randomix/app/modules/splash/infra/repositories/repository.dart';
 
 import '../../../../mocks/datasources.dart';
-import '../../../../mocks/errors_mock.dart';
+import '../../../../mocks/errors.dart';
 import '../../../../mocks/utils.dart';
 
 main() {
