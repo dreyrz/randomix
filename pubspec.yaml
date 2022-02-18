@@ -38,6 +38,8 @@ dependencies:
   dio: 4.0.4
   get: 4.6.1
   flutter_svg: 1.0.3
+  shared_preferences: 2.0.13
+  
 
 dev_dependencies:
   flutter_test:
