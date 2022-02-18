@@ -6,6 +6,6 @@ abstract class IUseCase<In, Out> {
   Future<Either<Failure, Out>> call(In params);
 }
 
-abstract class UseCaseNoParams<Out> {
+abstract class IUseCaseNoParams<Out> {
   Future<Either<Failure, Out>> call();
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:randomix/app/core/themes/themes.dart';
 import '../../../core/themes/colors.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import '../../../core/utils/images/images_path.dart';
 import '../../../core/widgets/rounded_button.dart';
 import 'controller.dart';
 
@@ -17,8 +19,11 @@ class AboutPage extends GetView<AboutController> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Image.network(
-                  'https://c.tenor.com/0hjOGLFaQa0AAAAC/lofi-girl-lofi.gif'),
+              SvgPicture.asset(
+                SvgImagesPath.aboutImage,
+                height: 200,
+                width: 200,
+              ),
               Column(
                 children: [
                   const Text(
