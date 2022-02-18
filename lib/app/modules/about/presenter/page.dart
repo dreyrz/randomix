@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
-
+import 'package:get/get.dart';
+import 'package:randomix/app/core/themes/themes.dart';
+import '../../../core/themes/colors.dart';
 import '../../../core/widgets/rounded_button.dart';
 import 'controller.dart';
 
@@ -10,7 +11,6 @@ class AboutPage extends GetView<AboutController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFFF5F5),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -20,8 +20,8 @@ class AboutPage extends GetView<AboutController> {
               Image.network(
                   'https://c.tenor.com/0hjOGLFaQa0AAAAC/lofi-girl-lofi.gif'),
               Column(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Bem vindo!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -29,7 +29,7 @@ class AboutPage extends GetView<AboutController> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   Text(
@@ -38,12 +38,20 @@ class AboutPage extends GetView<AboutController> {
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
+                      color: Theme.of(context).secondaryHeaderColor,
                     ),
                   ),
                 ],
               ),
               RoundedButton(
-                onPressed: () => controller.navigateToHome(),
+                onPressed: () {
+                  // controller.navigateToHome();
+                  if (Get.isDarkMode) {
+                    Get.changeTheme(AppTheme(colors: RandomixColors()).light);
+                    return;
+                  }
+                  Get.changeTheme(AppTheme(colors: RandomixColors()).dark);
+                },
                 title: 'Continue',
               )
             ],

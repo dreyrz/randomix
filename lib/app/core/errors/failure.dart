@@ -1,6 +1,6 @@
 import 'dart:developer';
 
-abstract class Failure {
+abstract class Failure implements Exception {
   Failure({
     StackTrace? stackTrace,
     required String label,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class RoundedButton extends StatelessWidget {
   // ignore: use_key_in_widget_constructors
@@ -22,7 +23,7 @@ class RoundedButton extends StatelessWidget {
       height: height ?? 50,
       padding: const EdgeInsets.symmetric(horizontal: 35),
       decoration: BoxDecoration(
-        color: color ?? const Color(0xffDD669F),
+        color: color ?? Get.theme.primaryColor,
         borderRadius: BorderRadius.circular(20.0),
       ),
       child: TextButton(
@@ -31,9 +32,9 @@ class RoundedButton extends StatelessWidget {
           child: Text(
             title,
             style: style ??
-                const TextStyle(
+                TextStyle(
                   fontSize: 20,
-                  color: Color(0xffFFF5F5),
+                  color: Get.theme.bottomAppBarColor,
                 ),
           ),
         ),
