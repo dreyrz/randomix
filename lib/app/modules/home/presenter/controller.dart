@@ -3,11 +3,12 @@ import 'dart:developer';
 import 'package:get/get.dart';
 
 import '../../../core/services/api.dart';
-import '../domain/usecases/get_random_track_by_genre.dart';
+import '../../../core/utils/interfaces/usecase.dart';
+
 import 'state/states.dart';
 
 class HomeController extends GetxController with HomeState {
-  final GetRandomTrackByGenre _getRandomTrackByGenre;
+  final UseCase _getRandomTrackByGenre;
   HomeController(this._getRandomTrackByGenre);
 
   @override
