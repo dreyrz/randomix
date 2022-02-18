@@ -8,7 +8,7 @@ import '../../../core/utils/interfaces/usecase.dart';
 import 'state/states.dart';
 
 class HomeController extends GetxController with HomeState {
-  final UseCase _getRandomTrackByGenre;
+  final IUseCase _getRandomTrackByGenre;
   HomeController(this._getRandomTrackByGenre);
 
   @override

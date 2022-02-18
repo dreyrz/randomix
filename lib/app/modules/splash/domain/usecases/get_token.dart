@@ -10,7 +10,7 @@ import '../../../../core/services/api.dart';
 import '../../../../core/utils/interfaces/usecase.dart';
 import '../repositories/repository_interface.dart';
 
-class GetToken implements UseCaseNoParams<String> {
+class GetToken implements IUseCaseNoParams<String> {
   final ISplashRepository _repository;
 
   GetToken(this._repository);
