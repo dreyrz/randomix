@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:randomix/app/core/themes/themes.dart';
-import '../../../core/themes/colors.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+
 import '../../../core/utils/images/images_path.dart';
 import '../../../core/widgets/rounded_button.dart';
 import 'controller.dart';
@@ -49,14 +48,7 @@ class AboutPage extends GetView<AboutController> {
                 ],
               ),
               RoundedButton(
-                onPressed: () {
-                  // controller.navigateToHome();
-                  if (Get.isDarkMode) {
-                    Get.changeTheme(AppTheme(colors: RandomixColors()).light);
-                    return;
-                  }
-                  Get.changeTheme(AppTheme(colors: RandomixColors()).dark);
-                },
+                onPressed: controller.navigateToHome,
                 title: 'Continue',
               )
             ],

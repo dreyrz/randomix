@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:randomix/app/core/bindings/bindings.dart';
+import 'package:randomix/app/core/themes/text_styles.dart';
 import 'app/core/themes/colors.dart';
 import 'app/core/themes/themes.dart';
 
@@ -16,8 +17,11 @@ class Randomix extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = AppTheme(colors: RandomixColors());
-    debugPrint("BOIOLA");
+    final AppColors colors = RandomixColors();
+    final AppTheme theme = RandomixTheme(
+      colors: colors,
+      textStyle: RandomixTextStyles(colors),
+    );
     return GetMaterialApp(
       title: 'Randomix',
       debugShowCheckedModeBanner: false,
