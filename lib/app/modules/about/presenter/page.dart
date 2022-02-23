@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
+import 'package:get/get.dart';
 
 import '../../../core/utils/images/images_path.dart';
 import '../../../core/widgets/rounded_button.dart';
@@ -12,7 +12,6 @@ class AboutPage extends GetView<AboutController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffFFF5F5),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
@@ -25,8 +24,8 @@ class AboutPage extends GetView<AboutController> {
                 width: 200,
               ),
               Column(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Bem vindo!',
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -34,7 +33,7 @@ class AboutPage extends GetView<AboutController> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 12,
                   ),
                   Text(
@@ -43,12 +42,13 @@ class AboutPage extends GetView<AboutController> {
                     style: TextStyle(
                       fontSize: 17,
                       fontWeight: FontWeight.bold,
+                      color: Theme.of(context).secondaryHeaderColor,
                     ),
                   ),
                 ],
               ),
               RoundedButton(
-                onPressed: () => controller.navigateToHome(),
+                onPressed: controller.navigateToHome,
                 title: 'Continue',
               )
             ],
