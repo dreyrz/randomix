@@ -24,4 +24,9 @@ class HomeRepository implements IHomeRepository {
       ));
     }
   }
+
+  @override
+  Future<Either<Failure, List<String>>> getGenres() {
+    throw UnimplementedError();
+  }
 }

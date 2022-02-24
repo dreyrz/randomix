@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-
 import '../../errors/failure.dart';
 
 abstract class IUseCase<In, Out> {
