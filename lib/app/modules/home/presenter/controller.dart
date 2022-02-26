@@ -4,12 +4,12 @@ import 'package:get/get.dart';
 
 import '../../../core/services/api.dart';
 import '../../../core/utils/interfaces/usecase.dart';
-
 import 'state/states.dart';
 
 class HomeController extends GetxController with HomeState {
   final IUseCase _getRandomTrackByGenre;
-  HomeController(this._getRandomTrackByGenre);
+  final IUseCaseNoParams _getGenres;
+  HomeController(this._getRandomTrackByGenre, this._getGenres);
 
   @override
   void onInit() {
@@ -32,6 +32,12 @@ class HomeController extends GetxController with HomeState {
       },
       (r) => trackList.add(r),
     );
+    isLoading.value = false;
+  }
+
+  Future<void> getGenres() async {
+    isLoading.value = true;
+    final res = await _getGenres();
     isLoading.value = false;
   }
 }

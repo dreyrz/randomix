@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-
 import '../../../../core/errors/failure.dart';
 import '../../domain/entities/track.dart';
 import '../../domain/repositories/repository_interface.dart';
@@ -26,7 +25,17 @@ class HomeRepository implements IHomeRepository {
   }
 
   @override
-  Future<Either<Failure, List<String>>> getGenres() {
-    throw UnimplementedError();
+  Future<Either<Failure, List<String>>> getGenres() async {
+    try {
+      final result = await _datasource.getGenres();
+      return Right(result);
+    } on Failure catch (e) {
+      return Left(e);
+    } on Exception catch (exception, stackTrace) {
+      return Left(UnknownError(
+        exception,
+        stackTrace,
+      ));
+    }
   }
 }
