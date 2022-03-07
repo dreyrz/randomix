@@ -20,19 +20,36 @@ main() {
     repositoryImpl = HomeRepository(datasource);
   });
 
-  test('Expect to return a track when external returns a Track', () async {
-    when(() => datasource.getRandomTrackByGenre(anyString))
-        .thenAnswer((_) async => TrackMock());
+  group('getRandomTrackByGenre', () {
+    test('Expect to return a track when external returns a Track', () async {
+      when(() => datasource.getRandomTrackByGenre(anyString))
+          .thenAnswer((_) async => TrackMock());
 
-    final result = await repositoryImpl.getRandomTrackByGenre(anyString);
-    expect(result.fold(id, id), isA<TrackMock>());
+      final result = await repositoryImpl.getRandomTrackByGenre(anyString);
+      expect(result.fold(id, id), isA<TrackMock>());
+    });
+
+    test('Expect to get a Failure when external throws a Failure', () async {
+      when(() => datasource.getRandomTrackByGenre(anyString))
+          .thenThrow(FailureMock());
+
+      final result = await repositoryImpl.getRandomTrackByGenre(anyString);
+      expect(result.fold(id, id), isA<Failure>());
+    });
   });
 
-  test('Expect to get a Failure when external throws a Failure', () async {
-    when(() => datasource.getRandomTrackByGenre(anyString))
-        .thenThrow(FailureMock());
+  group('getGenres', () {
+    test('Expect to return a Genres when external returns a Genre', () async {
+      when(() => datasource.getGenres()).thenAnswer((_) async => <String>[]);
 
-    final result = await repositoryImpl.getRandomTrackByGenre(anyString);
-    expect(result.fold(id, id), isA<Failure>());
+      final result = await repositoryImpl.getGenres();
+      expect(result.fold(id, id), isA<List<String>>());
+    });
+    test('Expect to get a Failure when external throws a Failure', () async {
+      when(() => datasource.getGenres()).thenThrow(FailureMock());
+
+      final result = await repositoryImpl.getGenres();
+      expect(result.fold(id, id), isA<Failure>());
+    });
   });
 }

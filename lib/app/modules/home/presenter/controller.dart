@@ -10,9 +10,7 @@ import 'state.dart';
 
 class HomeController extends GetxController with HomeState {
   final IUseCase _getRandomTrackByGenre;
-  HomeController(
-    this._getRandomTrackByGenre,
-  );
+  HomeController(this._getRandomTrackByGenre);
   late final ITabNavigator tabNavigator;
 
   @override
