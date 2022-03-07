@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:randomix/app/modules/home/domain/usecases/get_genres.dart';
 
 import '../../../core/services/api.dart';
 import '../../../core/utils/usecase.dart';
@@ -15,6 +16,12 @@ class HomeBinding implements Bindings {
     Get.lazyPut<IHomeDatasource>(() => HomeDataSource(Get.find<IApi>()));
     Get.lazyPut<IHomeRepository>(() => HomeRepository(Get.find()));
     Get.lazyPut<IUseCase>(() => GetRandomTrackByGenre(Get.find()));
-    Get.put<HomeController>(HomeController(Get.find(), Get.find(), Get.find()));
+    Get.lazyPut<IUseCaseNoParams>(() => GetGenres(Get.find()));
+    Get.put<HomeController>(HomeController(
+      Get.find(),
+      Get.find(),
+      Get.find(),
+      Get.find(),
+    ));
   }
 }

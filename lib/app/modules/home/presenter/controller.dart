@@ -9,10 +9,12 @@ import 'state.dart';
 
 class HomeController extends GetxController with HomeState {
   final IUseCase _getRandomTrackByGenre;
+  final IUseCaseNoParams _getGenres;
   final ITabNavigator tabNavigator;
   final ITrackListService _trackListService;
   HomeController(
     this._getRandomTrackByGenre,
+    this._getGenres,
     this.tabNavigator,
     this._trackListService,
   );
@@ -28,5 +30,9 @@ class HomeController extends GetxController with HomeState {
         _trackListService.addTrack(track);
       },
     );
+  }
+
+  Future<void> getGenres() async {
+    final res = await _getGenres();
   }
 }
