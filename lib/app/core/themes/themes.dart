@@ -20,6 +20,13 @@ class RandomixTheme implements AppTheme {
   ThemeData get light {
     return ThemeData.light().copyWith(
       backgroundColor: colors.white,
+      appBarTheme: AppBarTheme(
+          color: Colors.transparent,
+          elevation: 0,
+          titleTextStyle: textStyle.theme.headline2,
+          iconTheme: IconThemeData(
+            color: colors.black,
+          )),
       primaryColor: colors.primary,
       secondaryHeaderColor: colors.black,
       bottomAppBarColor: colors.white,
@@ -31,6 +38,13 @@ class RandomixTheme implements AppTheme {
   ThemeData get dark {
     return ThemeData.dark().copyWith(
       backgroundColor: colors.black,
+      appBarTheme: AppBarTheme(
+          color: Colors.transparent,
+          elevation: 0,
+          titleTextStyle: textStyle.theme.headline2,
+          iconTheme: IconThemeData(
+            color: colors.white,
+          )),
       primaryColor: colors.primary,
       secondaryHeaderColor: colors.white,
       bottomAppBarColor: colors.white,

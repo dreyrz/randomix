@@ -13,16 +13,19 @@ class RandomixTextStyles implements AppTextStyles {
   @override
   TextTheme get theme => TextTheme(
         headline1: TextStyle(
-          fontSize: 32,
+          fontSize: 28,
           color: colors.black,
+          fontWeight: FontWeight.w600,
         ),
         headline2: TextStyle(
           fontSize: 24,
           color: colors.black,
+          fontWeight: FontWeight.w600,
         ),
         headline3: TextStyle(
           fontSize: 16,
           color: colors.black,
+          fontWeight: FontWeight.w600,
         ),
       );
 }
