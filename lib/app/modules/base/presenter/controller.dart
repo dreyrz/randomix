@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:randomix/app/modules/history/presenter/bindings.dart';
 
-import '../../../core/services/api.dart';
-import '../../../core/services/tab_navigator.dart';
+import '../../../core/services/_services.dart';
+import '../../history/presenter/bindings.dart';
 import '../../history/presenter/page.dart';
 import '../../home/presenter/binding.dart';
 import '../../home/presenter/page.dart';
@@ -28,7 +27,7 @@ class BaseController extends GetxController with BaseState {
   }
 
   void _setToken() {
-    final token = Get.arguments;
+    final token = Get.find<IAuthentication>().token;
     Get.find<IApi>().headers = {"Authorization": "Bearer $token"};
   }
 

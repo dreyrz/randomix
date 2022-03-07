@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:randomix/app/core/utils/usecase.dart';
 
 import '../domain/repositories/repository_interface.dart';
 import '../domain/usecases/get_token.dart';
@@ -12,7 +13,7 @@ class SplashBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<ISplashDatasource>(() => SplashDatasource(Get.find()));
     Get.lazyPut<ISplashRepository>(() => SplashRepository(Get.find()));
-    Get.lazyPut<GetToken>(() => GetToken(Get.find()));
+    Get.lazyPut<IUseCaseNoParams>(() => GetToken(Get.find()));
     Get.put<SplashController>(SplashController(Get.find()));
   }
 }

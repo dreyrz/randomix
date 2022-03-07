@@ -1,11 +1,8 @@
 import 'package:get/get.dart';
 
 import '../config/config.dart';
-import '../constants/strings.dart';
-import '../services/api.dart';
-import '../services/authentication.dart';
-import '../services/storage.dart';
-import '../services/tab_navigator.dart';
+import '../constants/_constants.dart';
+import '../services/_services.dart';
 
 class InitialBinding implements Bindings {
   @override
