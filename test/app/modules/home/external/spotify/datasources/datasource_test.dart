@@ -6,7 +6,6 @@ import 'package:mocktail/mocktail.dart';
 
 import 'package:randomix/app/core/services/api.dart';
 import 'package:randomix/app/modules/home/domain/entities/track.dart';
-import 'package:randomix/app/modules/home/domain/usecases/get_random_track_by_genre.dart';
 import 'package:randomix/app/modules/home/external/spotify/datasources/datasource.dart';
 import 'package:randomix/app/modules/home/infra/datasources/home_datasource_interface.dart';
 

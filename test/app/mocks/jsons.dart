@@ -1,5 +1,3 @@
-import 'package:randomix/app/modules/home/domain/usecases/get_genres.dart';
-
 const getTokenJson = r'''
 {"access_token":"BQAWLmqUZmqw5BCDI_fY0rmPHIeyfffjFhxJuwE2k1byNDwc5CJjFV7JgcIXJMVP-hQg0KaeRWT4ql_JCn4","token_type":"Bearer","expires_in":3600}
 ''';
