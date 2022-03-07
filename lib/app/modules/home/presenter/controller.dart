@@ -10,7 +10,8 @@ import 'state.dart';
 
 class HomeController extends GetxController with HomeState {
   final IUseCase _getRandomTrackByGenre;
-  HomeController(this._getRandomTrackByGenre);
+  final IUseCaseNoParams _getGenres;
+  HomeController(this._getRandomTrackByGenre, this._getGenres);
   late final ITabNavigator tabNavigator;
 
   @override
@@ -45,5 +46,9 @@ class HomeController extends GetxController with HomeState {
       default:
         return strings.goodDawn;
     }
+  }
+
+  Future<void> getGenres() async {
+    final res = await _getGenres();
   }
 }
