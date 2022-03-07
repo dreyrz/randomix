@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../core/utils/images/images_path.dart';
-import '../../../core/widgets/rounded_button.dart';
+import '../../../core/constants/strings.dart';
+import '../../../core/utils/images_path.dart';
+
+import '../../../core/widgets/button.dart';
 import 'controller.dart';
 
 class AboutPage extends GetView<AboutController> {
@@ -16,41 +18,38 @@ class AboutPage extends GetView<AboutController> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              SvgPicture.asset(
-                SvgImagesPath.aboutImage,
-                height: 200,
-                width: 200,
+              const Spacer(flex: 20),
+              Flexible(
+                flex: 40,
+                child: SvgPicture.asset(
+                  SvgImagesPath.aboutImage,
+                ),
               ),
+              const Spacer(flex: 15),
               Column(
                 children: [
-                  const Text(
-                    'Bem vindo!',
+                  Text(
+                    Get.find<IStrings>().welcome,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 30,
-                      fontWeight: FontWeight.bold,
-                    ),
+                    style: Get.theme.textTheme.headline1,
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   Text(
-                    'Escolha as músicas conforme seu humor do dia.',
+                    Get.find<IStrings>().aboutDescription,
                     textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 17,
-                      fontWeight: FontWeight.bold,
-                      color: Theme.of(context).secondaryHeaderColor,
-                    ),
+                    style: Get.theme.textTheme.headline3,
                   ),
                 ],
               ),
-              RoundedButton(
+              const Spacer(flex: 15),
+              Button(
                 onPressed: controller.navigateToHome,
-                title: 'Continue',
-              )
+                title: Get.find<IStrings>().continuee,
+              ),
+              const Spacer(flex: 10),
             ],
           ),
         ),
