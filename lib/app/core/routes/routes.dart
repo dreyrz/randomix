@@ -3,5 +3,5 @@ abstract class Routes {
   static const splash = '/splash';
   static const home = '/home';
   static const about = '/about';
-  static const history = '/history';
+  static const library = '/library';
 }

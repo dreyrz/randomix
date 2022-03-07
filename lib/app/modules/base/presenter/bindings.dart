@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:randomix/app/modules/history/presenter/bindings.dart';
-import 'package:randomix/app/modules/home/presenter/binding.dart';
 
+import '../../home/presenter/binding.dart';
+import '../../library/presenter/bindings.dart';
 import 'controller.dart';
 
 class BaseBinding implements Bindings {
@@ -10,7 +10,7 @@ class BaseBinding implements Bindings {
     Get.put<BaseController>(BaseController(
       Get.find(),
       HomeBinding(),
-      HistoryBinding(),
+      LibraryBinding(),
     ));
   }
 }

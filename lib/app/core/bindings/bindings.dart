@@ -12,5 +12,6 @@ class InitialBinding implements Bindings {
     Get.put<IStorageService>(StorageService());
     Get.put<IStrings>(BrazilianPortugueseStrings());
     Get.put<IAuthentication>(AuthenticationService());
+    Get.put<ITrackListService>(TrackListService());
   }
 }

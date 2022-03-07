@@ -1,16 +1,15 @@
 import 'package:get/get.dart';
-import 'package:randomix/app/modules/base/presenter/bindings.dart';
-import 'package:randomix/app/modules/history/presenter/bindings.dart';
-import 'package:randomix/app/modules/history/presenter/page.dart';
 
 import '../../modules/about/presenter/bindings.dart';
 import '../../modules/about/presenter/page.dart';
+import '../../modules/base/presenter/bindings.dart';
 import '../../modules/base/presenter/page.dart';
 import '../../modules/home/presenter/binding.dart';
 import '../../modules/home/presenter/page.dart';
+import '../../modules/library/presenter/bindings.dart';
+import '../../modules/library/presenter/page.dart';
 import '../../modules/splash/presenter/binding.dart';
 import '../../modules/splash/presenter/page.dart';
-
 import 'routes.dart';
 
 class Pages {
@@ -36,9 +35,9 @@ class Pages {
       binding: AboutBinding(),
     ),
     GetPage(
-      name: Routes.history,
-      page: () => const HistoryPage(),
-      binding: HistoryBinding(),
+      name: Routes.library,
+      page: () => const LibraryPage(),
+      binding: LibraryBinding(),
     )
   ];
 }

@@ -27,5 +27,10 @@ class RandomixTextStyles implements AppTextStyles {
           color: colors.black,
           fontWeight: FontWeight.w600,
         ),
+        headline4: TextStyle(
+          fontSize: 12,
+          color: colors.black,
+          fontWeight: FontWeight.w600,
+        ),
       );
 }

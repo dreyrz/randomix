@@ -15,6 +15,6 @@ class HomeBinding implements Bindings {
     Get.lazyPut<IHomeDatasource>(() => HomeDataSource(Get.find<IApi>()));
     Get.lazyPut<IHomeRepository>(() => HomeRepository(Get.find()));
     Get.lazyPut<IUseCase>(() => GetRandomTrackByGenre(Get.find()));
-    Get.put<HomeController>(HomeController(Get.find()));
+    Get.put<HomeController>(HomeController(Get.find(), Get.find(), Get.find()));
   }
 }

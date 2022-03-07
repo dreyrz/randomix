@@ -1,25 +1,21 @@
 import 'dart:developer';
 
 import 'package:get/get.dart';
+import 'package:randomix/app/core/services/track_list.dart';
 
-import '../../../core/constants/strings.dart';
 import '../../../core/services/tab_navigator.dart';
-import '../../../core/utils/time.dart';
 import '../../../core/utils/usecase.dart';
 import 'state.dart';
 
 class HomeController extends GetxController with HomeState {
   final IUseCase _getRandomTrackByGenre;
+  final ITabNavigator tabNavigator;
+  final ITrackListService _trackListService;
   HomeController(
     this._getRandomTrackByGenre,
+    this.tabNavigator,
+    this._trackListService,
   );
-  late final ITabNavigator tabNavigator;
-
-  @override
-  void onInit() {
-    tabNavigator = Get.find<ITabNavigator>();
-    super.onInit();
-  }
 
   Future<void> getRandomTrackByGenre(String genre) async {
     final res = await _getRandomTrackByGenre('pop');
@@ -27,25 +23,10 @@ class HomeController extends GetxController with HomeState {
       (l) {
         log("error $l");
       },
-      (r) => trackList.add(r),
+      (track) {
+        trackList.add(track);
+        _trackListService.addTrack(track);
+      },
     );
-  }
-
-  String getGreetingString() {
-    final period = Time.currentPeriod();
-    final strings = Get.find<IStrings>();
-    switch (period) {
-      case Period.morning:
-        return strings.goodMorning;
-
-      case Period.afternoon:
-        return strings.goodAfternoon;
-
-      case Period.night:
-        return strings.goodNight;
-
-      default:
-        return strings.goodDawn;
-    }
   }
 }

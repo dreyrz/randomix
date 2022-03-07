@@ -1,5 +1,3 @@
-// ignore_for_file: file_names
-
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -51,5 +49,3 @@ class StorageService<K> extends GetxService implements IStorageService<K> {
     await _shared.setBool(key.toString(), value);
   }
 }
-
-//utilizar o controller do about, modules/about, 

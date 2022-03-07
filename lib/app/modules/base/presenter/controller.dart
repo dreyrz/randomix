@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/services/_services.dart';
-import '../../history/presenter/bindings.dart';
-import '../../history/presenter/page.dart';
 import '../../home/presenter/binding.dart';
 import '../../home/presenter/page.dart';
+import '../../library/presenter/bindings.dart';
+import '../../library/presenter/page.dart';
 import 'state.dart';
 
 class BaseController extends GetxController with BaseState {
   final ITabNavigator tabNavigator;
   final HomeBinding homeBinding;
-  final HistoryBinding historyBinding;
+  final LibraryBinding historyBinding;
   BaseController(this.tabNavigator, this.homeBinding, this.historyBinding);
 
   @override
@@ -20,7 +20,7 @@ class BaseController extends GetxController with BaseState {
     historyBinding.dependencies();
     pages.value = [
       const HomePage(),
-      const HistoryPage(),
+      const LibraryPage(),
     ];
     _setToken();
     super.onInit();

@@ -8,7 +8,6 @@ enum Period {
 class Time {
   static Period currentPeriod() {
     final hour = DateTime.now().hour;
-
     if (hour >= 6 && hour < 12) {
       return Period.morning;
     } else if (hour >= 12 && hour < 18) {

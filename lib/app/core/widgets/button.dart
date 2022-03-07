@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 import 'loading.dart';
 
@@ -52,7 +51,7 @@ class _ButtonState extends State<Button> {
       height: widget.height ?? 50,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: widget.color ?? Get.theme.primaryColor,
+          primary: widget.color ?? Theme.of(context).primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20.0),
           ),
@@ -68,7 +67,7 @@ class _ButtonState extends State<Button> {
                     style: widget.style ??
                         TextStyle(
                           fontSize: 20,
-                          color: Get.theme.bottomAppBarColor,
+                          color: Theme.of(context).bottomAppBarColor,
                         ),
                   ),
                 ),

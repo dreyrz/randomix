@@ -32,7 +32,7 @@ class AboutPage extends GetView<AboutController> {
                   Text(
                     Get.find<IStrings>().welcome,
                     textAlign: TextAlign.center,
-                    style: Get.theme.textTheme.headline1,
+                    style: Theme.of(context).textTheme.headline1,
                   ),
                   const SizedBox(
                     height: 12,
@@ -40,7 +40,7 @@ class AboutPage extends GetView<AboutController> {
                   Text(
                     Get.find<IStrings>().aboutDescription,
                     textAlign: TextAlign.center,
-                    style: Get.theme.textTheme.headline3,
+                    style: Theme.of(context).textTheme.headline3,
                   ),
                 ],
               ),

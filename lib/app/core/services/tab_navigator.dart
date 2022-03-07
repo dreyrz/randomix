@@ -33,7 +33,6 @@ class TabNavigator extends GetxService implements ITabNavigator {
   }) {
     if (settings.name != firstTabRoute && settings.name != Routes.base) {
       final route = Pages.routes.firstWhere((p) => p.name == settings.name);
-
       return GetPageRoute(page: route.page, binding: route.binding);
     } else {
       return GetPageRoute(page: () => basePage);
