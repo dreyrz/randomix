@@ -49,7 +49,6 @@ class HomeController extends GetxController with HomeState {
   }
 
   Future<void> getGenres() async {
-    // ignore: unused_local_variable
     final res = await _getGenres();
   }
 }
