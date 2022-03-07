@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
 
 import '../../../core/services/api.dart';
-import '../../../core/utils/interfaces/usecase.dart';
+import '../../../core/utils/usecase.dart';
 import '../domain/repositories/repository_interface.dart';
 import '../domain/usecases/get_random_track_by_genre.dart';
 import '../external/spotify/datasources/datasource.dart';

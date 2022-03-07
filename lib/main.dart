@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:randomix/app/core/bindings/bindings.dart';
-import 'package:randomix/app/core/themes/text_styles.dart';
-import 'app/core/themes/colors.dart';
-import 'app/core/themes/themes.dart';
 
+import 'app/core/bindings/bindings.dart';
 import 'app/core/routes/pages.dart';
+import 'app/core/routes/routes.dart';
+import 'app/core/themes/colors.dart';
+import 'app/core/themes/text_styles.dart';
+import 'app/core/themes/themes.dart';
 
 void main() {
   runApp(const Randomix());
@@ -27,6 +28,7 @@ class Randomix extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       initialBinding: InitialBinding(),
       getPages: Pages.routes,
+      initialRoute: Routes.splash,
       theme: theme.light,
       darkTheme: theme.dark,
     );

@@ -2,29 +2,26 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 
-import '../../../core/services/api.dart';
-import '../../../core/utils/interfaces/usecase.dart';
-
-import 'state/states.dart';
+import '../../../core/constants/strings.dart';
+import '../../../core/services/tab_navigator.dart';
+import '../../../core/utils/time.dart';
+import '../../../core/utils/usecase.dart';
+import 'state.dart';
 
 class HomeController extends GetxController with HomeState {
   final IUseCase _getRandomTrackByGenre;
-  HomeController(this._getRandomTrackByGenre);
+  HomeController(
+    this._getRandomTrackByGenre,
+  );
+  late final ITabNavigator tabNavigator;
 
   @override
   void onInit() {
-    _setToken();
+    tabNavigator = Get.find<ITabNavigator>();
     super.onInit();
   }
 
-  void _setToken() {
-    final token = Get.arguments;
-    Get.find<IApi>().headers = {"Authorization": "Bearer $token"};
-  }
-
   Future<void> getRandomTrackByGenre(String genre) async {
-    isLoading.value = true;
-
     final res = await _getRandomTrackByGenre('pop');
     res.fold(
       (l) {
@@ -32,6 +29,23 @@ class HomeController extends GetxController with HomeState {
       },
       (r) => trackList.add(r),
     );
-    isLoading.value = false;
+  }
+
+  String getGreetingString() {
+    final period = Time.currentPeriod();
+    final strings = Get.find<IStrings>();
+    switch (period) {
+      case Period.morning:
+        return strings.goodMorning;
+
+      case Period.afternoon:
+        return strings.goodAfternoon;
+
+      case Period.night:
+        return strings.goodNight;
+
+      default:
+        return strings.goodDawn;
+    }
   }
 }

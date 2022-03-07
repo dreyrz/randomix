@@ -7,7 +7,7 @@ import 'package:get/get.dart';
 import '../../../../core/config/config.dart';
 import '../../../../core/errors/failure.dart';
 import '../../../../core/services/api.dart';
-import '../../../../core/utils/interfaces/usecase.dart';
+import '../../../../core/utils/usecase.dart';
 import '../repositories/repository_interface.dart';
 
 class GetToken implements IUseCaseNoParams<String> {

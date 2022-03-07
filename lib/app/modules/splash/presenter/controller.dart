@@ -29,7 +29,7 @@ class SplashController extends GetxController {
       (l) => log(l.toString()),
       (token) {
         Get.find<IApi>().baseUrl = Config.baseUrl;
-        Get.offAllNamed(isFirstAppOpen == false ? Routes.home : Routes.about,
+        Get.offAllNamed(isFirstAppOpen == false ? Routes.base : Routes.about,
             arguments: token);
       },
     );

@@ -1,5 +1,5 @@
 import 'package:dartz/dartz.dart';
-import 'package:randomix/app/core/utils/interfaces/usecase.dart';
+import 'package:randomix/app/core/utils/usecase.dart';
 
 import '../../../../core/errors/failure.dart';
 
