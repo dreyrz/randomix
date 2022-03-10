@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/button.dart';
 import '../../home/domain/entities/track.dart';
 
 class TrackTile extends StatelessWidget {
@@ -11,12 +10,12 @@ class TrackTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.symmetric(vertical: 12),
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         onTap: () {},
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
               height: 80,
@@ -46,7 +45,7 @@ class TrackTile extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline3,
                   ),
                   const SizedBox(
-                    height: 4,
+                    height: 8,
                   ),
                   Text(
                     track.artists
@@ -58,7 +57,7 @@ class TrackTile extends StatelessWidget {
                     style: Theme.of(context).textTheme.headline4,
                   ),
                   const SizedBox(
-                    height: 4,
+                    height: 8,
                   ),
                   Text(
                     track.album.name,
@@ -67,10 +66,6 @@ class TrackTile extends StatelessWidget {
                   ),
                 ],
               ),
-            ),
-            Button(
-              title: 'oi',
-              onPressed: () {},
             ),
           ],
         ),
