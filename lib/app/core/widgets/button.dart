@@ -9,7 +9,8 @@ class Button extends StatefulWidget {
   const Button({
     required this.title,
     required this.onPressed,
-    this.height,
+    this.height = 50,
+    this.width = 50,
     this.color,
     this.style,
     Key? key,
@@ -18,6 +19,7 @@ class Button extends StatefulWidget {
   final Color? color;
   final String title;
   final double? height;
+  final double? width;
   final TextStyle? style;
   final FutureOr<void> Function()? onPressed;
 
@@ -48,7 +50,8 @@ class _ButtonState extends State<Button> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: widget.height ?? 50,
+      height: widget.height,
+      width: widget.width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           primary: widget.color ?? Theme.of(context).primaryColor,
