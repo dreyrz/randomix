@@ -23,7 +23,7 @@ class AboutPage extends GetView<AboutController> {
               Flexible(
                 flex: 40,
                 child: SvgPicture.asset(
-                  SvgImagesPath.aboutImage,
+                  SvgImagesPath.about,
                 ),
               ),
               const Spacer(flex: 15),
