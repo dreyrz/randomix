@@ -20,4 +20,24 @@ class Track {
     required this.album,
     required this.artists,
   });
+
+  Track copyWith({
+    String? id,
+    String? name,
+    String? type,
+    String? externalUrl,
+    DateTime? date,
+    Album? album,
+    List<Artist>? artists,
+  }) {
+    return Track(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      type: type ?? this.type,
+      externalUrl: externalUrl ?? this.externalUrl,
+      date: date ?? this.date,
+      album: album ?? this.album,
+      artists: artists ?? this.artists,
+    );
+  }
 }
