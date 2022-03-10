@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:randomix/app/core/services/tab_navigator.dart';
-import 'package:randomix/app/core/services/track_list.dart';
 
+import '../../../core/services/tab_navigator.dart';
+import '../../../core/services/track_list.dart';
 import 'state.dart';
 
 class LibraryController extends GetxController with LibraryState {
@@ -22,6 +22,16 @@ class LibraryController extends GetxController with LibraryState {
   }
 
   void trackListListener() {
-    tracks.add(trackListService.tracks.last);
+    final track = trackListService.tracks.last;
+    bool hasRepeated = false;
+    for (final t in tracks) {
+      if (t.id == track.id) {
+        hasRepeated = true;
+      }
+    }
+    if (hasRepeated) {
+      return;
+    }
+    tracks.insert(0, trackListService.tracks.last);
   }
 }
