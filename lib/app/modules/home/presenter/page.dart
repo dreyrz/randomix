@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:randomix/app/modules/home/widgets/circular_button.dart';
 
 import '../../../core/routes/routes.dart';
+import '../widgets/animated_circular_button.dart';
 import '../widgets/custom_app_bar.dart';
 import 'controller.dart';
 
@@ -33,16 +33,15 @@ class HomePage extends GetView<HomeController> {
                       'Clique para obter uma música!',
                       style: Theme.of(context).textTheme.headline2,
                     ),
-                    const Spacer(flex: 25),
+                    const Spacer(flex: 35),
                     Align(
                       alignment: Alignment.center,
-                      child: CircularButton(
-                        size: 200,
+                      child: AnimatedCircularButton(
                         onPressed: () async =>
                             await controller.getRandomTrackByGenre('pop'),
                       ),
                     ),
-                    const Spacer(flex: 65),
+                    const Spacer(flex: 55),
                   ],
                 ),
               ),
