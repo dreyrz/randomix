@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import '../../../core/routes/routes.dart';
 import '../widgets/animated_circular_button.dart';
 import '../widgets/custom_app_bar.dart';
+import '../widgets/genres_dropdown.dart';
 import 'controller.dart';
 
 class HomePage extends GetView<HomeController> {
@@ -25,21 +26,29 @@ class HomePage extends GetView<HomeController> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Spacer(flex: 10),
-                    Text(
-                      'Clique para obter uma música!',
-                      style: Theme.of(context).textTheme.headline2,
+                    Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                        'Clique para obter uma música!',
+                        style: Theme.of(context).textTheme.headline2,
+                      ),
                     ),
                     const Spacer(flex: 35),
-                    Align(
-                      alignment: Alignment.center,
+                    SizedBox(
+                      height: 300,
                       child: AnimatedCircularButton(
                         onPressed: () async =>
-                            await controller.getRandomTrackByGenre('pop'),
+                            await controller.getRandomTrack(),
                       ),
+                    ),
+                    const Spacer(flex: 5),
+                    GenresDropDown(
+                      controller.genresList,
+                      controller.onGenreSelected,
                     ),
                     const Spacer(flex: 55),
                   ],

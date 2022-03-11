@@ -4,4 +4,5 @@ import '../domain/entities/track.dart';
 
 mixin HomeState {
   final trackList = RxList<Track>();
+  final genresList = RxList<String>();
 }

@@ -5,7 +5,7 @@ import '../../../core/services/track_list.dart';
 import 'state.dart';
 
 class LibraryController extends GetxController with LibraryState {
-  final ITabNavigator tabNavigator;
+  final ITabNavigatorService tabNavigator;
   final ITrackListService trackListService;
   LibraryController(this.tabNavigator, this.trackListService);
 
