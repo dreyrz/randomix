@@ -5,12 +5,15 @@ import '../../../core/routes/routes.dart';
 import '../../../core/services/_services.dart';
 
 class AboutController extends GetxController {
+  final IStorageService _storageService;
+  AboutController(this._storageService);
+
   void navigateToHome() async {
     await _handleFirstAppOpen();
     Get.offAllNamed(Routes.home);
   }
 
   Future<void> _handleFirstAppOpen() async {
-    await Get.find<IStorageService>().setBool(StorageKeys.firstAppOpen, false);
+    await _storageService.setBool(StorageKeys.firstAppOpen, false);
   }
 }
