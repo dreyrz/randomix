@@ -9,7 +9,7 @@ import '../../library/presenter/page.dart';
 import 'state.dart';
 
 class BaseController extends GetxController with BaseState {
-  final ITabNavigator tabNavigator;
+  final ITabNavigatorService tabNavigator;
   final HomeBinding homeBinding;
   final LibraryBinding historyBinding;
   BaseController(this.tabNavigator, this.homeBinding, this.historyBinding);
@@ -22,13 +22,8 @@ class BaseController extends GetxController with BaseState {
       const HomePage(),
       const LibraryPage(),
     ];
-    _setToken();
-    super.onInit();
-  }
 
-  void _setToken() {
-    final token = Get.find<IAuthentication>().token;
-    Get.find<IApi>().headers = {"Authorization": "Bearer $token"};
+    super.onInit();
   }
 
   Future<bool> onWillPop() async {
