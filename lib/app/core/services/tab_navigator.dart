@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import '../routes/pages.dart';
 import '../routes/routes.dart';
 
-abstract class ITabNavigator {
+abstract class ITabNavigatorService {
   Rx<int> get currentTab;
   void goToTab(int tab);
   PageRoute onRouteChanged({
@@ -14,7 +14,7 @@ abstract class ITabNavigator {
   });
 }
 
-class TabNavigator extends GetxService implements ITabNavigator {
+class TabNavigatorService extends GetxService implements ITabNavigatorService {
   final _currentTab = Rx<int>(0);
 
   @override

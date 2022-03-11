@@ -1,11 +1,12 @@
 import 'package:get/get.dart';
 
-abstract class IAuthentication {
+abstract class IAuthenticationService {
   void setToken(String token);
   String? get token;
 }
 
-class AuthenticationService extends GetxService implements IAuthentication {
+class AuthenticationService extends GetxService
+    implements IAuthenticationService {
   String? _token;
 
   @override

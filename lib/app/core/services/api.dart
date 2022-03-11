@@ -11,9 +11,10 @@ abstract class IApi<R> {
   set baseUrl(String value);
 }
 
-class DioApi extends GetxService implements IApi<Response> {
+class ApiService extends GetxService implements IApi<Response> {
   final Dio _dio;
-  DioApi({required String baseUrl}) : _dio = Dio(BaseOptions(baseUrl: baseUrl));
+  ApiService({required String baseUrl})
+      : _dio = Dio(BaseOptions(baseUrl: baseUrl));
 
   @override
   set headers(Map<String, dynamic> value) => _dio.options.headers = value;
