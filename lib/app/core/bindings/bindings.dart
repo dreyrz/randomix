@@ -7,11 +7,12 @@ import '../services/_services.dart';
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put<IApi>(DioApi(baseUrl: Config.baseUrl));
-    Get.put<ITabNavigator>(TabNavigator());
     Get.put<IStorageService>(StorageService());
+    Get.put<IApi>(ApiService(baseUrl: Config.baseUrl));
+    Get.put<ITabNavigatorService>(TabNavigatorService());
     Get.put<IStrings>(BrazilianPortugueseStrings());
-    Get.put<IAuthentication>(AuthenticationService());
+    Get.put<IAuthenticationService>(AuthenticationService());
     Get.put<ITrackListService>(TrackListService());
+    Get.put<IGenresListService>(GenresListService());
   }
 }

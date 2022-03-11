@@ -23,4 +23,19 @@ class SplashRepository implements ISplashRepository {
       ));
     }
   }
+
+  @override
+  Future<Either<Failure, List<String>>> getGenres() async {
+    try {
+      final result = await _datasource.getGenres();
+      return Right(result);
+    } on Failure catch (e) {
+      return Left(e);
+    } on Exception catch (exception, stackTrace) {
+      return Left(UnknownError(
+        exception,
+        stackTrace,
+      ));
+    }
+  }
 }

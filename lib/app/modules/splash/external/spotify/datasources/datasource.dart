@@ -30,4 +30,24 @@ class SplashDatasource implements ISplashDatasource {
       throw UnknownError(e, stackTrace);
     }
   }
+
+  @override
+  Future<List<String>> getGenres() async {
+    try {
+      final response = await _api.get('/available-genre-seeds');
+      return List<String>.from(response.data['genres']);
+    } on DioError catch (e, stackTrace) {
+      throw GetGenresError(
+        e,
+        stackTrace,
+        'getGenres',
+        e.response.toString(),
+      );
+    } catch (e, stackTrace) {
+      throw UnknownError(
+        e,
+        stackTrace,
+      );
+    }
+  }
 }

@@ -2,17 +2,18 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:randomix/app/core/errors/failure.dart';
-import 'package:randomix/app/modules/home/domain/repositories/repository_interface.dart';
-import 'package:randomix/app/modules/home/domain/usecases/get_genres.dart';
+
+import 'package:randomix/app/modules/splash/domain/repositories/repository_interface.dart';
+import 'package:randomix/app/modules/splash/domain/usecases/get_genres.dart';
 import '../../../../mocks/errors.dart';
 import '../../../../mocks/repositories.dart';
 
 void main() {
-  late final IHomeRepository repository;
+  late final ISplashRepository repository;
   late final GetGenres usecase;
 
   setUpAll(() {
-    repository = HomeRepositoryMock();
+    repository = SplashRepositoryMock();
     usecase = GetGenres(repository);
   });
 

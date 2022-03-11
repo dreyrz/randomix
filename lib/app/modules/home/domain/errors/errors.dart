@@ -17,17 +17,3 @@ class TrackError extends Failure {
           message: message,
         );
 }
-
-class GetGenresError extends Failure {
-  GetGenresError(
-    dynamic exception,
-    StackTrace? stackTrace,
-    String label,
-    String message,
-  ) : super(
-          stackTrace: stackTrace,
-          label: "GetGenresError $label",
-          exception: exception,
-          message: message,
-        );
-}

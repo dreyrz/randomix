@@ -24,20 +24,34 @@ main() {
     datasource = SplashDatasource(api);
   });
 
-  test('Should return a String when request is ok', () async {
-    when(() => api.post('', data: {"grant_type": "client_credentials"}))
-        .thenAnswer((_) async => Response(
-              data: jsonDecode(getTokenJson),
-              requestOptions: RequestOptions(path: anyString),
-            ));
+  group('getToken', () {
+    test('Should return a String when request is ok', () async {
+      when(() => api.post('', data: {"grant_type": "client_credentials"}))
+          .thenAnswer((_) async => Response(
+                data: jsonDecode(getTokenJson),
+                requestOptions: RequestOptions(path: anyString),
+              ));
 
-    final result = await datasource.getToken();
-    expect(result, isA<String>());
+      final result = await datasource.getToken();
+      expect(result, isA<String>());
+    });
+
+    test('Should throw a Failure when request fails', () async {
+      when(() => api.post('', data: {"grant_type": "client_credentials"}))
+          .thenAnswer((_) async => throw FailureMock());
+      await expectLater(datasource.getToken(), throwsA(isA<Failure>()));
+    });
   });
 
-  test('Should throw a Failure when request fails', () async {
-    when(() => api.post('', data: {"grant_type": "client_credentials"}))
-        .thenAnswer((_) async => throw FailureMock());
-    await expectLater(datasource.getToken(), throwsA(isA<Failure>()));
+  group('getGenres', () {
+    test('Expect to return a Api', () async {
+      when(() => api.get('/available-genre-seeds'))
+          .thenAnswer((_) async => Response(
+                data: jsonDecode(getGenresJson),
+                requestOptions: RequestOptions(path: anyString),
+              ));
+      final result = await datasource.getGenres();
+      expect(result, isA<List<String>>());
+    });
   });
 }

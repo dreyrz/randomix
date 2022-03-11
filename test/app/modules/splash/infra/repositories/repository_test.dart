@@ -18,17 +18,33 @@ main() {
     repositoryImpl = SplashRepository(datasource);
   });
 
-  test('Expect to return a String when external returns a String', () async {
-    when(() => datasource.getToken()).thenAnswer((_) async => anyString);
+  group('getToken', () {
+    test('Expect to return a String when external returns a String', () async {
+      when(() => datasource.getToken()).thenAnswer((_) async => anyString);
 
-    final result = await repositoryImpl.getToken();
-    expect(result.fold(id, id), isA<String>());
+      final result = await repositoryImpl.getToken();
+      expect(result.fold(id, id), isA<String>());
+    });
+
+    test('Expect to get a Failure when external throws a Failure', () async {
+      when(() => datasource.getToken()).thenThrow(FailureMock());
+
+      final result = await repositoryImpl.getToken();
+      expect(result.fold(id, id), isA<Failure>());
+    });
   });
+  group('getGenres', () {
+    test('Expect to return a Genres when external returns a Genre', () async {
+      when(() => datasource.getGenres()).thenAnswer((_) async => <String>[]);
 
-  test('Expect to get a Failure when external throws a Failure', () async {
-    when(() => datasource.getToken()).thenThrow(FailureMock());
+      final result = await repositoryImpl.getGenres();
+      expect(result.fold(id, id), isA<List<String>>());
+    });
+    test('Expect to get a Failure when external throws a Failure', () async {
+      when(() => datasource.getGenres()).thenThrow(FailureMock());
 
-    final result = await repositoryImpl.getToken();
-    expect(result.fold(id, id), isA<Failure>());
+      final result = await repositoryImpl.getGenres();
+      expect(result.fold(id, id), isA<Failure>());
+    });
   });
 }

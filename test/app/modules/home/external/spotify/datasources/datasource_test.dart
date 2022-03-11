@@ -40,16 +40,4 @@ main() {
       expect(result, isA<Track>());
     });
   });
-
-  group('getGenres', () {
-    test('Expect to return a Api', () async {
-      when(() => api.get('/available-genre-seeds'))
-          .thenAnswer((_) async => Response(
-                data: jsonDecode(getGenresJson),
-                requestOptions: RequestOptions(path: anyString),
-              ));
-      final result = await datasource.getGenres();
-      expect(result, isA<List<String>>());
-    });
-  });
 }
