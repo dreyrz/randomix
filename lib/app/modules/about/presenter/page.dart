@@ -18,6 +18,7 @@ class AboutPage extends GetView<AboutController> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 40),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               const Spacer(flex: 20),
               Flexible(

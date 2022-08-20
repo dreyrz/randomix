@@ -40,4 +40,9 @@ class Track {
       artists: artists ?? this.artists,
     );
   }
+
+  @override
+  String toString() {
+    return 'Track(id: $id, name: $name)';
+  }
 }

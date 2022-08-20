@@ -15,10 +15,8 @@ class BrazilianPortugueseStrings implements IStrings {
   @override
   String get aboutDescription =>
       'Escolha as músicas conforme seu humor do dia.';
-
   @override
   String get continuee => 'Continuar';
-
   @override
   String get welcome => 'Bem vindo!';
   @override

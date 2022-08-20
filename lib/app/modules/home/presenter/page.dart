@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/routes/routes.dart';
-import '../widgets/animated_circular_button.dart';
+import '../widgets/circular_button.dart';
 import '../widgets/custom_app_bar.dart';
 import '../widgets/genres_dropdown.dart';
 import 'controller.dart';
@@ -34,13 +34,13 @@ class HomePage extends GetView<HomeController> {
                       alignment: Alignment.topLeft,
                       child: Text(
                         'Clique para obter uma música!',
-                        style: Theme.of(context).textTheme.headline2,
+                        style: Theme.of(context).textTheme.headline3,
                       ),
                     ),
                     const Spacer(flex: 35),
                     SizedBox(
                       height: 300,
-                      child: AnimatedCircularButton(
+                      child: CircularButton(
                         onPressed: () async =>
                             await controller.getRandomTrack(),
                       ),
