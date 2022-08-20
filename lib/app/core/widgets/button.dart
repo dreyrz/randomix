@@ -56,7 +56,7 @@ class _ButtonState extends State<Button> {
         style: ElevatedButton.styleFrom(
           primary: widget.color ?? Theme.of(context).primaryColor,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(10.0),
           ),
         ),
         onPressed: _onPressed,
@@ -69,7 +69,7 @@ class _ButtonState extends State<Button> {
                     widget.title,
                     style: widget.style ??
                         TextStyle(
-                          fontSize: 20,
+                          fontSize: 16,
                           color: Theme.of(context).bottomAppBarColor,
                         ),
                   ),
