@@ -4,10 +4,11 @@ import 'dart:math';
 import 'package:get/get.dart';
 
 import '../../../core/constants/strings.dart';
+import '../../../core/entities/_entities.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/services/_services.dart';
 import '../../../core/utils/usecase.dart';
-import '../domain/entities/track.dart';
+
 import 'state.dart';
 
 class HomeController extends GetxController with HomeState {

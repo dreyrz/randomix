@@ -1,4 +1,4 @@
-import '../../domain/entities/artist.dart';
+import '../../../../core/entities/_entities.dart';
 
 class ArtistModel extends Artist {
   ArtistModel(Map<String, dynamic> map)

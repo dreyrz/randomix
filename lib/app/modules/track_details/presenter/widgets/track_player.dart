@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/entities/_entities.dart';
 import '../../../../core/services/_services.dart';
-import '../../../home/domain/entities/track.dart';
+
 import 'player_button.dart';
 
 class TrackPlayer extends StatefulWidget {

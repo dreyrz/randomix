@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:get/get.dart';
 
-import '../../modules/home/domain/entities/track.dart';
+import '../entities/_entities.dart';
 
 typedef TrackListListener = void Function();
 

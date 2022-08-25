@@ -1,6 +1,5 @@
-import 'package:randomix/app/modules/home/infra/models/track_model.dart';
-
-import '../../domain/entities/album.dart';
+import '../../../../core/utils/mixins/_mixins.dart';
+import '../../../../core/entities/_entities.dart';
 
 class AlbumModel extends Album with ListUtils {
   AlbumModel(Map<String, dynamic> map)

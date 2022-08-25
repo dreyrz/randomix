@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../home/domain/entities/track.dart';
+import '../../../../core/entities/_entities.dart';
 
 class TrackCover extends StatelessWidget {
   final Track track;

@@ -1,7 +1,7 @@
 import 'package:get/state_manager.dart';
 
+import '../../../core/entities/_entities.dart';
 import '../../../core/services/_services.dart';
-import '../../home/domain/entities/track.dart';
 
 mixin TrackDetailsState {
   late final Track track;

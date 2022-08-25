@@ -1,9 +1,9 @@
 import 'package:dartz/dartz.dart';
 import 'package:randomix/app/core/utils/usecase.dart';
 
+import '../../../../core/entities/_entities.dart';
 import '../../../../core/errors/failure.dart';
 
-import '../entities/track.dart';
 import '../repositories/repository_interface.dart';
 
 class GetRandomTrackByGenre implements IUseCase<String, Track> {

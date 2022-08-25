@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/entities/_entities.dart';
 import '../../../../core/widgets/scrolling_text.dart';
-import '../../../home/domain/entities/track.dart';
 
 class TrackInfo extends StatelessWidget {
   final Track track;
