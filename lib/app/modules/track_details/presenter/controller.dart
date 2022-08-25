@@ -10,6 +10,12 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
     _addCallbacks();
   }
 
+  @override
+  void onClose() {
+    _player.dispose();
+    super.onClose();
+  }
+
   Future<void> playTrack(String url) async {
     await _player.play(url);
   }

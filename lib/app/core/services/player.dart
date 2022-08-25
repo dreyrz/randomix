@@ -16,6 +16,7 @@ abstract class IPlayer {
   Future<void> resume();
   Future<void> pause();
   Future<void> seek(Duration duration);
+  Future<void> dispose();
   PlayerStatus get getStatus;
   void onPositionChanged(PlayerPositionCallback audioPlayerPositionCallback);
   void onStateChanged(PlayerStatusCallback playerStatusCallback);
@@ -52,6 +53,11 @@ class Player extends GetxService implements IPlayer {
   @override
   Future<void> seek(Duration duration) async {
     await _player.seek(duration);
+  }
+
+  @override
+  Future<void> dispose() async {
+    await _player.dispose();
   }
 
   @override
