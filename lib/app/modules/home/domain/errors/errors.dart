@@ -9,7 +9,7 @@ class TrackError extends Failure {
     dynamic exception,
     StackTrace? stackTrace,
     String label,
-    String message,
+    String? message,
   ) : super(
           stackTrace: stackTrace,
           label: "TrackError $label",

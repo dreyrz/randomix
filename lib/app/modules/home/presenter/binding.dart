@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:get/get.dart';
 
 import '../../../core/utils/usecase.dart';
+import '../domain/entities/track.dart';
 import '../domain/repositories/repository_interface.dart';
 import '../domain/usecases/get_random_track_by_genre.dart';
 import '../external/spotify/datasources/datasource.dart';
@@ -15,7 +16,8 @@ class HomeBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<IHomeDatasource>(() => HomeDataSource(Get.find()));
     Get.lazyPut<IHomeRepository>(() => HomeRepository(Get.find()));
-    Get.lazyPut<IUseCase>(() => GetRandomTrackByGenre(Get.find()));
+    Get.lazyPut<IUseCase<String, Track>>(
+        () => GetRandomTrackByGenre(Get.find()));
 
     Get.put<HomeController>(HomeController(
       Get.find(),

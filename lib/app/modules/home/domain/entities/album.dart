@@ -1,9 +1,9 @@
 class Album {
-  final String id;
-  final String name;
-  final String externalUrl;
-  final String type;
-  final String albumCover;
+  final String? id;
+  final String? name;
+  final String? externalUrl;
+  final String? type;
+  final String? albumCover;
   const Album({
     required this.id,
     required this.name,

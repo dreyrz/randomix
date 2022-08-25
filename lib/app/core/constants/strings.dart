@@ -2,6 +2,9 @@ abstract class IStrings {
   ///General
   String get welcome;
   String get continuee;
+  String get random;
+
+  //Time
   String get goodMorning;
   String get goodAfternoon;
   String get goodNight;
@@ -27,4 +30,7 @@ class BrazilianPortugueseStrings implements IStrings {
   String get goodNight => 'Boa noite!';
   @override
   String get goodDawn => 'Boa madrugada!';
+
+  @override
+  String get random => 'Aleatório';
 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class GenresDropDown extends StatefulWidget {
   final List<String> genres;
-  final Function(String genre) onGenreSelected;
+  final void Function(String genre) onGenreSelected;
   const GenresDropDown(this.genres, this.onGenreSelected, {Key? key})
       : super(key: key);
 

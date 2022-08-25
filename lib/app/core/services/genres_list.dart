@@ -6,10 +6,13 @@ abstract class IGenresListService {
 }
 
 class GenresListService extends GetxService implements IGenresListService {
-  final _genres = <String>['aleatório'];
+  final String random;
+  GenresListService(this.random);
+
+  late final _genres = <String>[random];
+
   @override
   List<String> get genres => _genres;
-
   @override
   void addGenres(List<String> genres) => _genres.addAll(genres);
 }

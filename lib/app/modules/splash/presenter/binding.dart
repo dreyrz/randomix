@@ -10,23 +10,15 @@ import '../infra/repositories/repository.dart';
 import 'controller.dart';
 
 class SplashBinding implements Bindings {
-  static const getTokenTag = 'getToken';
-  static const getGenresTag = 'getGenres';
   @override
   void dependencies() {
     Get.lazyPut<ISplashDatasource>(() => SplashDatasource(Get.find()));
     Get.lazyPut<ISplashRepository>(() => SplashRepository(Get.find()));
-    Get.lazyPut<IUseCaseNoParams>(
-      () => GetToken(Get.find()),
-      tag: getTokenTag,
-    );
-    Get.lazyPut<IUseCaseNoParams>(
-      () => GetGenres(Get.find()),
-      tag: getGenresTag,
-    );
+    Get.lazyPut<IUseCaseNoParams<String>>(() => GetToken(Get.find()));
+    Get.lazyPut<IUseCaseNoParams<List<String>>>(() => GetGenres(Get.find()));
     Get.put<SplashController>(SplashController(
-      Get.find(tag: getTokenTag),
-      Get.find(tag: getGenresTag),
+      Get.find(),
+      Get.find(),
       Get.find(),
       Get.find(),
       Get.find(),

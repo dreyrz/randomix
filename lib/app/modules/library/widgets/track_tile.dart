@@ -26,7 +26,7 @@ class TrackTile extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   image: NetworkImage(
-                    track.album.albumCover,
+                    track.album!.albumCover!,
                   ),
                 ),
               ),
@@ -40,7 +40,7 @@ class TrackTile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Text(
-                    track.name,
+                    track.name!,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.headline3,
                   ),
@@ -48,7 +48,7 @@ class TrackTile extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    track.artists
+                    track.artists!
                         .map((a) => a.name)
                         .toString()
                         .replaceAll("(", "")
@@ -60,7 +60,7 @@ class TrackTile extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    track.album.name,
+                    track.album!.name!,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.headline4,
                   ),

@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:randomix/app/modules/track_details/presenter/page.dart';
 
 import '../../modules/about/presenter/bindings.dart';
 import '../../modules/about/presenter/page.dart';
@@ -10,6 +11,7 @@ import '../../modules/library/presenter/bindings.dart';
 import '../../modules/library/presenter/page.dart';
 import '../../modules/splash/presenter/binding.dart';
 import '../../modules/splash/presenter/page.dart';
+import '../../modules/track_details/presenter/bindings.dart';
 import 'routes.dart';
 
 class Pages {
@@ -38,6 +40,13 @@ class Pages {
       name: Routes.library,
       page: () => const LibraryPage(),
       binding: LibraryBinding(),
-    )
+    ),
+    GetPage(
+      name: Routes.trackDetails,
+      page: () => const TrackDetailsPage(),
+      binding: TrackDetailsBinding(),
+      transition: Transition.native,
+      transitionDuration: const Duration(seconds: 1),
+    ),
   ];
 }

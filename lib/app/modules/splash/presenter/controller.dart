@@ -8,8 +8,8 @@ import '../../../core/services/_services.dart';
 import '../../../core/utils/usecase.dart';
 
 class SplashController extends GetxController {
-  final IUseCaseNoParams getToken;
-  final IUseCaseNoParams getGenres;
+  final IUseCaseNoParams<String> getToken;
+  final IUseCaseNoParams<List<String>> getGenres;
   final IAuthenticationService _authentication;
   final IApi _api;
   final IGenresListService _genresListService;

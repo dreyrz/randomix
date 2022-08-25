@@ -1,12 +1,16 @@
+import 'package:randomix/app/modules/home/infra/models/track_model.dart';
+
 import '../../domain/entities/album.dart';
 
-class AlbumModel extends Album {
+class AlbumModel extends Album with ListUtils {
   AlbumModel(Map<String, dynamic> map)
       : super(
-          id: map["tracks"][0]["album"]["id"],
-          name: map["tracks"][0]["album"]["name"],
-          type: map["tracks"][0]["album"]["type"],
-          albumCover: map["tracks"][0]["album"]["images"][0]["url"],
-          externalUrl: map["tracks"][0]["album"]["external_urls"]["spotify"],
+          id: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]["id"],
+          name: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]["name"],
+          type: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]["type"],
+          albumCover: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]
+              ["images"][0]["url"],
+          externalUrl: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]
+              ["external_urls"]["spotify"],
         );
 }

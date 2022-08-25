@@ -2,15 +2,16 @@ import 'dart:developer' as dev;
 import 'dart:math';
 
 import 'package:get/get.dart';
-import 'package:randomix/app/core/services/genres_list.dart';
-import 'package:randomix/app/core/services/track_list.dart';
 
-import '../../../core/services/tab_navigator.dart';
+import '../../../core/constants/strings.dart';
+import '../../../core/routes/routes.dart';
+import '../../../core/services/_services.dart';
 import '../../../core/utils/usecase.dart';
+import '../domain/entities/track.dart';
 import 'state.dart';
 
 class HomeController extends GetxController with HomeState {
-  final IUseCase _getRandomTrackByGenreUseCase;
+  final IUseCase<String, Track> _getRandomTrackByGenreUseCase;
 
   final ITabNavigatorService tabNavigator;
   final ITrackListService _trackListService;
@@ -25,12 +26,12 @@ class HomeController extends GetxController with HomeState {
     this._random,
   );
 
-  late String selectedGenre;
+  late String _selectedGenre;
 
   @override
   void onInit() {
     genresList.addAll(_genresListService.genres);
-    selectedGenre = _genresListService.genres.first;
+    _selectedGenre = _genresListService.genres.first;
     super.onInit();
   }
 
@@ -45,14 +46,15 @@ class HomeController extends GetxController with HomeState {
     );
   }
 
-  void onGenreSelected(String genre) => selectedGenre = genre;
+  void setGenreSelected(String genre) => _selectedGenre = genre;
 
   Future<void> getRandomTrack() async {
-    if (selectedGenre == 'aleatório') {
+    if (_selectedGenre == Get.find<IStrings>().random) {
       final index = _random.nextInt(genresList.length);
       await _getRandomTrackByGenre(genresList[index]);
-      return;
+    } else {
+      await _getRandomTrackByGenre(_selectedGenre);
     }
-    await _getRandomTrackByGenre(selectedGenre);
+    Get.toNamed(Routes.trackDetails, arguments: trackList.last);
   }
 }
