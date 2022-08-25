@@ -2,10 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_disposable.dart';
 
 abstract class IApi<R> {
-  Future get(String path, {Map<String, dynamic>? queryParameters});
-  Future post(String path, {Map<String, dynamic>? data});
-  Future put(String path, {Map<String, dynamic>? data});
-  Future del(String path, {Map<String, dynamic>? data});
+  Future<R> get(String path, {Map<String, dynamic>? queryParameters});
+  Future<R> post(String path, {Map<String, dynamic>? data});
+  Future<R> put(String path, {Map<String, dynamic>? data});
+  Future<R> del(String path, {Map<String, dynamic>? data});
   set headers(Map<String, dynamic> value);
   set contentType(String value);
   set baseUrl(String value);
