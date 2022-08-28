@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:randomix/app/core/entities/_entities.dart';
 import 'package:randomix/app/core/services/_services.dart';
-import 'package:randomix/app/modules/home/external/spotify/datasources/datasource.dart';
+import 'package:randomix/app/modules/home/external/datasources/datasource.dart';
 import 'package:randomix/app/modules/home/infra/datasources/home_datasource_interface.dart';
 
 import '../../../../../mocks/jsons.dart';

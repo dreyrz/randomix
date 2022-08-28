@@ -7,7 +7,7 @@ import '../../../core/utils/usecase.dart';
 
 import '../domain/repositories/repository_interface.dart';
 import '../domain/usecases/get_random_track_by_genre.dart';
-import '../external/spotify/datasources/datasource.dart';
+import '../external/datasources/datasource.dart';
 import '../infra/datasources/home_datasource_interface.dart';
 import '../infra/repositories/repository.dart';
 import 'controller.dart';
