@@ -49,7 +49,6 @@ class Track {
       name == null ||
       type == null ||
       externalUrl == null ||
-      previewUrl == null ||
       album == null ||
       artists == null;
 

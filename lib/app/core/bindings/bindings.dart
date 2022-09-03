@@ -14,6 +14,5 @@ class InitialBinding implements Bindings {
     Get.put<IAuthenticationService>(AuthenticationService());
     Get.put<ITrackListService>(TrackListService());
     Get.put<IGenresListService>(GenresListService(Get.find<IStrings>().random));
-    Get.put<IPlayer>(Player());
   }
 }

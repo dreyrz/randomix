@@ -6,8 +6,9 @@ import 'controller.dart';
 class TrackDetailsBinding implements Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<TrackDetailsController>(() => TrackDetailsController(
-          Get.find<IPlayer>(),
-        ));
+    final IPlayer player = Player();
+    Get.lazyPut<TrackDetailsController>(
+      () => TrackDetailsController(player),
+    );
   }
 }

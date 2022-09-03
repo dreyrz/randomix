@@ -47,7 +47,7 @@ Future<void> getRandomTrackNotification() async {
   final IApi api = ApiService(baseUrl: Config.baseUrl);
   final ISplashUseCaseFactory splashUseCaseFactory = SplashUseCaseFactory(api);
   final IHomeUseCaseFactory homeUseCaseFactory = HomeUseCaseFactory(api);
-
+  final notificationService = await bindNotificationService();
   final token = await _getToken(splashUseCaseFactory.getToken());
   api.token = token;
   api.baseUrl = Config.baseUrl;
@@ -56,7 +56,7 @@ Future<void> getRandomTrackNotification() async {
   final getRandomTrackByGenre = homeUseCaseFactory.getRandomTrackByGenre();
 
   final randomIndex = getRandomIndex(genres);
-  final notificationService = await bindNotificationService();
+
   final res = await getRandomTrackByGenre(genres[randomIndex]);
   res.fold(
     (l) => dev.log(l.toString()),

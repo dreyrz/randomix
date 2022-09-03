@@ -1,5 +1,4 @@
 import 'package:audioplayers/audioplayers.dart';
-import 'package:get/get.dart';
 
 typedef PlayerPositionCallback = void Function(Duration duration);
 typedef PlayerStatusCallback = void Function(PlayerStatus status);
@@ -22,14 +21,12 @@ abstract class IPlayer {
   void onStateChanged(PlayerStatusCallback playerStatusCallback);
 }
 
-class Player extends GetxService implements IPlayer {
+class Player implements IPlayer {
   late final AudioPlayer _player;
   PlayerStatus _status = PlayerStatus.stopped;
   PlayerStatusCallback? _playerStatusCallback;
-  @override
-  void onInit() {
+  Player() {
     _player = AudioPlayer();
-    super.onInit();
   }
 
   @override
@@ -71,6 +68,7 @@ class Player extends GetxService implements IPlayer {
   void onStateChanged(PlayerStatusCallback playerStatusCallback) {
     _onFinished();
     _player.onPlayerStateChanged.listen((state) {
+      print(state);
       _playerStatusCallback = playerStatusCallback;
       switch (state) {
         case PlayerState.stopped:

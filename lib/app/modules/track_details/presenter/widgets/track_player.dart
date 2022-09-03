@@ -52,69 +52,72 @@ class _TrackPlayerState extends State<TrackPlayer> {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 2,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          Slider(
-            thumbColor: Theme.of(context).secondaryHeaderColor,
-            activeColor: Theme.of(context).secondaryHeaderColor,
-            inactiveColor: Theme.of(context).secondaryHeaderColor.withAlpha(75),
-            min: 0,
-            max: 29,
-            value: _isChangingPosition ? _selectedPosition : _position,
-            onChangeStart: (s) {
-              _isChangingPosition = true;
-            },
-            onChangeEnd: (p) {
-              setState(() {
-                _position = p;
-                widget.onSeekedPosition(
-                  Duration(
-                    seconds: p.truncate(),
-                    milliseconds: (p - p.truncate()).toInt(),
-                  ),
-                );
-                _isChangingPosition = false;
-              });
-            },
-            onChanged: (p) {
-              setState(() {
-                _selectedPosition = p;
-              });
-            },
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24.0),
-            child: Column(
+      child: widget.track.previewUrl != null
+          ? Column(
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      formatPosition,
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                    Text(
-                      '00:29',
-                      style: Theme.of(context).textTheme.headline4,
-                    ),
-                  ],
+                Slider(
+                  thumbColor: Theme.of(context).secondaryHeaderColor,
+                  activeColor: Theme.of(context).secondaryHeaderColor,
+                  inactiveColor:
+                      Theme.of(context).secondaryHeaderColor.withAlpha(75),
+                  min: 0,
+                  max: 29,
+                  value: _isChangingPosition ? _selectedPosition : _position,
+                  onChangeStart: (s) {
+                    _isChangingPosition = true;
+                  },
+                  onChangeEnd: (p) {
+                    setState(() {
+                      _position = p;
+                      widget.onSeekedPosition(
+                        Duration(
+                          seconds: p.truncate(),
+                          milliseconds: (p - p.truncate()).toInt(),
+                        ),
+                      );
+                      _isChangingPosition = false;
+                    });
+                  },
+                  onChanged: (p) {
+                    setState(() {
+                      _selectedPosition = p;
+                    });
+                  },
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    PlayerButton(
-                      onPlayPressed: widget.onPlayPressed,
-                      onPausePressed: widget.onPausePressed,
-                      status: widget.status,
-                    ),
-                  ],
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            formatPosition,
+                            style: Theme.of(context).textTheme.headline4,
+                          ),
+                          Text(
+                            '00:29',
+                            style: Theme.of(context).textTheme.headline4,
+                          ),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          PlayerButton(
+                            onPlayPressed: widget.onPlayPressed,
+                            onPausePressed: widget.onPausePressed,
+                            status: widget.status,
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 )
               ],
-            ),
-          )
-        ],
-      ),
+            )
+          : const SizedBox(),
     );
   }
 }
