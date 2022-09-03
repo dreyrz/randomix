@@ -53,6 +53,12 @@ class Track {
       album == null ||
       artists == null;
 
+  String get artistsName => artists!
+      .map((a) => a.name)
+      .toString()
+      .replaceAll("(", "")
+      .replaceAll(")", "");
+
   @override
   String toString() {
     return 'Track(id: $id, name: $name, type: $type, externalUrl: $externalUrl, previewUrl: $previewUrl, date: $date, album: $album, artists: $artists)';

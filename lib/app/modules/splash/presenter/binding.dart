@@ -14,7 +14,9 @@ class SplashBinding implements Bindings {
   void dependencies() {
     Get.lazyPut<ISplashDatasource>(() => SplashDatasource(Get.find()));
     Get.lazyPut<ISplashRepository>(() => SplashRepository(Get.find()));
-    Get.lazyPut<IUseCaseNoParams<String>>(() => GetToken(Get.find()));
+    Get.lazyPut<IUseCaseNoParams<String>>(
+      () => GetToken(Get.find(), Get.find()),
+    );
     Get.lazyPut<IUseCaseNoParams<List<String>>>(() => GetGenres(Get.find()));
     Get.put<SplashController>(SplashController(
       Get.find(),

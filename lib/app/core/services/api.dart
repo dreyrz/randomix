@@ -9,13 +9,15 @@ abstract class IApi<R> {
   set headers(Map<String, dynamic> value);
   set contentType(String value);
   set baseUrl(String value);
+  set token(String value);
+  String get token;
 }
 
 class ApiService extends GetxService implements IApi<Response> {
   final Dio _dio;
   ApiService({required String baseUrl})
       : _dio = Dio(BaseOptions(baseUrl: baseUrl));
-
+  late String _token;
   @override
   set headers(Map<String, dynamic> value) => _dio.options.headers = value;
 
@@ -24,6 +26,15 @@ class ApiService extends GetxService implements IApi<Response> {
 
   @override
   set baseUrl(String value) => _dio.options.baseUrl = value;
+
+  @override
+  set token(String token) {
+    headers = {"Authorization": "Bearer $token"};
+    _token = token;
+  }
+
+  @override
+  String get token => _token;
 
   @override
   Future<Response> get(String path,

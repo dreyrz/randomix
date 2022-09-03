@@ -17,12 +17,17 @@ intjectDependencies() {
 
 main() {
   late final SplashRepositoryMock repository;
+  late final ApiMock api;
   late final GetToken usecase;
 
   setUpAll(() {
     intjectDependencies();
     repository = SplashRepositoryMock();
-    usecase = GetToken(repository);
+    api = ApiMock();
+    usecase = GetToken(
+      repository,
+      api,
+    );
   });
 
   test('Expect to return a String when infra returns a Right', () async {

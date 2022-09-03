@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
-import 'package:get/get.dart';
 
 import '../../../../core/config/config.dart';
 import '../../../../core/errors/failure.dart';
@@ -12,8 +11,8 @@ import '../repositories/repository_interface.dart';
 
 class GetToken implements IUseCaseNoParams<String> {
   final ISplashRepository _repository;
-
-  GetToken(this._repository);
+  final IApi _api;
+  GetToken(this._repository, this._api);
 
   @override
   Future<Either<Failure, String>> call() {
@@ -22,11 +21,12 @@ class GetToken implements IUseCaseNoParams<String> {
   }
 
   void getBase64ClientIdAndSecret() {
-    final api = Get.find<IApi>();
     String url = "${Config.clientId}:${Config.clientSecret}";
-    api.baseUrl = Config.authBaseUrl;
-    api.headers = {"Authorization": "Basic ${base64.encode(utf8.encode(url))}"};
-    api.contentType =
+    _api.baseUrl = Config.authBaseUrl;
+    _api.headers = {
+      "Authorization": "Basic ${base64.encode(utf8.encode(url))}"
+    };
+    _api.contentType =
         ContentType.parse("application/x-www-form-urlencoded").toString();
   }
 }

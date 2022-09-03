@@ -48,11 +48,7 @@ class TrackTile extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    track.artists!
-                        .map((a) => a.name)
-                        .toString()
-                        .replaceAll("(", "")
-                        .replaceAll(")", ""),
+                    track.artistsName,
                     overflow: TextOverflow.ellipsis,
                     style: Theme.of(context).textTheme.headline4,
                   ),

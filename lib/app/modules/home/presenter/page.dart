@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:randomix/app/core/services/_services.dart';
 
 import '../../../core/routes/routes.dart';
 import '../../../core/utils/images_path.dart';
@@ -52,6 +53,12 @@ class HomePage extends GetView<HomeController> {
                       GenresDropDown(
                         controller.genresList,
                         controller.setGenreSelected,
+                      ),
+                      CircularButton(
+                        size: 40,
+                        onPressed: () async {
+                          await BackgroundTaskService().schedule();
+                        },
                       ),
                       const Spacer(flex: 55),
                     ],

@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:dartz/dartz.dart';
 import '../../../../core/entities/_entities.dart';
 import '../../../../core/errors/failure.dart';
@@ -17,7 +15,6 @@ class HomeRepository implements IHomeRepository {
   Future<Either<Failure, Track>> getRandomTrackByGenre(String genre) async {
     try {
       final result = await _datasource.getRandomTrackByGenre(genre);
-      log(result.toString());
       if (result.isInvalid) {
         throw TrackError('Invalid track', null, 'getRandomTrackByGenre', null);
       }
