@@ -12,7 +12,7 @@ import '../../../core/utils/usecase.dart';
 import 'state.dart';
 
 class HomeController extends GetxController with HomeState {
-  final IUseCase<String, Track> _getRandomTrackByGenreUseCase;
+  final IUseCaseParams<String, Track> _getRandomTrackByGenreUseCase;
 
   final ITabNavigatorService tabNavigator;
   final ITrackListService _trackListService;
