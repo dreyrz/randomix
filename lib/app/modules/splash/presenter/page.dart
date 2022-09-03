@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
+import '../../../core/utils/images_path.dart';
 import 'controller.dart';
 
 class SplashPage extends GetView<SplashController> {
@@ -8,9 +10,15 @@ class SplashPage extends GetView<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.grey,
-      body: Column(
-        children: const [],
+      backgroundColor: Theme.of(context).primaryColor,
+      body: Center(
+        child: SizedBox(
+          width: 100,
+          height: 100,
+          child: SvgPicture.asset(
+            SvgImagesPath.shuffle,
+          ),
+        ),
       ),
     );
   }

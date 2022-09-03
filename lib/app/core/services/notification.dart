@@ -17,7 +17,7 @@ class NotificationService implements INotificationService {
   @override
   Future<void> init() async {
     const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_launcher');
+        AndroidInitializationSettings('@mipmap/ic_notif');
 
     const initializationSettings = InitializationSettings(
       android: initializationSettingsAndroid,

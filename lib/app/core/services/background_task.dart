@@ -24,7 +24,8 @@ class BackgroundTaskService implements IBackgroundTaskService {
 
   @override
   Future<void> schedule() async {
-    await _plugin.registerPeriodicTask(taskKey, taskKey);
+    await _plugin.registerPeriodicTask(taskKey, taskKey,
+        frequency: const Duration(hours: 3));
   }
 
   @override
@@ -32,6 +33,7 @@ class BackgroundTaskService implements IBackgroundTaskService {
     await _plugin.cancelAll();
   }
 
+  @override
   Future<bool> dispatcher(Future<void> Function() callback) async {
     _plugin.executeTask((taskName, inputData) async {
       if (taskName == BackgroundTaskService.taskKey) {

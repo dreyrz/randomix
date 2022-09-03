@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
-import 'package:workmanager/workmanager.dart';
 
 import 'app/core/bindings/bindings.dart';
 import 'app/core/config/config.dart';

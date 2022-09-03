@@ -5,5 +5,5 @@ import '../../../core/entities/_entities.dart';
 mixin HomeState {
   final trackList = RxList<Track>();
   final genresList = RxList<String>();
-  final enabledNotifications = RxBool(true);
+  final isNotificationsEnabled = RxBool(true);
 }
