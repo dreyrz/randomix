@@ -68,7 +68,6 @@ class Player implements IPlayer {
   void onStateChanged(PlayerStatusCallback playerStatusCallback) {
     _onFinished();
     _player.onPlayerStateChanged.listen((state) {
-      print(state);
       _playerStatusCallback = playerStatusCallback;
       switch (state) {
         case PlayerState.stopped:

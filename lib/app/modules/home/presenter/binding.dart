@@ -25,6 +25,7 @@ class HomeBinding implements Bindings {
       Get.find(),
       Get.find(),
       Get.find(),
+      Get.find(),
       Random(),
     ));
   }

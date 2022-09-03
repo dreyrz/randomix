@@ -17,6 +17,7 @@ class HomeController extends GetxController with HomeState {
   final ITabNavigatorService tabNavigator;
   final ITrackListService _trackListService;
   final IGenresListService _genresListService;
+  final IStorageService _storageService;
 
   final Random _random;
   HomeController(
@@ -24,6 +25,7 @@ class HomeController extends GetxController with HomeState {
     this.tabNavigator,
     this._trackListService,
     this._genresListService,
+    this._storageService,
     this._random,
   );
 
@@ -57,5 +59,9 @@ class HomeController extends GetxController with HomeState {
       await _getRandomTrackByGenre(_selectedGenre);
     }
     Get.toNamed(Routes.trackDetails, arguments: trackList.last);
+  }
+
+  Future<void> enableNotifications(bool value) async {
+    if (value) {}
   }
 }

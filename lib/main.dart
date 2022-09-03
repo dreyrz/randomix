@@ -70,16 +70,12 @@ Future<void> getRandomTrackNotification() async {
   );
 }
 
+// top level function required
 Future<void> taskDispatcher() async {
-  Workmanager().executeTask((taskName, inputData) async {
-    if (taskName == BackgroundTaskService.taskKey) {
-      dev.log("randomTrack task");
-      await getRandomTrackNotification();
-    }
-    return Future.value(true);
-  });
+  backgroundTaskService.dispatcher(getRandomTrackNotification);
 }
 
+final IBackgroundTaskService backgroundTaskService = BackgroundTaskService();
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await BackgroundTaskService().init(taskDispatcher);
