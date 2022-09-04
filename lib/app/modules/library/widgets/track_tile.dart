@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../core/entities/_entities.dart';
+import '../../../core/routes/_routes.dart';
 
 class TrackTile extends StatelessWidget {
   final Track track;
@@ -13,7 +15,9 @@ class TrackTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 12),
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
-        onTap: () {},
+        onTap: () {
+          Get.toNamed(Routes.trackDetails, arguments: track);
+        },
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
