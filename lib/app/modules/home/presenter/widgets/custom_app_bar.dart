@@ -23,6 +23,7 @@ class _CustomAppBarState extends State<CustomAppBar> with FuctionUtils {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Theme.of(context).backgroundColor,
       leading: IconButton(
         color: Theme.of(context).secondaryHeaderColor,
         icon: _isLoading

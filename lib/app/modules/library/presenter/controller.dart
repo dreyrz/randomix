@@ -1,28 +1,55 @@
-import 'package:get/get.dart';
+import 'dart:developer';
 
+import 'package:get/get.dart';
+import 'package:randomix/app/core/constants/storage_keys.dart';
+import 'package:randomix/app/core/services/storage.dart';
+
+import '../../../core/entities/_entities.dart';
 import '../../../core/services/tab_navigator.dart';
 import '../../../core/services/track_list.dart';
 import 'state.dart';
 
 class LibraryController extends GetxController with LibraryState {
   final ITabNavigatorService tabNavigator;
-  final ITrackListService trackListService;
-  LibraryController(this.tabNavigator, this.trackListService);
+  final ITrackListService _trackListService;
+  final IStorageService _storageService;
+  LibraryController(
+    this.tabNavigator,
+    this._trackListService,
+    this._storageService,
+  );
 
   @override
   void onInit() {
-    trackListService.addListener(trackListListener);
+    _trackListService.addListener(trackListListener);
     super.onInit();
   }
 
   @override
+  void onReady() {
+    getStorageTracks();
+    super.onReady();
+  }
+
+  @override
   void onClose() {
-    trackListService.removeListener(trackListListener);
+    _trackListService.removeListener(trackListListener);
     super.onClose();
   }
 
+  Future<void> getStorageTracks() async {
+    final savedTracks = _storageService.readStringList(
+      StorageKeys.libraryTracks,
+    );
+    if (savedTracks != null) {
+      _trackListService.addAllTracks(
+        savedTracks.map((t) => Track.fromJson(t)).toList(),
+      );
+    }
+  }
+
   void trackListListener() {
-    final track = trackListService.tracks.last;
+    final track = _trackListService.tracks.last;
     bool hasRepeated = false;
     for (final t in tracks) {
       if (t.id == track.id) {
@@ -32,6 +59,6 @@ class LibraryController extends GetxController with LibraryState {
     if (hasRepeated) {
       return;
     }
-    tracks.insert(0, trackListService.tracks.last);
+    tracks.insert(0, _trackListService.tracks.last);
   }
 }

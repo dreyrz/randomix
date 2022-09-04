@@ -60,7 +60,6 @@ Future<void> getRandomTrackNotification() async {
   res.fold(
     (l) => dev.log(l.toString()),
     (track) async {
-      dev.log("track $track");
       await notificationService.push(
         title: track.name,
         body: track.artistsName,
@@ -98,7 +97,7 @@ class Randomix extends StatelessWidget {
       getPages: Pages.routes,
       initialRoute: Routes.splash,
       theme: theme.light,
-      darkTheme: theme.dark,
+      // darkTheme: theme.dark,
     );
   }
 }

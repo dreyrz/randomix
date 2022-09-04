@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'album.dart';
 import 'artist.dart';
 
@@ -62,4 +64,47 @@ class Track {
   String toString() {
     return 'Track(id: $id, name: $name, type: $type, externalUrl: $externalUrl, previewUrl: $previewUrl, date: $date, album: $album, artists: $artists)';
   }
+
+  Map<String, dynamic> toMap() {
+    return <String, dynamic>{
+      'id': id,
+      'name': name,
+      'type': type,
+      'externalUrl': externalUrl,
+      'previewUrl': previewUrl,
+      'date': date?.millisecondsSinceEpoch,
+      'album': album?.toMap(),
+      'artists': artists?.map((x) => x.toMap()).toList(),
+    };
+  }
+
+  factory Track.fromMap(Map<String, dynamic> map) {
+    return Track(
+      id: map['id'] != null ? map['id'] as String : null,
+      name: map['name'] != null ? map['name'] as String : null,
+      type: map['type'] != null ? map['type'] as String : null,
+      externalUrl:
+          map['externalUrl'] != null ? map['externalUrl'] as String : null,
+      previewUrl:
+          map['previewUrl'] != null ? map['previewUrl'] as String : null,
+      date: map['date'] != null
+          ? DateTime.fromMillisecondsSinceEpoch(map['date'] as int)
+          : null,
+      album: map['album'] != null
+          ? Album.fromMap(map['album'] as Map<String, dynamic>)
+          : null,
+      artists: map['artists'] != null
+          ? List<Artist>.from(
+              (map['artists']).map<Artist?>(
+                (x) => Artist.fromMap(x as Map<String, dynamic>),
+              ),
+            )
+          : null,
+    );
+  }
+
+  String toJson() => json.encode(toMap());
+
+  factory Track.fromJson(String source) =>
+      Track.fromMap(json.decode(source) as Map<String, dynamic>);
 }

@@ -11,29 +11,27 @@ class TrackDetailsPage extends GetView<TrackDetailsController> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        appBar: AppBar(),
-        body: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            children: [
-              const SizedBox(height: 24),
-              TrackCover(track: controller.track),
-              TrackInfo(track: controller.track),
-              Obx(
-                () => TrackPlayer(
-                  track: controller.track,
-                  onPlayPressed: () =>
-                      controller.playTrack(controller.track.previewUrl!),
-                  onPausePressed: () => controller.pauseTrack(),
-                  onSeekedPosition: controller.seekPosition,
-                  duration: controller.duration.value,
-                  status: controller.status.value,
-                ),
+    return Scaffold(
+      appBar: AppBar(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            const SizedBox(height: 24),
+            TrackCover(track: controller.track),
+            TrackInfo(track: controller.track),
+            Obx(
+              () => TrackPlayer(
+                track: controller.track,
+                onPlayPressed: () =>
+                    controller.playTrack(controller.track.previewUrl!),
+                onPausePressed: () => controller.pauseTrack(),
+                onSeekedPosition: controller.seekPosition,
+                duration: controller.duration.value,
+                status: controller.status.value,
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

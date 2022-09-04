@@ -4,7 +4,7 @@ import 'package:randomix/app/core/themes/text_styles.dart';
 
 abstract class AppTheme {
   ThemeData get light;
-  ThemeData get dark;
+  // ThemeData get dark;
 }
 
 class RandomixTheme implements AppTheme {
@@ -34,21 +34,21 @@ class RandomixTheme implements AppTheme {
     );
   }
 
-  @override
-  ThemeData get dark {
-    return ThemeData.dark().copyWith(
-      backgroundColor: colors.black,
-      appBarTheme: AppBarTheme(
-          color: Colors.transparent,
-          elevation: 0,
-          titleTextStyle: textStyle.theme.headline2,
-          iconTheme: IconThemeData(
-            color: colors.white,
-          )),
-      primaryColor: colors.primary,
-      secondaryHeaderColor: colors.white,
-      bottomAppBarColor: colors.white,
-      textTheme: textStyle.theme,
-    );
-  }
+  // @override
+  // ThemeData get dark {
+  //   return ThemeData.dark().copyWith(
+  //     backgroundColor: colors.black,
+  //     appBarTheme: AppBarTheme(
+  //         color: Colors.transparent,
+  //         elevation: 0,
+  //         titleTextStyle: textStyle.theme.headline2,
+  //         iconTheme: IconThemeData(
+  //           color: colors.white,
+  //         )),
+  //     primaryColor: colors.primary,
+  //     secondaryHeaderColor: colors.white,
+  //     bottomAppBarColor: colors.white,
+  //     textTheme: textStyle.theme,
+  //   );
+  // }
 }

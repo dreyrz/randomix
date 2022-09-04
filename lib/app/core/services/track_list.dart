@@ -10,6 +10,7 @@ abstract class ITrackListService {
   List<Track> get tracks;
   void addTrack(Track track);
   void removeTrack(Track track);
+  void addAllTracks(List<Track> tracks);
   void removeAllTracks();
   void addListener(TrackListListener listener);
   void removeListener(TrackListListener listener);
@@ -56,6 +57,13 @@ class TrackListService extends GetxService implements ITrackListService {
       } catch (e) {
         log(e.toString(), name: 'TrackListSerive _callListeners');
       }
+    }
+  }
+
+  @override
+  void addAllTracks(List<Track> tracks) {
+    for (final track in tracks) {
+      addTrack(track);
     }
   }
 }

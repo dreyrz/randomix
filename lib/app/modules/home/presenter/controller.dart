@@ -47,25 +47,46 @@ class HomeController extends GetxController with HomeState {
     super.onInit();
   }
 
-  Future<void> _getRandomTrackByGenre(String genre) async {
+  Future<void> _getRandomTrackByGenre(
+      BuildContext context, String genre) async {
     final res = await _getRandomTrackByGenreUseCase(genre);
     res.fold(
-      (l) => dev.log(l.toString(), name: 'getRandomTrackByGenre'),
-      (track) {
+      (l) {
+        dev.log(l.toString(), name: 'getRandomTrackByGenre');
+        showSnackBarMessage(context, message: "Erro", color: Colors.red);
+      },
+      (track) async {
         trackList.add(track);
         _trackListService.addTrack(track);
+        await handleTrackStorage(track);
       },
+    );
+  }
+
+  Future<void> handleTrackStorage(Track track) async {
+    final tracksKey = StorageKeys.libraryTracks;
+    final savedTracks = _storageService.readStringList(tracksKey);
+    if (savedTracks != null) {
+      await _storageService.setStringList(
+        tracksKey,
+        [...savedTracks, track.toJson()],
+      );
+      return;
+    }
+    await _storageService.setStringList(
+      tracksKey,
+      [track.toJson()],
     );
   }
 
   void setGenreSelected(String genre) => _selectedGenre = genre;
 
-  Future<void> getRandomTrack() async {
+  Future<void> getRandomTrack(BuildContext context) async {
     if (_selectedGenre == Get.find<IStrings>().random) {
       final index = _random.nextInt(genresList.length);
-      await _getRandomTrackByGenre(genresList[index]);
+      await _getRandomTrackByGenre(context, genresList[index]);
     } else {
-      await _getRandomTrackByGenre(_selectedGenre);
+      await _getRandomTrackByGenre(context, _selectedGenre);
     }
     Get.toNamed(Routes.trackDetails, arguments: trackList.last);
   }
@@ -78,8 +99,6 @@ class HomeController extends GetxController with HomeState {
       isNotificationsEnabled.value = false;
       await _storageService.setBool(StorageKeys.isNotificationsEnabled, false);
       await _backgroundTaskService.cancelAll();
-
-      dev.log("canceled notifications");
       showSnackBarMessage(context, message: "Notificações canceladas");
       return;
     }
@@ -87,14 +106,17 @@ class HomeController extends GetxController with HomeState {
     isNotificationsEnabled.value = true;
     await _storageService.setBool(StorageKeys.isNotificationsEnabled, true);
     await _backgroundTaskService.schedule();
-    dev.log("scheduled notifications");
     showSnackBarMessage(context, message: "Notificações ativas");
   }
 
-  void showSnackBarMessage(BuildContext context, {required String message}) {
+  void showSnackBarMessage(
+    BuildContext context, {
+    required String message,
+    Color? color,
+  }) {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: Theme.of(context).backgroundColor,
+        backgroundColor: color ?? Theme.of(context).secondaryHeaderColor,
         content: Text(message),
       ),
     );

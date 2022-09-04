@@ -11,7 +11,7 @@ class RandomixColors implements AppColors {
   Color get primary => const Color(0xffDD669F);
 
   @override
-  Color get white => const Color(0xffFFF5F5);
+  Color get white => const Color.fromARGB(255, 255, 255, 255);
 
   @override
   Color get black => const Color(0xff282125);

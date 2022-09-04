@@ -7,6 +7,8 @@ abstract class IStorageService<K> {
   String? readString(K key);
   Future<void> setBool(K key, bool value);
   bool? readBool(K key);
+  Future<void> setStringList(K key, List<String> value);
+  List<String>? readStringList(K key);
   Future<void> remove(K key);
 }
 
@@ -47,5 +49,15 @@ class StorageService<K> extends GetxService implements IStorageService<K> {
   @override
   Future<void> setBool(K key, bool value) async {
     await _shared.setBool(key.toString(), value);
+  }
+
+  @override
+  List<String>? readStringList(K key) {
+    return _shared.getStringList(key.toString());
+  }
+
+  @override
+  Future<void> setStringList(K key, List<String> value) async {
+    await _shared.setStringList(key.toString(), value);
   }
 }

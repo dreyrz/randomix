@@ -37,7 +37,6 @@ class BackgroundTaskService implements IBackgroundTaskService {
   Future<bool> dispatcher(Future<void> Function() callback) async {
     _plugin.executeTask((taskName, inputData) async {
       if (taskName == BackgroundTaskService.taskKey) {
-        log("randomTrack task");
         await callback();
       }
       return Future.value(true);
