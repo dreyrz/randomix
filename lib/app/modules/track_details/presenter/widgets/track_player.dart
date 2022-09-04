@@ -30,7 +30,9 @@ class TrackPlayer extends StatefulWidget {
 class _TrackPlayerState extends State<TrackPlayer> {
   late double _position;
   double _selectedPosition = 0;
+  double _thumbRadius = 0;
   bool _isChangingPosition = false;
+
   @override
   void initState() {
     _position = widget.duration.inSeconds.toDouble();
@@ -56,34 +58,44 @@ class _TrackPlayerState extends State<TrackPlayer> {
           ? Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Slider(
-                  thumbColor: Theme.of(context).secondaryHeaderColor,
-                  activeColor: Theme.of(context).secondaryHeaderColor,
-                  inactiveColor:
-                      Theme.of(context).secondaryHeaderColor.withAlpha(75),
-                  min: 0,
-                  max: 29,
-                  value: _isChangingPosition ? _selectedPosition : _position,
-                  onChangeStart: (s) {
-                    _isChangingPosition = true;
-                  },
-                  onChangeEnd: (p) {
-                    setState(() {
-                      _position = p;
-                      widget.onSeekedPosition(
-                        Duration(
-                          seconds: p.truncate(),
-                          milliseconds: (p - p.truncate()).toInt(),
-                        ),
-                      );
-                      _isChangingPosition = false;
-                    });
-                  },
-                  onChanged: (p) {
-                    setState(() {
-                      _selectedPosition = p;
-                    });
-                  },
+                SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                      trackHeight: 3,
+                      thumbColor: Colors.red,
+                      thumbShape: RoundSliderThumbShape(
+                          enabledThumbRadius: _thumbRadius)),
+                  child: Slider(
+                    thumbColor: Theme.of(context).secondaryHeaderColor,
+                    activeColor: Theme.of(context).secondaryHeaderColor,
+                    inactiveColor:
+                        Theme.of(context).secondaryHeaderColor.withAlpha(75),
+                    min: 0,
+                    max: 29,
+                    value: _isChangingPosition ? _selectedPosition : _position,
+                    divisions: null,
+                    onChangeStart: (s) {
+                      _isChangingPosition = true;
+                      _thumbRadius = 10;
+                    },
+                    onChangeEnd: (p) {
+                      setState(() {
+                        _position = p;
+                        widget.onSeekedPosition(
+                          Duration(
+                            seconds: p.truncate(),
+                            milliseconds: (p - p.truncate()).toInt(),
+                          ),
+                        );
+                        _isChangingPosition = false;
+                        _thumbRadius = 0;
+                      });
+                    },
+                    onChanged: (p) {
+                      setState(() {
+                        _selectedPosition = p;
+                      });
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24.0),
