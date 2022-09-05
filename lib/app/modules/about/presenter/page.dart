@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/constants/strings.dart';
-import '../../../core/utils/images_path.dart';
+import '../../../core/utils/svg_path.dart';
 
 import '../../../core/widgets/button.dart';
 import 'controller.dart';
@@ -24,7 +24,7 @@ class AboutPage extends GetView<AboutController> {
               Flexible(
                 flex: 40,
                 child: SvgPicture.asset(
-                  SvgImagesPath.about,
+                  SvgPath.about,
                 ),
               ),
               const Spacer(flex: 15),

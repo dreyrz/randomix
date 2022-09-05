@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import '../../../../core/utils/mixins/_mixins.dart';
 import '../../../../core/widgets/loading.dart';
 
-class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
+class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override
   Size get preferredSize => const Size.fromHeight(kToolbarHeight);
   final bool isNotificationsEnabled;
   final VoidCallback onNotificationIconPressed;
-  const CustomAppBar({
+  const HomeAppBar({
     Key? key,
     required this.isNotificationsEnabled,
     required this.onNotificationIconPressed,
   }) : super(key: key);
 
   @override
-  State<CustomAppBar> createState() => _CustomAppBarState();
+  State<HomeAppBar> createState() => _CustomAppBarState();
 }
 
-class _CustomAppBarState extends State<CustomAppBar> with FuctionUtils {
+class _CustomAppBarState extends State<HomeAppBar> with FuctionUtils {
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {

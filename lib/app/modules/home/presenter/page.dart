@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/routes/routes.dart';
-import '../../../core/utils/images_path.dart';
+import '../../../core/utils/svg_path.dart';
 import 'widgets/circular_button.dart';
-import 'widgets/custom_app_bar.dart';
+import 'widgets/home_app_bar.dart';
 import 'widgets/genres_dropdown.dart';
 import 'controller.dart';
 
@@ -15,7 +15,7 @@ class HomePage extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Obx(
       () => Scaffold(
-        appBar: CustomAppBar(
+        appBar: HomeAppBar(
           isNotificationsEnabled: controller.isNotificationsEnabled.value,
           onNotificationIconPressed: () async =>
               controller.enableNotifications(context),
@@ -47,7 +47,7 @@ class HomePage extends GetView<HomeController> {
                       SizedBox(
                         height: 300,
                         child: CircularButton(
-                          svgPath: SvgImagesPath.shuffle,
+                          svgPath: SvgPath.shuffle,
                           onPressed: () async =>
                               await controller.getRandomTrack(context),
                         ),

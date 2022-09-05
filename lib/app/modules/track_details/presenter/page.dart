@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:randomix/app/modules/track_details/presenter/widgets/track_options.dart';
 
 import 'controller.dart';
 import 'widgets/track_cover.dart';
+import 'widgets/track_details_app_bar.dart';
 import 'widgets/track_info.dart';
 import 'widgets/track_player.dart';
 
@@ -12,7 +14,10 @@ class TrackDetailsPage extends GetView<TrackDetailsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: TrackDetailsAppBar(
+        onIconTap: () async =>
+            await TrackOptions(onTap: controller.openSpotify).show(context),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

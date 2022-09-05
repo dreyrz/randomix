@@ -3,7 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../../core/routes/routes.dart';
-import '../../../core/utils/images_path.dart';
+import '../../../core/utils/svg_path.dart';
 import '../widgets/track_tile.dart';
 import 'controller.dart';
 
@@ -35,7 +35,7 @@ class LibraryPage extends GetView<LibraryController> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 SvgPicture.asset(
-                                  SvgImagesPath.empty,
+                                  SvgPath.empty,
                                   height: 250,
                                 ),
                                 const SizedBox(height: 32),

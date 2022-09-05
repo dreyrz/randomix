@@ -8,7 +8,7 @@ class TrackDetailsBinding implements Bindings {
   void dependencies() {
     final IPlayer player = Player();
     Get.lazyPut<TrackDetailsController>(
-      () => TrackDetailsController(player),
+      () => TrackDetailsController(player, Get.find()),
     );
   }
 }

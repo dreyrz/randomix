@@ -5,7 +5,8 @@ import 'state.dart';
 
 class TrackDetailsController extends GetxController with TrackDetailsState {
   final IPlayer _player;
-  TrackDetailsController(this._player) {
+  final IUrlLauncherService _urlLauncherService;
+  TrackDetailsController(this._player, this._urlLauncherService) {
     track = Get.arguments;
     _addCallbacks();
   }
@@ -44,4 +45,7 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
   void onStatusChanged(PlayerStatus status) {
     this.status.value = status;
   }
+
+  Future<void> openSpotify() async =>
+      await _urlLauncherService.launchURL(track.externalUrl!);
 }

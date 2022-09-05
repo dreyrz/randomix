@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
-import '../../../core/utils/images_path.dart';
+import '../../../core/utils/svg_path.dart';
 import 'controller.dart';
 
 class SplashPage extends GetView<SplashController> {
@@ -16,7 +16,7 @@ class SplashPage extends GetView<SplashController> {
           width: 100,
           height: 100,
           child: SvgPicture.asset(
-            SvgImagesPath.shuffle,
+            SvgPath.shuffle,
           ),
         ),
       ),
