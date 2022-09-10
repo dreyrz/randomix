@@ -1,10 +1,30 @@
 import 'package:flutter/material.dart';
-import 'package:randomix/app/modules/base/presenter/controller.dart';
 
-class CustomBottomNavigationBar extends StatelessWidget {
-  final BaseController controller;
-  const CustomBottomNavigationBar(this.controller, {Key? key})
+import '../../../../core/services/_services.dart';
+
+class CustomBottomNavigationBar extends StatefulWidget {
+  final ITabNavigatorService _tabNavigatorService;
+  final ITrackListService _trackListService;
+  const CustomBottomNavigationBar(
+      this._tabNavigatorService, this._trackListService,
+      {Key? key})
       : super(key: key);
+
+  @override
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
+}
+
+class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
+  @override
+  void initState() {
+    widget._trackListService.addListener(_trackAddedListener);
+    super.initState();
+  }
+
+  void _trackAddedListener() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -13,25 +33,51 @@ class CustomBottomNavigationBar extends StatelessWidget {
       unselectedItemColor: Theme.of(context).backgroundColor,
       selectedItemColor: Theme.of(context).backgroundColor,
       elevation: 0,
-      onTap: (i) => controller.tabNavigator.goToTab(i),
-      currentIndex: controller.tabNavigator.currentTab.value,
+      iconSize: 32,
+      onTap: (i) {
+        if (i == 1) {
+          widget._trackListService.clearTracksAdded();
+          debugPrint("tracks cleared");
+        }
+        widget._tabNavigatorService.goToTab(i);
+      },
+      currentIndex: widget._tabNavigatorService.currentTab.value,
       items: [
-        BottomNavigationBarItem(
+        const BottomNavigationBarItem(
           label: 'Início',
-          icon: Icon(
-            controller.tabNavigator.currentTab.value == 0
-                ? Icons.home
-                : Icons.home_outlined,
-            size: 32,
-          ),
+          activeIcon: Icon(Icons.home),
+          icon: SizedBox(height: 40, child: Icon(Icons.home_outlined)),
         ),
         BottomNavigationBarItem(
           label: 'Biblioteca',
-          icon: Icon(
-            controller.tabNavigator.currentTab.value == 1
-                ? Icons.library_music
-                : Icons.library_music_outlined,
-            size: 32,
+          activeIcon: const Icon(Icons.library_music),
+          icon: Stack(
+            children: [
+              const SizedBox(
+                width: 64,
+                height: 40,
+                child: Icon(Icons.library_music_outlined),
+              ),
+              if (widget._trackListService.tracksAdded != 0)
+                PositionedDirectional(
+                  end: 6,
+                  child: Container(
+                    height: 20,
+                    width: 20,
+                    decoration: const BoxDecoration(
+                      color: Colors.red,
+                      borderRadius: BorderRadius.all(Radius.circular(32)),
+                    ),
+                    child: Center(
+                      child: Text(
+                        widget._trackListService.tracksAdded.toString(),
+                        style: Theme.of(context).textTheme.headline4?.copyWith(
+                            color: Theme.of(context).backgroundColor),
+                      ),
+                    ),
+                  ),
+                ),
+            ],
           ),
         ),
       ],

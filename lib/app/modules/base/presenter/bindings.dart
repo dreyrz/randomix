@@ -9,6 +9,7 @@ class BaseBinding implements Bindings {
   void dependencies() {
     Get.put<BaseController>(BaseController(
       Get.find(),
+      Get.find(),
       HomeBinding(),
       LibraryBinding(),
     ));

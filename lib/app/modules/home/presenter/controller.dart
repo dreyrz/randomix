@@ -64,7 +64,7 @@ class HomeController extends GetxController with HomeState {
   }
 
   Future<void> handleTrackStorage(Track track) async {
-    final tracksKey = StorageKeys.libraryTracks;
+    const tracksKey = StorageKeys.libraryTracks;
     final savedTracks = _storageService.readStringList(tracksKey);
     if (savedTracks != null) {
       await _storageService.setStringList(

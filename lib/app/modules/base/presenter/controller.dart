@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../core/services/_services.dart';
-import '../../home/presenter/binding.dart';
 import '../../home/presenter/page.dart';
-import '../../library/presenter/bindings.dart';
 import '../../library/presenter/page.dart';
 import 'state.dart';
 
 class BaseController extends GetxController with BaseState {
   final ITabNavigatorService tabNavigator;
-  final HomeBinding homeBinding;
-  final LibraryBinding historyBinding;
-  BaseController(this.tabNavigator, this.homeBinding, this.historyBinding);
+  final ITrackListService trackListService;
+  final Bindings homeBinding;
+  final Bindings historyBinding;
+  BaseController(
+    this.tabNavigator,
+    this.trackListService,
+    this.homeBinding,
+    this.historyBinding,
+  );
 
   @override
   void onInit() {

@@ -18,7 +18,10 @@ class BasePage extends GetView<BaseController> {
             index: controller.tabNavigator.currentTab.value,
             children: controller.pages,
           ),
-          bottomNavigationBar: CustomBottomNavigationBar(controller),
+          bottomNavigationBar: CustomBottomNavigationBar(
+            controller.tabNavigator,
+            controller.trackListService,
+          ),
         ),
       ),
     );

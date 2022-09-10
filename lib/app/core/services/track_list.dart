@@ -14,17 +14,21 @@ abstract class ITrackListService {
   void removeAllTracks();
   void addListener(TrackListListener listener);
   void removeListener(TrackListListener listener);
+  void clearTracksAdded();
+  int get tracksAdded;
 }
 
 class TrackListService extends GetxService implements ITrackListService {
   final _tracks = <Track>[];
   final _listeners = <TrackListListener>[];
+  int _tracksAdded = 0;
   @override
   List<Track> get tracks => _tracks;
 
   @override
   void addTrack(Track track) {
     _tracks.add(track);
+    _tracksAdded++;
     _notifyListeners();
   }
 
@@ -37,6 +41,7 @@ class TrackListService extends GetxService implements ITrackListService {
   @override
   void removeAllTracks() {
     _tracks.clear();
+    clearTracksAdded();
     _notifyListeners();
   }
 
@@ -64,6 +69,13 @@ class TrackListService extends GetxService implements ITrackListService {
   void addAllTracks(List<Track> tracks) {
     for (final track in tracks) {
       addTrack(track);
+      _tracksAdded++;
     }
   }
+
+  @override
+  void clearTracksAdded() => _tracksAdded = 0;
+
+  @override
+  int get tracksAdded => _tracksAdded;
 }

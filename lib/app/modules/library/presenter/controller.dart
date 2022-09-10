@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:get/get.dart';
 import 'package:randomix/app/core/constants/storage_keys.dart';
 import 'package:randomix/app/core/services/storage.dart';
@@ -45,6 +43,7 @@ class LibraryController extends GetxController with LibraryState {
       _trackListService.addAllTracks(
         savedTracks.map((t) => Track.fromJson(t)).toList(),
       );
+      _trackListService.clearTracksAdded();
     }
   }
 
