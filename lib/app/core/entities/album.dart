@@ -5,12 +5,12 @@ class Album {
   final String? name;
   final String? externalUrl;
   final String? type;
-  final String? albumCover;
+  final String? cover;
   const Album({
     required this.id,
     required this.name,
     required this.type,
-    required this.albumCover,
+    required this.cover,
     required this.externalUrl,
   });
 
@@ -19,14 +19,14 @@ class Album {
     String? name,
     String? externalUrl,
     String? type,
-    String? albumCover,
+    String? cover,
   }) {
     return Album(
       id: id ?? this.id,
       name: name ?? this.name,
       externalUrl: externalUrl ?? this.externalUrl,
       type: type ?? this.type,
-      albumCover: albumCover ?? this.albumCover,
+      cover: cover ?? this.cover,
     );
   }
 
@@ -36,7 +36,7 @@ class Album {
       'name': name,
       'externalUrl': externalUrl,
       'type': type,
-      'albumCover': albumCover,
+      'albumCover': cover,
     };
   }
 
@@ -47,8 +47,7 @@ class Album {
       externalUrl:
           map['externalUrl'] != null ? map['externalUrl'] as String : null,
       type: map['type'] != null ? map['type'] as String : null,
-      albumCover:
-          map['albumCover'] != null ? map['albumCover'] as String : null,
+      cover: map['albumCover'] != null ? map['albumCover'] as String : null,
     );
   }
 

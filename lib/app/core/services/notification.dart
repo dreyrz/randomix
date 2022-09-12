@@ -1,47 +1,51 @@
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:awesome_notifications/awesome_notifications.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 
 abstract class INotificationService {
   Future<void> init();
   Future<void> push({
     String? title,
     String? body,
+    String? imageUrl,
     String? payload,
   });
 }
 
 class NotificationService implements INotificationService {
-  late final FlutterLocalNotificationsPlugin _plugin;
+  static const _channelKey = 'basic_channel';
+  late final AwesomeNotifications _plugin;
   NotificationService() {
-    _plugin = FlutterLocalNotificationsPlugin();
+    _plugin = AwesomeNotifications();
   }
+
   @override
   Future<void> init() async {
-    const AndroidInitializationSettings initializationSettingsAndroid =
-        AndroidInitializationSettings('@mipmap/ic_notif');
-
-    const initializationSettings = InitializationSettings(
-      android: initializationSettingsAndroid,
+    await _plugin.initialize(
+      'resource://mipmap/ic_notif',
+      [
+        NotificationChannel(
+          channelKey: _channelKey,
+          channelName: 'Randomfy notifications',
+          channelDescription: 'Notification channel for random tracks',
+        )
+      ],
+      debug: kDebugMode,
     );
-    await _plugin.initialize(initializationSettings);
   }
 
   @override
-  Future<void> push({String? title, String? body, String? payload}) async {
-    const androidPlatformChannelSpecifics = AndroidNotificationDetails(
-      'randomixChannelId',
-      'randomix',
-      channelDescription: 'Randomix track notifications',
-      importance: Importance.max,
-      priority: Priority.high,
-    );
-    const NotificationDetails platformChannelSpecifics =
-        NotificationDetails(android: androidPlatformChannelSpecifics);
-    await _plugin.show(
-      0,
-      title,
-      body,
-      platformChannelSpecifics,
-      payload: payload,
+  Future<void> push(
+      {String? title, String? body, String? imageUrl, String? payload}) async {
+    await _plugin.createNotification(
+      content: NotificationContent(
+        id: 0,
+        channelKey: _channelKey,
+        title: title,
+        body: body,
+        bigPicture: imageUrl,
+        notificationLayout: NotificationLayout.BigPicture,
+      ),
     );
   }
 }

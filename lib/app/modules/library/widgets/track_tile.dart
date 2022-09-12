@@ -30,7 +30,7 @@ class TrackTile extends StatelessWidget {
                 ),
                 image: DecorationImage(
                   image: NetworkImage(
-                    track.album!.albumCover!,
+                    track.album!.cover!,
                   ),
                 ),
               ),

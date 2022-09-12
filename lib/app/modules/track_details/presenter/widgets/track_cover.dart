@@ -10,7 +10,7 @@ class TrackCover extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 6,
-      child: Image.network(track.album!.albumCover!),
+      child: Image.network(track.album!.cover!),
     );
   }
 }

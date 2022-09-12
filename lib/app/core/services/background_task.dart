@@ -17,7 +17,7 @@ class BackgroundTaskService implements IBackgroundTaskService {
   }
   @override
   Future<void> init(VoidCallback dispatcher) async {
-    await _plugin.initialize(dispatcher, isInDebugMode: kDebugMode);
+    await _plugin.initialize(dispatcher);
   }
 
   @override

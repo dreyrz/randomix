@@ -63,6 +63,7 @@ Future<void> getRandomTrackNotification() async {
       await notificationService.push(
         title: track.name,
         body: track.artistsName,
+        imageUrl: track.album?.cover,
       );
     },
   );

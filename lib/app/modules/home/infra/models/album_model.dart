@@ -7,7 +7,7 @@ class AlbumModel extends Album with ListUtils {
           id: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]["id"],
           name: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]["name"],
           type: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]["type"],
-          albumCover: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]
+          cover: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]
               ["images"][0]["url"],
           externalUrl: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["album"]
               ["external_urls"]["spotify"],
