@@ -1,8 +1,7 @@
-import 'package:flutter/foundation.dart';
 import 'package:workmanager/workmanager.dart';
 
 abstract class IBackgroundTaskService {
-  Future<void> init(VoidCallback dispatcher);
+  Future<void> init(Function dispatcher);
   Future<void> schedule();
   Future<void> cancelAll();
   Future<void> dispatcher(Future<void> Function() callback);
@@ -16,7 +15,7 @@ class BackgroundTaskService implements IBackgroundTaskService {
     _plugin = Workmanager();
   }
   @override
-  Future<void> init(VoidCallback dispatcher) async {
+  Future<void> init(Function dispatcher) async {
     await _plugin.initialize(dispatcher);
   }
 

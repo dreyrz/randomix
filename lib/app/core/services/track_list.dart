@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../entities/_entities.dart';
@@ -19,14 +20,23 @@ abstract class ITrackListService {
 }
 
 class TrackListService extends GetxService implements ITrackListService {
+  TrackListService._internal();
+
+  static final TrackListService _instance = TrackListService._internal();
+
+  factory TrackListService() {
+    return _instance;
+  }
   final _tracks = <Track>[];
   final _listeners = <TrackListListener>[];
   int _tracksAdded = 0;
+
   @override
   List<Track> get tracks => _tracks;
 
   @override
   void addTrack(Track track) {
+    debugPrint("addTrack listeners length ${_listeners.length}");
     _tracks.add(track);
     _tracksAdded++;
     _notifyListeners();
@@ -48,6 +58,7 @@ class TrackListService extends GetxService implements ITrackListService {
   @override
   void addListener(TrackListListener listener) {
     _listeners.add(listener);
+    debugPrint("addListener listeners length ${_listeners.length}");
   }
 
   @override
@@ -55,7 +66,8 @@ class TrackListService extends GetxService implements ITrackListService {
     _listeners.remove(listener);
   }
 
-  _notifyListeners() {
+  void _notifyListeners() {
+    debugPrint("_notifyListeners listeners length ${_listeners.length}");
     for (final l in _listeners) {
       try {
         l.call();

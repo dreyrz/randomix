@@ -45,8 +45,6 @@ class Pages {
       name: Routes.trackDetails,
       page: () => const TrackDetailsPage(),
       binding: TrackDetailsBinding(),
-      transition: Transition.native,
-      transitionDuration: const Duration(seconds: 1),
     ),
   ];
 }
