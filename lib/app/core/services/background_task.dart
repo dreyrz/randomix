@@ -22,7 +22,7 @@ class BackgroundTaskService implements IBackgroundTaskService {
   @override
   Future<void> schedule() async {
     await _plugin.registerPeriodicTask(taskKey, taskKey,
-        frequency: const Duration(days: 1));
+        frequency: const Duration(hours: 12));
   }
 
   @override
