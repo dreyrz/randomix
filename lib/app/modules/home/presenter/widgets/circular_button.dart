@@ -59,7 +59,7 @@ class _CircularButtonState extends State<CircularButton> with FuctionUtils {
           style: ElevatedButton.styleFrom(
             shape: const CircleBorder(),
             padding: const EdgeInsets.all(20),
-            primary: widget.color ?? Theme.of(context).primaryColor,
+            backgroundColor: widget.color ?? Theme.of(context).primaryColor,
           ),
           child: _isLoading
               ? Loading(

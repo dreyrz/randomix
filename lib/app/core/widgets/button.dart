@@ -54,7 +54,7 @@ class _ButtonState extends State<Button> {
       width: widget.width,
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          primary: widget.color ?? Theme.of(context).primaryColor,
+          backgroundColor: widget.color ?? Theme.of(context).primaryColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),

@@ -1,9 +1,10 @@
+import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
 
 import '../themes/_themes.dart';
 
-typedef OnTapCallback = void Function(Map<String, String> payload);
+typedef OnTapCallback = void Function(Map<String, String>? payload);
 
 abstract class INotificationService {
   Future<void> init();
@@ -13,7 +14,7 @@ abstract class INotificationService {
     String? imageUrl,
     Map<String, String>? payload,
   });
-  set onTap(OnTapCallback onTapCallback);
+  Stream<ReceivedAction> get onTapStream;
 }
 
 class NotificationService implements INotificationService {
@@ -26,7 +27,8 @@ class NotificationService implements INotificationService {
 
   static const _channelKey = 'basic_channel';
 
-  OnTapCallback _onTapCallback = (_) {};
+  @override
+  Stream<ReceivedAction> get onTapStream => _plugin.actionStream;
 
   @override
   Future<void> init() async {
@@ -42,7 +44,6 @@ class NotificationService implements INotificationService {
       ],
       debug: kDebugMode,
     );
-    _onTapListener();
   }
 
   @override
@@ -64,16 +65,5 @@ class NotificationService implements INotificationService {
         payload: payload,
       ),
     );
-  }
-
-  @override
-  set onTap(OnTapCallback callback) => _onTapCallback = callback;
-
-  void _onTapListener() {
-    _plugin.actionStream.listen((data) {
-      if (data.payload != null) {
-        _onTapCallback(data.payload!);
-      }
-    });
   }
 }

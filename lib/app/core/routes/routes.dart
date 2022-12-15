@@ -5,4 +5,5 @@ abstract class Routes {
   static const about = '/about';
   static const library = '/library';
   static const trackDetails = '/track-details';
+  static const trackDetailsNotification = '/track-details-notification';
 }

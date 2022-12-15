@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import 'app/core/bindings/bindings.dart';
-import 'app/core/entities/_entities.dart';
 import 'app/core/routes/pages.dart';
 import 'app/core/routes/routes.dart';
 import 'app/core/services/_services.dart';
@@ -17,18 +16,16 @@ Future<void> _taskDispatcher() async {
 }
 
 final IBackgroundTaskService _backgroundTaskService = BackgroundTaskService();
-final INotificationService _notificationService =
-    NotificationService(RandomixColors());
-
-void _onTapCallback(Map<String, String> payload) {
-  final track = payload["track"];
-  Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(track!));
-}
+late INotificationService _notificationService;
+late ITrackListService _trackListService;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  _notificationService = NotificationService(RandomixColors());
+  _trackListService = TrackListService();
+  Get.put(_notificationService);
+  Get.put<ITrackListService>(_trackListService);
   await _notificationService.init();
-  _notificationService.onTap = _onTapCallback;
   await BackgroundTaskService().init(_taskDispatcher);
 
   runApp(const Randomix());
