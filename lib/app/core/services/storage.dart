@@ -1,18 +1,18 @@
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class IStorageService<K> {
+abstract class IStorageService {
   Future<void> init();
-  Future<void> setString(K key, String value);
-  String? readString(K key);
-  Future<void> setBool(K key, bool value);
-  bool? readBool(K key);
-  Future<void> setStringList(K key, List<String> value);
-  List<String>? readStringList(K key);
-  Future<void> remove(K key);
+  Future<void> setString(String key, String value);
+  String? readString(String key);
+  Future<void> setBool(String key, bool value);
+  bool? readBool(String key);
+  Future<void> setStringList(String key, List<String> value);
+  List<String>? readStringList(String key);
+  Future<void> remove(String key);
 }
 
-class StorageService<K> extends GetxService implements IStorageService<K> {
+class StorageService extends GetxService implements IStorageService {
   late final SharedPreferences _shared;
 
   @override
@@ -27,37 +27,37 @@ class StorageService<K> extends GetxService implements IStorageService<K> {
   }
 
   @override
-  Future<void> setString(K key, String value) async {
+  Future<void> setString(String key, String value) async {
     await _shared.setString(key.toString(), value.toString());
   }
 
   @override
-  String? readString(K key) {
+  String? readString(String key) {
     return _shared.getString(key.toString());
   }
 
   @override
-  Future<void> remove(K key) async {
+  Future<void> remove(String key) async {
     await _shared.remove(key.toString());
   }
 
   @override
-  bool? readBool(K key) {
+  bool? readBool(String key) {
     return _shared.getBool(key.toString());
   }
 
   @override
-  Future<void> setBool(K key, bool value) async {
+  Future<void> setBool(String key, bool value) async {
     await _shared.setBool(key.toString(), value);
   }
 
   @override
-  List<String>? readStringList(K key) {
+  List<String>? readStringList(String key) {
     return _shared.getStringList(key.toString());
   }
 
   @override
-  Future<void> setStringList(K key, List<String> value) async {
+  Future<void> setStringList(String key, List<String> value) async {
     await _shared.setStringList(key.toString(), value);
   }
 }

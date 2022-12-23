@@ -25,7 +25,7 @@ Future<void> main() async {
   _trackListService = TrackListService();
   Get.put(_notificationService);
   Get.put<ITrackListService>(_trackListService);
-  await _notificationService.init();
+
   await BackgroundTaskService().init(_taskDispatcher);
 
   runApp(const Randomix());

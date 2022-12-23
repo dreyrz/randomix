@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/foundation.dart';
+import 'package:get/get.dart';
 
 import '../themes/_themes.dart';
 
@@ -17,7 +18,7 @@ abstract class INotificationService {
   Stream<ReceivedAction> get onTapStream;
 }
 
-class NotificationService implements INotificationService {
+class NotificationService extends GetxService implements INotificationService {
   final AppColors appColors;
   late final AwesomeNotifications _plugin;
 
@@ -27,8 +28,23 @@ class NotificationService implements INotificationService {
 
   static const _channelKey = 'basic_channel';
 
+  final _controller = StreamController<ReceivedAction>.broadcast();
+
   @override
-  Stream<ReceivedAction> get onTapStream => _plugin.actionStream;
+  Stream<ReceivedAction> get onTapStream => _controller.stream;
+
+  @override
+  void onInit() {
+    init();
+    _tapListener();
+    super.onInit();
+  }
+
+  @override
+  void onClose() {
+    _controller.close();
+    super.onClose();
+  }
 
   @override
   Future<void> init() async {
@@ -65,5 +81,9 @@ class NotificationService implements INotificationService {
         payload: payload,
       ),
     );
+  }
+
+  void _tapListener() {
+    _plugin.actionStream.listen((event) => _controller.add(event));
   }
 }

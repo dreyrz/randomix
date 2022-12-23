@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -29,8 +27,6 @@ class SplashController extends GetxController {
 
   @override
   void onInit() {
-    log("OIE");
-
     _handleRedirect();
     _changeSystemNavigationBarColor();
 

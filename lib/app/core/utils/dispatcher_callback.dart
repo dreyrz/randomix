@@ -13,6 +13,7 @@ import '../themes/_themes.dart';
 
 final INotificationService _notificationService =
     NotificationService(RandomixColors());
+final IApi api = ApiService(baseUrl: Config.baseUrl);
 final IStorageService _storageService = StorageService();
 
 Future<String> _getToken(GetToken useCase) async {
@@ -47,7 +48,6 @@ Future<void> _handleTrackStorage(Track track) async {
 
 Future<void> dispatcherCallback() async {
   await _storageService.init();
-  final IApi api = ApiService(baseUrl: Config.baseUrl);
   final ISplashUseCaseFactory splashUseCaseFactory = SplashUseCaseFactory(api);
   final IHomeUseCaseFactory homeUseCaseFactory = HomeUseCaseFactory(api);
 
@@ -76,8 +76,6 @@ Future<void> dispatcherCallback() async {
   res.fold(
     (l) => dev.log(l.toString()),
     (track) async {
-      final tracklistService = TrackListService();
-      tracklistService.addTrack(track);
       await _handleTrackStorage(track);
     },
   );

@@ -37,7 +37,6 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       onTap: (i) {
         if (i == 1) {
           widget._trackListService.clearTracksAdded();
-          debugPrint("tracks cleared");
         }
         widget._tabNavigatorService.goToTab(i);
       },
