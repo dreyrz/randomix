@@ -1,10 +1,8 @@
-import 'dart:developer';
+import 'dart:async';
 
 import 'package:get/get.dart';
 
 import '../entities/_entities.dart';
-
-typedef TrackListListener = void Function();
 
 abstract class ITrackListService {
   List<Track> get tracks;
@@ -12,26 +10,33 @@ abstract class ITrackListService {
   void removeTrack(Track track);
   void addAllTracks(List<Track> tracks);
   void removeAllTracks();
-  void addListener(TrackListListener listener);
-  void removeListener(TrackListListener listener);
   void clearTracksAdded();
+
   int get tracksAdded;
+  Stream<List<Track>> get trackStream;
 }
 
 class TrackListService extends GetxService implements ITrackListService {
-  TrackListService._internal();
+  late final StreamController<List<Track>> _controller;
 
-  static final TrackListService _instance = TrackListService._internal();
-
-  factory TrackListService() {
-    return _instance;
+  TrackListService() {
+    _controller = StreamController<List<Track>>.broadcast();
   }
+
   final _tracks = <Track>[];
-  final _listeners = <TrackListListener>[];
   int _tracksAdded = 0;
 
   @override
   List<Track> get tracks => _tracks;
+
+  @override
+  int get tracksAdded => _tracksAdded;
+
+  @override
+  Stream<List<Track>> get trackStream => _controller.stream;
+
+  @override
+  void clearTracksAdded() => _tracksAdded = 0;
 
   @override
   void addTrack(Track track) {
@@ -53,24 +58,8 @@ class TrackListService extends GetxService implements ITrackListService {
     _notifyListeners();
   }
 
-  @override
-  void addListener(TrackListListener listener) {
-    _listeners.add(listener);
-  }
-
-  @override
-  void removeListener(TrackListListener listener) {
-    _listeners.remove(listener);
-  }
-
   void _notifyListeners() {
-    for (final l in _listeners) {
-      try {
-        l.call();
-      } catch (e) {
-        log(e.toString(), name: 'TrackListSerive _callListeners');
-      }
-    }
+    _controller.add(_tracks);
   }
 
   @override
@@ -80,10 +69,4 @@ class TrackListService extends GetxService implements ITrackListService {
       _tracksAdded++;
     }
   }
-
-  @override
-  void clearTracksAdded() => _tracksAdded = 0;
-
-  @override
-  int get tracksAdded => _tracksAdded;
 }

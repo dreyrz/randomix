@@ -20,15 +20,16 @@ abstract class INotificationService {
 
 class NotificationService extends GetxService implements INotificationService {
   final AppColors appColors;
+
   late final AwesomeNotifications _plugin;
+  late final StreamController<ReceivedAction> _controller;
 
   NotificationService(this.appColors) {
     _plugin = AwesomeNotifications();
+    _controller = StreamController<ReceivedAction>.broadcast();
   }
 
   static const _channelKey = 'basic_channel';
-
-  final _controller = StreamController<ReceivedAction>.broadcast();
 
   @override
   Stream<ReceivedAction> get onTapStream => _controller.stream;

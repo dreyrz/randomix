@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/entities/track.dart';
 import '../../../../core/services/_services.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
@@ -18,11 +19,11 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   void initState() {
-    widget._trackListService.addListener(_trackAddedListener);
+    widget._trackListService.trackStream.listen(_trackAddedListener);
     super.initState();
   }
 
-  void _trackAddedListener() {
+  void _trackAddedListener(List<Track> tracks) {
     setState(() {});
   }
 

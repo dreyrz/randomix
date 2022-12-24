@@ -23,7 +23,7 @@ class LibraryController extends GetxController with LibraryState {
 
   @override
   void onInit() {
-    _trackListService.addListener(_trackListListener);
+    _trackListService.trackStream.listen(_trackListListener);
     _notificationService.onTapStream.listen(_notificationTapListener);
     super.onInit();
   }
@@ -32,12 +32,6 @@ class LibraryController extends GetxController with LibraryState {
   void onReady() {
     getStorageTracks();
     super.onReady();
-  }
-
-  @override
-  void onClose() {
-    _trackListService.removeListener(_trackListListener);
-    super.onClose();
   }
 
   Future<void> getStorageTracks() async {
@@ -52,18 +46,13 @@ class LibraryController extends GetxController with LibraryState {
     }
   }
 
-  void _trackListListener() {
-    final track = _trackListService.tracks.last;
-    bool hasRepeated = false;
-    for (final t in tracks) {
-      if (t.id == track.id) {
-        hasRepeated = true;
-      }
+  void _trackListListener(List<Track> serviceTracks) {
+    final lastTrack = serviceTracks.last;
+    final hasRepeated = tracks.indexWhere((e) => e.id == lastTrack.id) != -1;
+
+    if (!hasRepeated) {
+      tracks.insert(0, lastTrack);
     }
-    if (hasRepeated) {
-      return;
-    }
-    tracks.insert(0, _trackListService.tracks.last);
   }
 
   void _notificationTapListener(ReceivedAction action) {
