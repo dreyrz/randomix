@@ -16,34 +16,41 @@ abstract class INotificationService {
     Map<String, String>? payload,
   });
   Stream<ReceivedAction> get onTapStream;
+  Stream<ReceivedNotification> get onPushStream;
 }
 
 class NotificationService extends GetxService implements INotificationService {
   final AppColors appColors;
 
   late final AwesomeNotifications _plugin;
-  late final StreamController<ReceivedAction> _controller;
+  late final StreamController<ReceivedAction> _tapController;
+  late final StreamController<ReceivedNotification> _pushController;
 
   NotificationService(this.appColors) {
     _plugin = AwesomeNotifications();
-    _controller = StreamController<ReceivedAction>.broadcast();
+    _tapController = StreamController<ReceivedAction>.broadcast();
+    _pushController = StreamController<ReceivedNotification>.broadcast();
   }
 
   static const _channelKey = 'basic_channel';
 
   @override
-  Stream<ReceivedAction> get onTapStream => _controller.stream;
+  Stream<ReceivedAction> get onTapStream => _tapController.stream;
+
+  @override
+  Stream<ReceivedNotification> get onPushStream => _pushController.stream;
 
   @override
   void onInit() {
     init();
-    _tapListener();
+    _registerListeners();
     super.onInit();
   }
 
   @override
   void onClose() {
-    _controller.close();
+    _tapController.close();
+    _pushController.close();
     super.onClose();
   }
 
@@ -84,7 +91,16 @@ class NotificationService extends GetxService implements INotificationService {
     );
   }
 
+  _registerListeners() {
+    _tapListener();
+    _pushListener();
+  }
+
   void _tapListener() {
-    _plugin.actionStream.listen((event) => _controller.add(event));
+    _plugin.actionStream.listen((event) => _tapController.add(event));
+  }
+
+  void _pushListener() {
+    _plugin.createdStream.listen((event) => _pushController.add(event));
   }
 }

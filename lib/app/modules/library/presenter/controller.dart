@@ -24,7 +24,7 @@ class LibraryController extends GetxController with LibraryState {
   @override
   void onInit() {
     _trackListService.trackStream.listen(_trackListListener);
-    _notificationService.onTapStream.listen(_notificationTapListener);
+    _notificationService.onPushStream.listen(_notificationPushListener);
     super.onInit();
   }
 
@@ -55,10 +55,9 @@ class LibraryController extends GetxController with LibraryState {
     }
   }
 
-  void _notificationTapListener(ReceivedAction action) {
+  void _notificationPushListener(ReceivedNotification action) {
     if (action.payload != null) {
       _trackListService.addTrack(Track.fromJson(action.payload!["track"]!));
-      _trackListService.clearTracksAdded();
     }
   }
 }
