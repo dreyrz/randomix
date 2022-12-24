@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../core/entities/_entities.dart';
 import '../../../core/routes/_routes.dart';
+import '../../../core/widgets/CustomImage.dart';
 
 class TrackTile extends StatelessWidget {
   final Track track;
@@ -21,18 +22,12 @@ class TrackTile extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Container(
-              height: 80,
-              width: 80,
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.all(
-                  Radius.circular(8),
-                ),
-                image: DecorationImage(
-                  image: NetworkImage(
-                    track.album!.cover!,
-                  ),
-                ),
+            ClipRRect(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              child: CustomImage(
+                track.album!.cover!,
+                height: 80,
+                width: 80,
               ),
             ),
             const SizedBox(

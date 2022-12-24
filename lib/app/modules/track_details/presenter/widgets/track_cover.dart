@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:randomix/app/core/widgets/CustomImage.dart';
 
 import '../../../../core/entities/_entities.dart';
 
@@ -10,7 +11,7 @@ class TrackCover extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 6,
-      child: Image.network(track.album!.cover!),
+      child: CustomImage(track.album!.cover!),
     );
   }
 }
