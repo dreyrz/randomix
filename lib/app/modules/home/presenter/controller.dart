@@ -114,6 +114,7 @@ class HomeController extends GetxController with HomeState {
     required String message,
     Color? color,
   }) {
+    ScaffoldMessenger.of(context).clearSnackBars();
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         backgroundColor: color ?? Theme.of(context).secondaryHeaderColor,

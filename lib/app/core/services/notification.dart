@@ -35,7 +35,7 @@ class NotificationService extends GetxService implements INotificationService {
   static const _channelKey = 'basic_channel';
 
   @override
-  Stream<ReceivedAction> get onTapStream => _tapController.stream;
+  Stream<ReceivedAction> get onTapStream => _plugin.actionStream;
 
   @override
   Stream<ReceivedNotification> get onPushStream => _pushController.stream;
@@ -44,6 +44,7 @@ class NotificationService extends GetxService implements INotificationService {
   void onInit() {
     init();
     _registerListeners();
+
     super.onInit();
   }
 
@@ -92,12 +93,7 @@ class NotificationService extends GetxService implements INotificationService {
   }
 
   _registerListeners() {
-    _tapListener();
     _pushListener();
-  }
-
-  void _tapListener() {
-    _plugin.actionStream.listen((event) => _tapController.add(event));
   }
 
   void _pushListener() {

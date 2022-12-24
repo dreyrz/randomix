@@ -27,6 +27,7 @@ class SplashController extends GetxController {
 
   @override
   void onInit() {
+    _notificationService.onTapStream.listen((e) => _onTapCallback(e.payload));
     _handleRedirect();
     _changeSystemNavigationBarColor();
 
@@ -40,7 +41,6 @@ class SplashController extends GetxController {
   }
 
   Future<void> _handleRedirect() async {
-    _notificationService.onTapStream.listen((e) => _onTapCallback(e.payload));
     await Future.delayed(const Duration(seconds: 1));
     final token = await _getBearerToken();
     _authentication.setToken(token);
@@ -49,7 +49,7 @@ class SplashController extends GetxController {
     final genres = await _getGenresList();
     _genresListService.addGenres(genres);
 
-    Get.offAllNamed(Routes.base);
+    Get.offAllNamed(Routes.base, arguments: _track);
     if (_track != null) {
       Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(_track!));
     }
