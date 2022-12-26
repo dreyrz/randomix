@@ -18,10 +18,9 @@ class HomeBinding implements Bindings {
   void dependencies() {
     final IBackgroundTaskService backgroundTaskService =
         BackgroundTaskService();
-    Get.lazyPut<IHomeDatasource>(() => HomeDataSource(Get.find()));
-    Get.lazyPut<IHomeRepository>(() => HomeRepository(Get.find()));
-    Get.lazyPut<IUseCaseParams<String, Track>>(
-        () => GetRandomTrackByGenre(Get.find()));
+    Get.put<IHomeDatasource>(HomeDataSource(Get.find()));
+    Get.put<IHomeRepository>(HomeRepository(Get.find()));
+    Get.put<IUseCaseParams<String, Track>>(GetRandomTrackByGenre(Get.find()));
 
     Get.put<HomeController>(HomeController(
       Get.find(),

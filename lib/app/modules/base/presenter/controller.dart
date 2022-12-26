@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/entities/track.dart';
 import '../../../core/services/_services.dart';
 import '../../home/presenter/page.dart';
 import '../../library/presenter/page.dart';
@@ -20,6 +21,7 @@ class BaseController extends GetxController with BaseState {
 
   @override
   void onInit() {
+    _handleArguments();
     homeBinding.dependencies();
     historyBinding.dependencies();
     pages.value = [
@@ -28,6 +30,13 @@ class BaseController extends GetxController with BaseState {
     ];
 
     super.onInit();
+  }
+
+  void _handleArguments() {
+    final args = Get.arguments;
+    if (args != null) {
+      trackListService.addTrack(Track.fromJson(args));
+    }
   }
 
   Future<bool> onWillPop() async {

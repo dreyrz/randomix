@@ -1,5 +1,6 @@
 import 'dart:developer' as dev;
 import 'dart:math';
+import 'dart:ui';
 
 import '../../modules/home/domain/usecases/home_usecase_factory.dart';
 import '../../modules/splash/domain/usecases/get_genres.dart';
@@ -46,7 +47,9 @@ Future<void> _handleTrackStorage(Track track) async {
   }
 }
 
+@pragma('vm:entry-point')
 Future<void> dispatcherCallback() async {
+  DartPluginRegistrant.ensureInitialized();
   await _storageService.init();
   final ISplashUseCaseFactory splashUseCaseFactory = SplashUseCaseFactory(api);
   final IHomeUseCaseFactory homeUseCaseFactory = HomeUseCaseFactory(api);

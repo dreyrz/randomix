@@ -1,5 +1,7 @@
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:randomix/app/modules/base/presenter/bindings.dart';
+import 'package:randomix/app/modules/base/presenter/page.dart';
 
 import '../../../core/config/config.dart';
 import '../../../core/entities/track.dart';
@@ -24,7 +26,7 @@ class SplashController extends GetxController {
   );
 
   String? _track;
-
+  bool _hasNavigatedToBase = false;
   @override
   void onInit() {
     _notificationService.onTapStream.listen((e) => _onTapCallback(e.payload));
@@ -36,8 +38,9 @@ class SplashController extends GetxController {
 
   void _onTapCallback(Map<String, String>? payload) async {
     _track = payload!["track"];
-
-    Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(_track!));
+    if (_hasNavigatedToBase) {
+      Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(_track!));
+    }
   }
 
   Future<void> _handleRedirect() async {
@@ -48,8 +51,11 @@ class SplashController extends GetxController {
     _api.headers = {"Authorization": "Bearer $token"};
     final genres = await _getGenresList();
     _genresListService.addGenres(genres);
-
-    Get.offAllNamed(Routes.base, arguments: _track);
+    BaseBinding().dependencies();
+    Get.to(
+      () => const BasePage(),
+    );
+    _hasNavigatedToBase = true;
     if (_track != null) {
       Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(_track!));
     }

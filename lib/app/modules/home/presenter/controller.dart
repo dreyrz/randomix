@@ -56,7 +56,6 @@ class HomeController extends GetxController with HomeState {
         showSnackBarMessage(context, message: "Erro", color: Colors.red);
       },
       (track) async {
-        trackList.add(track);
         _trackListService.addTrack(track);
         await handleTrackStorage(track);
       },
@@ -88,7 +87,7 @@ class HomeController extends GetxController with HomeState {
     } else {
       await _getRandomTrackByGenre(context, _selectedGenre);
     }
-    Get.toNamed(Routes.trackDetails, arguments: trackList.last);
+    Get.toNamed(Routes.trackDetails, arguments: _trackListService.tracks.last);
   }
 
   Future<void> enableNotifications(BuildContext context) async {

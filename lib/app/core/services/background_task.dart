@@ -31,6 +31,7 @@ class BackgroundTaskService implements IBackgroundTaskService {
   }
 
   @override
+  @pragma('vm:entry-point')
   Future<bool> dispatcher(Future<void> Function() callback) async {
     _plugin.executeTask((taskName, inputData) async {
       if (taskName == BackgroundTaskService.taskKey) {

@@ -11,6 +11,7 @@ import 'app/core/themes/themes.dart';
 import 'app/core/utils/dispatcher_callback.dart';
 
 // top level function required
+@pragma('vm:entry-point')
 Future<void> _taskDispatcher() async {
   _backgroundTaskService.dispatcher(dispatcherCallback);
 }
