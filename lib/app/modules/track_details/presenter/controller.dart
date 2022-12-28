@@ -28,7 +28,6 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
     currentTrack = Rx<Track>(Get.arguments);
     currentIndex = tracksLength - 1;
     _addCallbacks();
-    _trackListService.trackStream.listen(_trackListListener);
     super.onInit();
   }
 
@@ -106,9 +105,5 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
     });
     currentIndex++;
     loading = false;
-  }
-
-  void _trackListListener(List<Track> tracks) {
-    log(tracks.length.toString());
   }
 }
