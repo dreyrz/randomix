@@ -42,8 +42,8 @@ class HomeController extends GetxController with HomeState {
 
   @override
   void onInit() {
-    genresList.addAll(_genresListService.genres);
-    _selectedGenre = _genresListService.genres.first;
+    genresList.addAll(_genresListService.genresWithRandom);
+    _selectedGenre = _genresListService.genresWithRandom.first;
     super.onInit();
   }
 

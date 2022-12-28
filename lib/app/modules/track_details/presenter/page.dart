@@ -14,6 +14,7 @@ class TrackDetailsPage extends GetView<TrackDetailsController> {
       () => Scaffold(
         backgroundColor: Theme.of(context).backgroundColor,
         appBar: TrackDetailsAppBar(
+          title: controller.currentTrack.value.genre,
           onIconTap: () async =>
               await TrackOptions(onTap: controller.openSpotify).show(context),
         ),

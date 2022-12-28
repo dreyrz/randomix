@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../core/utils/_utils.dart';
 
 class GenresDropDown extends StatefulWidget {
   final List<String> genres;
@@ -50,7 +51,7 @@ class _GenresSearchState extends State<GenresDropDown> {
               (genre) => DropdownMenuItem(
                 value: genre,
                 child: Text(
-                  genre.replaceRange(0, 1, genre.substring(0, 1).toUpperCase()),
+                  genre.capitalizeFirstLetter(),
                   style: Theme.of(context)
                       .textTheme
                       .headline3!

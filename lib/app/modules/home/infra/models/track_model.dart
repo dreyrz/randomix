@@ -9,6 +9,7 @@ class TrackModel extends Track with ListUtils {
       : super(
           id: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["id"],
           name: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["name"],
+          genre: map['genre'] != null ? map['genre'] as String : null,
           type: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["type"],
           externalUrl: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]
               ["external_urls"]["spotify"],
