@@ -18,7 +18,7 @@ class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   State<HomeAppBar> createState() => _CustomAppBarState();
 }
 
-class _CustomAppBarState extends State<HomeAppBar> with FuctionUtils {
+class _CustomAppBarState extends State<HomeAppBar> with FunctionUtils {
   bool _isLoading = false;
   @override
   Widget build(BuildContext context) {

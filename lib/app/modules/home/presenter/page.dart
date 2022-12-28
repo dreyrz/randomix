@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../core/routes/routes.dart';
 import '../../../core/utils/svg_path.dart';
-import 'widgets/circular_button.dart';
+import '../../../core/widgets/circular_button.dart';
 import 'widgets/home_app_bar.dart';
 import 'widgets/genres_dropdown.dart';
 import 'controller.dart';

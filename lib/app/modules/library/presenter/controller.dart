@@ -43,6 +43,7 @@ class LibraryController extends GetxController with LibraryState {
         savedTracks.map((t) => Track.fromJson(t)).toList(),
       );
       _trackListService.clearTracksAdded();
+      tracks.addAll(_trackListService.tracks.reversed);
     }
   }
 

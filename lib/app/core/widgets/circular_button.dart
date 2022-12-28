@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../core/utils/mixins/function_utils.dart';
-import '../../../../core/widgets/loading.dart';
+import '../utils/mixins/function_utils.dart';
+import 'loading.dart';
 
 class CircularButton extends StatefulWidget {
   final FutureOr<void> Function()? onPressed;
@@ -25,7 +25,7 @@ class CircularButton extends StatefulWidget {
   State<CircularButton> createState() => _CircularButtonState();
 }
 
-class _CircularButtonState extends State<CircularButton> with FuctionUtils {
+class _CircularButtonState extends State<CircularButton> with FunctionUtils {
   bool _isLoading = false;
   Widget handleChild() {
     if (widget.svgPath != null) {

@@ -8,6 +8,7 @@ class TrackOptions extends StatelessWidget {
     Key? key,
     required this.onTap,
   }) : super(key: key);
+
   Future<void> show(
     BuildContext context, {
     bool barrierDismissible = false,

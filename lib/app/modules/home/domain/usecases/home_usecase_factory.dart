@@ -7,7 +7,7 @@ import '../repositories/repository_interface.dart';
 import 'get_random_track_by_genre.dart';
 
 abstract class IHomeUseCaseFactory {
-  GetRandomTrackByGenre getRandomTrackByGenre();
+  GetRandomTrackByGenre getRandomTrackByGenreUseCase();
 }
 
 class HomeUseCaseFactory implements IHomeUseCaseFactory {
@@ -15,7 +15,7 @@ class HomeUseCaseFactory implements IHomeUseCaseFactory {
   HomeUseCaseFactory(this._api);
 
   @override
-  GetRandomTrackByGenre getRandomTrackByGenre() {
+  GetRandomTrackByGenre getRandomTrackByGenreUseCase() {
     final IHomeDatasource datasource = HomeDataSource(_api);
     final IHomeRepository repository = HomeRepository(datasource);
     return GetRandomTrackByGenre(repository);

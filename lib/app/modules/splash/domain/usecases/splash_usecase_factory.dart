@@ -8,8 +8,8 @@ import '../../../../core/services/_services.dart';
 import 'get_token.dart';
 
 abstract class ISplashUseCaseFactory {
-  GetToken getToken();
-  GetGenres getGenres();
+  GetToken getTokenUseCase();
+  GetGenres getGenresUseCase();
 }
 
 class SplashUseCaseFactory implements ISplashUseCaseFactory {
@@ -21,12 +21,12 @@ class SplashUseCaseFactory implements ISplashUseCaseFactory {
     _repository = (SplashRepository(_datasource));
   }
   @override
-  GetGenres getGenres() {
+  GetGenres getGenresUseCase() {
     return GetGenres(_repository);
   }
 
   @override
-  GetToken getToken() {
+  GetToken getTokenUseCase() {
     return GetToken(_repository, _api);
   }
 }

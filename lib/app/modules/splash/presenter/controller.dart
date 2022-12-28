@@ -45,10 +45,7 @@ class SplashController extends GetxController {
 
   Future<void> _handleRedirect() async {
     await Future.delayed(const Duration(seconds: 1));
-    final token = await _getBearerToken();
-    _authentication.setToken(token);
-    _api.baseUrl = Config.baseUrl;
-    _api.headers = {"Authorization": "Bearer $token"};
+    await _configApi();
     final genres = await _getGenresList();
     _genresListService.addGenres(genres);
     BaseBinding().dependencies();
@@ -59,6 +56,13 @@ class SplashController extends GetxController {
     if (_track != null) {
       Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(_track!));
     }
+  }
+
+  Future<void> _configApi() async {
+    final token = await _getBearerToken();
+    _authentication.setToken(token);
+    _api.baseUrl = Config.baseUrl;
+    _api.headers = {"Authorization": "Bearer $token"};
   }
 
   Future<String> _getBearerToken() async {

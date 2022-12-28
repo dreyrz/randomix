@@ -6,10 +6,7 @@ import '../../../../core/widgets/scrolling_text.dart';
 class TrackInfo extends StatelessWidget {
   final Track track;
   const TrackInfo({required this.track, Key? key}) : super(key: key);
-  String get formattedText => (track.artists!.map((a) => a.name))
-      .toString()
-      .replaceAll("(", "")
-      .replaceAll(")", "");
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -30,9 +27,9 @@ class TrackInfo extends StatelessWidget {
           child: SizedBox(
             height: 36,
             child: track.artists!.length > 2
-                ? ScrollingText(text: formattedText)
+                ? ScrollingText(text: track.artistsName)
                 : Text(
-                    formattedText,
+                    track.artistsName,
                     style: Theme.of(context).textTheme.headline3,
                   ),
           ),

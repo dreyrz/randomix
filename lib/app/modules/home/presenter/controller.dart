@@ -78,7 +78,10 @@ class HomeController extends GetxController with HomeState {
     );
   }
 
-  void setGenreSelected(String genre) => _selectedGenre = genre;
+  void setGenreSelected(String genre) {
+    _selectedGenre = genre;
+    _genresListService.currentGenre = genre;
+  }
 
   Future<void> getRandomTrack(BuildContext context) async {
     if (_selectedGenre == Get.find<IStrings>().random) {

@@ -54,12 +54,13 @@ Future<void> dispatcherCallback() async {
   final ISplashUseCaseFactory splashUseCaseFactory = SplashUseCaseFactory(api);
   final IHomeUseCaseFactory homeUseCaseFactory = HomeUseCaseFactory(api);
 
-  final token = await _getToken(splashUseCaseFactory.getToken());
+  final token = await _getToken(splashUseCaseFactory.getTokenUseCase());
   api.token = token;
   api.baseUrl = Config.baseUrl;
 
-  final genres = await _getGenres(splashUseCaseFactory.getGenres());
-  final getRandomTrackByGenre = homeUseCaseFactory.getRandomTrackByGenre();
+  final genres = await _getGenres(splashUseCaseFactory.getGenresUseCase());
+  final getRandomTrackByGenre =
+      homeUseCaseFactory.getRandomTrackByGenreUseCase();
 
   final randomIndex = _getRandomIndex(genres);
 

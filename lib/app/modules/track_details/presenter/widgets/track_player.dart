@@ -4,6 +4,7 @@ import '../../../../core/entities/_entities.dart';
 import '../../../../core/services/_services.dart';
 
 import 'player_button.dart';
+import 'skip_button.dart';
 
 class TrackPlayer extends StatefulWidget {
   final Track track;
@@ -11,6 +12,9 @@ class TrackPlayer extends StatefulWidget {
   final PlayerStatus status;
   final VoidCallback onPlayPressed;
   final VoidCallback onPausePressed;
+  final VoidCallback onSkippedBackwards;
+  final VoidCallback onSkippedForward;
+
   final void Function(Duration) onSeekedPosition;
 
   const TrackPlayer({
@@ -20,6 +24,8 @@ class TrackPlayer extends StatefulWidget {
     required this.status,
     required this.onPlayPressed,
     required this.onPausePressed,
+    required this.onSkippedBackwards,
+    required this.onSkippedForward,
     required this.onSeekedPosition,
   }) : super(key: key);
 
@@ -54,82 +60,114 @@ class _TrackPlayerState extends State<TrackPlayer> {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 2,
-      child: widget.track.previewUrl != null
-          ? Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SliderTheme(
-                  data: SliderTheme.of(context).copyWith(
-                      trackHeight: 3,
-                      thumbColor: Colors.red,
-                      thumbShape: RoundSliderThumbShape(
-                          enabledThumbRadius: _thumbRadius)),
-                  child: Slider(
-                    thumbColor: Theme.of(context).secondaryHeaderColor,
-                    activeColor: Theme.of(context).secondaryHeaderColor,
-                    inactiveColor:
-                        Theme.of(context).secondaryHeaderColor.withAlpha(75),
-                    min: 0,
-                    max: 29,
-                    value: _isChangingPosition ? _selectedPosition : _position,
-                    divisions: null,
-                    onChangeStart: (s) {
-                      _isChangingPosition = true;
-                      _thumbRadius = 10;
-                    },
-                    onChangeEnd: (p) {
-                      setState(() {
-                        _position = p;
-                        widget.onSeekedPosition(
-                          Duration(
-                            seconds: p.truncate(),
-                            milliseconds: (p - p.truncate()).toInt(),
-                          ),
-                        );
-                        _isChangingPosition = false;
-                        _thumbRadius = 0;
-                      });
-                    },
-                    onChanged: (p) {
-                      setState(() {
-                        _selectedPosition = p;
-                      });
-                    },
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          if (widget.track.previewUrl == null) const Spacer(),
+          if (widget.track.previewUrl != null)
+            Flexible(
+              child: SliderTheme(
+                data: SliderTheme.of(context).copyWith(
+                  trackHeight: 3,
+                  thumbColor: Colors.red,
+                  thumbShape: RoundSliderThumbShape(
+                    enabledThumbRadius: _thumbRadius,
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
-                  child: Column(
+                child: Slider(
+                  thumbColor: Theme.of(context).secondaryHeaderColor,
+                  activeColor: Theme.of(context).secondaryHeaderColor,
+                  inactiveColor:
+                      Theme.of(context).secondaryHeaderColor.withAlpha(75),
+                  min: 0,
+                  max: 29,
+                  value: _isChangingPosition ? _selectedPosition : _position,
+                  divisions: null,
+                  onChangeStart: (s) {
+                    _isChangingPosition = true;
+                    _thumbRadius = 10;
+                  },
+                  onChangeEnd: (p) {
+                    setState(() {
+                      _position = p;
+                      widget.onSeekedPosition(
+                        Duration(
+                          seconds: p.truncate(),
+                          milliseconds: (p - p.truncate()).toInt(),
+                        ),
+                      );
+                      _isChangingPosition = false;
+                      _thumbRadius = 0;
+                    });
+                  },
+                  onChanged: (p) {
+                    setState(() {
+                      _selectedPosition = p;
+                    });
+                  },
+                ),
+              ),
+            ),
+          Flexible(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 24.0),
+              child: Column(
+                children: [
+                  if (widget.track.previewUrl == null)
+                    const SizedBox(
+                      height: 14,
+                    ),
+                  if (widget.track.previewUrl != null)
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          formatPosition,
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                        Text(
+                          '00:29',
+                          style: Theme.of(context).textTheme.headline4,
+                        ),
+                      ],
+                    ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            formatPosition,
-                            style: Theme.of(context).textTheme.headline4,
-                          ),
-                          Text(
-                            '00:29',
-                            style: Theme.of(context).textTheme.headline4,
-                          ),
-                        ],
+                      Flexible(
+                        flex: 2,
+                        child: SkipButton(
+                          isForward: false,
+                          onPressed: widget.onSkippedBackwards,
+                        ),
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          PlayerButton(
-                            onPlayPressed: widget.onPlayPressed,
-                            onPausePressed: widget.onPausePressed,
-                            status: widget.status,
-                          ),
-                        ],
-                      )
+                      const Spacer(),
+                      Flexible(
+                        flex: 2,
+                        child: widget.track.previewUrl != null
+                            ? PlayerButton(
+                                onPlayPressed: widget.onPlayPressed,
+                                onPausePressed: widget.onPausePressed,
+                                status: widget.status,
+                              )
+                            : const SizedBox(
+                                width: 64,
+                              ),
+                      ),
+                      const Spacer(),
+                      Flexible(
+                          flex: 2,
+                          child:
+                              SkipButton(onPressed: widget.onSkippedForward)),
                     ],
                   ),
-                )
-              ],
-            )
-          : const SizedBox(),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

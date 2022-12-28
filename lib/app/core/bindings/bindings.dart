@@ -14,7 +14,7 @@ class InitialBinding implements Bindings {
     Get.put<ITabNavigatorService>(TabNavigatorService());
     Get.put<IStrings>(BrazilianPortugueseStrings());
     Get.put<IAuthenticationService>(AuthenticationService());
-    Get.put<IGenresListService>(GenresListService(Get.find<IStrings>().random));
+    Get.put<IGenresListService>(GenresListService(Get.find<IStrings>()));
     Get.put<IUrlLauncherService>(UrlLauncherService());
   }
 }

@@ -3,7 +3,7 @@ import 'dart:developer';
 
 typedef FutureOrCallback = FutureOr<void> Function()?;
 typedef OnLoadingCallback = void Function(bool isLoading);
-mixin FuctionUtils {
+mixin FunctionUtils {
   void handleFutureOrFunction(
     FutureOrCallback function,
     OnLoadingCallback onLoading,
