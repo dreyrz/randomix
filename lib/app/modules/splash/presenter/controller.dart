@@ -4,6 +4,7 @@ import 'package:randomix/app/modules/base/presenter/bindings.dart';
 import 'package:randomix/app/modules/base/presenter/page.dart';
 
 import '../../../core/config/config.dart';
+import '../../../core/constants/_constants.dart';
 import '../../../core/entities/track.dart';
 import '../../../core/routes/routes.dart';
 import '../../../core/services/_services.dart';
@@ -16,6 +17,8 @@ class SplashController extends GetxController {
   final IApi _api;
   final IGenresListService _genresListService;
   final INotificationService _notificationService;
+  final ITrackListService _trackListService;
+  final IStorageService _storageService;
   SplashController(
     this.getToken,
     this.getGenres,
@@ -23,13 +26,16 @@ class SplashController extends GetxController {
     this._api,
     this._genresListService,
     this._notificationService,
+    this._trackListService,
+    this._storageService,
   );
 
   String? _track;
   bool _hasNavigatedToBase = false;
   @override
-  void onInit() {
+  void onInit() async {
     _notificationService.onTapStream.listen((e) => _onTapCallback(e.payload));
+    await _getTracksFromStorage();
     _handleRedirect();
     _changeSystemNavigationBarColor();
 
@@ -49,12 +55,12 @@ class SplashController extends GetxController {
     final genres = await _getGenresList();
     _genresListService.addGenres(genres);
     BaseBinding().dependencies();
-    Get.to(
-      () => const BasePage(),
-    );
+    Get.to(() => const BasePage());
     _hasNavigatedToBase = true;
     if (_track != null) {
-      Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(_track!));
+      final track = Track.fromJson(_track!);
+      _trackListService.addTrack(track);
+      Get.toNamed(Routes.trackDetails, arguments: track);
     }
   }
 
@@ -86,5 +92,18 @@ class SplashController extends GetxController {
       systemNavigationBarColor:
           Get.theme.secondaryHeaderColor, // navigation bar color
     ));
+  }
+
+  Future<void> _getTracksFromStorage() async {
+    await _storageService.init();
+    final savedTracks = _storageService.readStringList(
+      StorageKeys.libraryTracks,
+    );
+    if (savedTracks != null) {
+      _trackListService.addAllTracks(
+        savedTracks.map((t) => Track.fromJson(t)).toList(),
+      );
+      // _trackListService.clearTracksAdded();
+    }
   }
 }

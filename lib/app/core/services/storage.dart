@@ -16,12 +16,6 @@ class StorageService extends GetxService implements IStorageService {
   late final SharedPreferences _shared;
 
   @override
-  void onInit() {
-    init();
-    super.onInit();
-  }
-
-  @override
   Future<void> init() async {
     _shared = await SharedPreferences.getInstance();
   }

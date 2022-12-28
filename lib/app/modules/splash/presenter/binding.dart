@@ -25,6 +25,8 @@ class SplashBinding implements Bindings {
       Get.find(),
       Get.find(),
       Get.find(),
+      Get.find(),
+      Get.find(),
     ));
   }
 }
