@@ -14,6 +14,7 @@ class TrackModel extends Track with ListUtils {
               ["external_urls"]["spotify"],
           previewUrl: ListUtils.guaranteeNotEmpty(map["tracks"])?[0]
               ["preview_url"],
+          genre: map['genre'] != null ? map['genre'] as String : null,
           date: DateTime.now(),
           album: AlbumModel(map),
           artists: (ListUtils.guaranteeNotEmpty(map["tracks"])?[0]["artists"]

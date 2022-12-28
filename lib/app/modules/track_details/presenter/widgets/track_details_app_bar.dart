@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/_utils.dart';
+
 class TrackDetailsAppBar extends StatelessWidget
     implements PreferredSizeWidget {
+  final String? title;
   final VoidCallback onIconTap;
 
   const TrackDetailsAppBar({
-    Key? key,
+    this.title,
     required this.onIconTap,
+    Key? key,
   }) : super(key: key);
 
   @override
@@ -16,6 +20,8 @@ class TrackDetailsAppBar extends StatelessWidget
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).backgroundColor,
+      centerTitle: true,
+      title: Text(title?.capitalizeFirstLetter() ?? ''),
       actions: [
         IconButton(
           color: Theme.of(context).secondaryHeaderColor,

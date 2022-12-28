@@ -48,8 +48,11 @@ class LibraryPage extends GetView<LibraryController> {
                             )
                           : ListView.builder(
                               itemCount: controller.tracks.length,
-                              itemBuilder: ((context, index) =>
-                                  TrackTile(track: controller.tracks[index])),
+                              itemBuilder: ((context, index) {
+                                return TrackTile(
+                                  track: controller.tracks[index],
+                                );
+                              }),
                             ),
                     ),
                   ),

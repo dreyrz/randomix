@@ -12,6 +12,7 @@ class Track {
   final DateTime? date;
   final Album? album;
   final List<Artist>? artists;
+  final String? genre;
 
   const Track({
     required this.id,
@@ -22,6 +23,7 @@ class Track {
     required this.date,
     required this.album,
     required this.artists,
+    required this.genre,
   });
 
   Track copyWith({
@@ -33,6 +35,7 @@ class Track {
     DateTime? date,
     Album? album,
     List<Artist>? artists,
+    String? genre,
   }) {
     return Track(
       id: id ?? this.id,
@@ -43,6 +46,7 @@ class Track {
       date: date ?? this.date,
       album: album ?? this.album,
       artists: artists ?? this.artists,
+      genre: genre ?? this.genre,
     );
   }
 
@@ -62,7 +66,7 @@ class Track {
 
   @override
   String toString() {
-    return 'Track(id: $id, name: $name, type: $type, externalUrl: $externalUrl, previewUrl: $previewUrl, date: $date, album: $album, artists: $artists)';
+    return 'Track(id: $id, name: $name, genre $genre type: $type, externalUrl: $externalUrl, previewUrl: $previewUrl, date: $date, album: $album, artists: $artists)';
   }
 
   Map<String, dynamic> toMap() {
@@ -75,6 +79,7 @@ class Track {
       'date': date?.millisecondsSinceEpoch,
       'album': album?.toMap(),
       'artists': artists?.map((x) => x.toMap()).toList(),
+      'genre': genre,
     };
   }
 
@@ -87,6 +92,7 @@ class Track {
           map['externalUrl'] != null ? map['externalUrl'] as String : null,
       previewUrl:
           map['previewUrl'] != null ? map['previewUrl'] as String : null,
+      genre: map['genre'] != null ? map['genre'] as String : null,
       date: map['date'] != null
           ? DateTime.fromMillisecondsSinceEpoch(map['date'] as int)
           : null,
