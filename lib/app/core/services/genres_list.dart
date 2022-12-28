@@ -8,6 +8,7 @@ abstract class IGenresListService {
   void addGenres(List<String> genres);
   String getRandomGenre({Random? random});
   List<String> get genres;
+  List<String> get genresWithRandom;
   String get currentGenre;
   bool get isRandomGenreSelected;
   set currentGenre(String genre);
@@ -22,6 +23,9 @@ class GenresListService extends GetxService implements IGenresListService {
 
   @override
   List<String> get genres => _genres.skip(1).toList();
+
+  @override
+  List<String> get genresWithRandom => _genres;
 
   @override
   bool get isRandomGenreSelected => _currentGenre == _strings.random;

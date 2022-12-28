@@ -20,6 +20,7 @@ class HomeDataSource implements IHomeDatasource {
     try {
       final query = "?limit=$limit&market=$market&seed_genres=$genre";
       final response = await _api.get(query);
+      response.data['genre'] = genre;
       return TrackModel(response.data);
     } on DioError catch (e, stackTrace) {
       if (e.type == DioErrorType.connectTimeout ||
