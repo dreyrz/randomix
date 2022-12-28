@@ -25,7 +25,7 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
 
   @override
   void onInit() {
-    currentTrack = Rx<Track>(_trackListService.tracks.last);
+    currentTrack = Rx<Track>(Get.arguments);
     currentIndex = tracksLength - 1;
     _addCallbacks();
     _trackListService.trackStream.listen(_trackListListener);
