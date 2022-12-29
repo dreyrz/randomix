@@ -58,15 +58,14 @@ class TrackListService extends GetxService implements ITrackListService {
     _notifyListeners();
   }
 
-  void _notifyListeners() {
-    _controller.add(_tracks);
-  }
-
   @override
   void addAllTracks(List<Track> tracks) {
-    for (final track in tracks) {
-      addTrack(track);
-      _tracksAdded++;
-    }
+    _tracks.addAll(tracks);
+    _tracksAdded = tracks.length;
+    _notifyListeners();
+  }
+
+  void _notifyListeners() {
+    _controller.add(_tracks);
   }
 }
