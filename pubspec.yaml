@@ -43,6 +43,7 @@ dependencies:
   workmanager: 0.5.0
   url_launcher: 6.1.5
   awesome_notifications: 0.6.21
+  equatable: 2.0.5
 
 dev_dependencies:
   flutter_test:

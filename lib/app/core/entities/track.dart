@@ -1,9 +1,11 @@
 import 'dart:convert';
 
+import 'package:equatable/equatable.dart';
+
 import 'album.dart';
 import 'artist.dart';
 
-class Track {
+class Track extends Equatable {
   final String? id;
   final String? name;
   final String? type;
@@ -63,6 +65,9 @@ class Track {
       .toString()
       .replaceAll("(", "")
       .replaceAll(")", "");
+
+  @override
+  List<Object?> get props => [id, name];
 
   @override
   String toString() {
