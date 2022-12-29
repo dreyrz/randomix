@@ -20,16 +20,10 @@ Future<void> _taskDispatcher() async {
 }
 
 final IBackgroundTaskService _backgroundTaskService = BackgroundTaskService();
-late INotificationService _notificationService;
-late ITrackListService _trackListService;
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  _notificationService = NotificationService(RandomixColors());
-  _trackListService = TrackListService();
-  Get.put(_notificationService);
-  Get.put<ITrackListService>(_trackListService);
-
+  InitialBinding().dependencies();
   await BackgroundTaskService().init(_taskDispatcher);
 
   runApp(const Randomix());
@@ -48,7 +42,6 @@ class Randomix extends StatelessWidget {
     return GetMaterialApp(
       title: 'Randomix',
       debugShowCheckedModeBanner: false,
-      initialBinding: InitialBinding(),
       getPages: Pages.routes,
       initialRoute: Routes.splash,
       theme: theme.light,

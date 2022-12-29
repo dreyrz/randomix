@@ -8,8 +8,10 @@ import '../services/_services.dart';
 class InitialBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put<AppColors>(RandomixColors());
     Get.put<IStorageService>(StorageService());
+    Get.put<ITrackListService>(TrackListService());
+    Get.put<AppColors>(RandomixColors());
+    Get.put<INotificationService>(NotificationService(Get.find()));
     Get.put<IApi>(ApiService(baseUrl: Config.baseUrl));
     Get.put<ITabNavigatorService>(TabNavigatorService());
     Get.put<IStrings>(BrazilianPortugueseStrings());
