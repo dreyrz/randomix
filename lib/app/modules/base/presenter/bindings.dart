@@ -7,11 +7,14 @@ import 'controller.dart';
 class BaseBinding implements Bindings {
   @override
   void dependencies() {
-    Get.put<BaseController>(BaseController(
-      Get.find(),
-      Get.find(),
-      HomeBinding(),
-      LibraryBinding(),
-    ));
+    Get.put<BaseController>(
+      BaseController(
+        Get.find(),
+        Get.find(),
+        HomeBinding(),
+        LibraryBinding(),
+      ),
+      permanent: true,
+    );
   }
 }

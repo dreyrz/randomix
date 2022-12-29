@@ -63,7 +63,7 @@ class SplashController extends GetxController {
     final genres = await _getGenresList();
     _genresListService.addGenres(genres);
     BaseBinding().dependencies();
-    Get.off(() => const BasePage());
+    Get.offAll(() => const BasePage());
     _hasNavigatedToBase = true;
     if (_track != null) {
       final track = Track.fromJson(_track!);

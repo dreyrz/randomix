@@ -22,14 +22,17 @@ class HomeBinding implements Bindings {
     Get.put<IHomeRepository>(HomeRepository(Get.find()));
     Get.put<IUseCaseParams<String, Track>>(GetRandomTrackByGenre(Get.find()));
 
-    Get.put<HomeController>(HomeController(
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      backgroundTaskService,
-      Random(),
-    ));
+    Get.put<HomeController>(
+      HomeController(
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        backgroundTaskService,
+        Random(),
+      ),
+      permanent: true,
+    );
   }
 }

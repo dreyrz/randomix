@@ -18,15 +18,18 @@ class SplashBinding implements Bindings {
       GetToken(Get.find(), Get.find()),
     );
     Get.put<IUseCaseNoParams<List<String>>>(GetGenres(Get.find()));
-    Get.put<SplashController>(SplashController(
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      Get.find(),
-      Get.find(),
-    ));
+    Get.put<SplashController>(
+      SplashController(
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        Get.find(),
+        Get.find(),
+      ),
+      permanent: true,
+    );
   }
 }
