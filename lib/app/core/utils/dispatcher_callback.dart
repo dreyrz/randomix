@@ -1,6 +1,5 @@
 import 'dart:developer' as dev;
 import 'dart:math';
-import 'dart:ui';
 
 import '../../modules/home/domain/usecases/home_usecase_factory.dart';
 import '../../modules/splash/domain/usecases/get_genres.dart';
@@ -49,8 +48,8 @@ Future<void> _handleTrackStorage(Track track) async {
 
 @pragma('vm:entry-point')
 Future<void> dispatcherCallback() async {
-  DartPluginRegistrant.ensureInitialized();
   await _storageService.init();
+
   final ISplashUseCaseFactory splashUseCaseFactory = SplashUseCaseFactory(api);
   final IHomeUseCaseFactory homeUseCaseFactory = HomeUseCaseFactory(api);
 
@@ -65,7 +64,12 @@ Future<void> dispatcherCallback() async {
   final randomIndex = _getRandomIndex(genres);
 
   final res = await getRandomTrackByGenre(genres[randomIndex]);
-
+  res.fold(
+    (l) => dev.log(l.toString()),
+    (track) async {
+      await _handleTrackStorage(track);
+    },
+  );
   res.fold(
     (l) => dev.log(l.toString()),
     (track) async {
@@ -75,12 +79,6 @@ Future<void> dispatcherCallback() async {
         imageUrl: track.album?.cover,
         payload: {"track": track.toJson()},
       );
-    },
-  );
-  res.fold(
-    (l) => dev.log(l.toString()),
-    (track) async {
-      await _handleTrackStorage(track);
     },
   );
 }

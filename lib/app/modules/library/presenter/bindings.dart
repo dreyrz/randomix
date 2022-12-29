@@ -8,7 +8,6 @@ class LibraryBinding implements Bindings {
     Get.put(LibraryController(
       Get.find(),
       Get.find(),
-      Get.find(),
     ));
   }
 }
