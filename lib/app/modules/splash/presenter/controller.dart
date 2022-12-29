@@ -111,7 +111,7 @@ class SplashController extends GetxController {
       _trackListService.addAllTracks(
         savedTracks.map((t) => Track.fromJson(t)).toList(),
       );
-      // _trackListService.clearTracksAdded();
+      _trackListService.clearTracksAdded();
     }
   }
 }

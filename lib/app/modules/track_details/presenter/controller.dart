@@ -28,6 +28,7 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
     currentTrack = Rx<Track>(Get.arguments);
     _handleCurrentIndex();
     _addCallbacks();
+    _playTrackDelayed();
     super.onInit();
   }
 
@@ -73,23 +74,20 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
 
   void skipBackwards() {
     if (currentIndex > 0) {
-      log('going backwards');
       currentIndex--;
       currentTrack.value = _trackListService.tracks[currentIndex];
+      _resetStates();
     }
-    log("current track name ${currentTrack.value.name} index $currentIndex");
   }
 
   Future<void> skipForward() async {
     if (currentIndex < tracksLength - 1) {
-      log('going forward');
       currentIndex++;
       currentTrack.value = _trackListService.tracks[currentIndex];
+      _resetStates();
     } else if (!loading) {
-      log('going forward with request');
       await _getNextTrack();
     }
-    log("current track name ${currentTrack.value.name} index $currentIndex");
   }
 
   Future<void> _getNextTrack() async {
@@ -104,6 +102,7 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
       currentTrack.value = _trackListService.tracks.last;
     });
     currentIndex++;
+    _resetStates();
     loading = false;
   }
 
@@ -113,6 +112,19 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
       currentIndex = index;
     } else {
       currentIndex = tracksLength - 1;
+    }
+  }
+
+  void _resetStates() {
+    duration.value = Duration.zero;
+    _playTrackDelayed();
+  }
+
+  Future<void> _playTrackDelayed() async {
+    final previewUrl = currentTrack.value.previewUrl;
+    if (previewUrl != null) {
+      await Future.delayed(const Duration(milliseconds: 300))
+          .then((_) => playTrack(currentTrack.value.previewUrl!));
     }
   }
 }
