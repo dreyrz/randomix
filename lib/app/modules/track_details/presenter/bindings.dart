@@ -14,6 +14,7 @@ class TrackDetailsBinding implements Bindings {
         Get.find(),
         Get.find(),
         Get.find(),
+        Get.find(),
         HomeUseCaseFactory(Get.find()),
       ),
     );

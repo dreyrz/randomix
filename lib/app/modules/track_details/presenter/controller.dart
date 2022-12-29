@@ -1,6 +1,7 @@
 import 'dart:developer';
 import 'package:get/get.dart';
 
+import '../../../core/constants/_constants.dart';
 import '../../../core/entities/_entities.dart';
 import '../../../core/services/_services.dart';
 import '../../home/domain/usecases/home_usecase_factory.dart';
@@ -11,13 +12,15 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
   final IUrlLauncherService _urlLauncherService;
   final ITrackListService _trackListService;
   final IGenresListService _genresListService;
-  final IHomeUseCaseFactory _homeUseCase;
 
+  final IStorageService _storageService;
+  final IHomeUseCaseFactory _homeUseCase;
   TrackDetailsController(
     this._player,
     this._urlLauncherService,
     this._trackListService,
     this._genresListService,
+    this._storageService,
     this._homeUseCase,
   );
 
@@ -97,9 +100,10 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
       genre = _genresListService.getRandomGenre();
     }
     final res = await _homeUseCase.getRandomTrackByGenreUseCase().call(genre);
-    res.fold((l) => log(l.toString()), (track) {
+    res.fold((l) => log(l.toString()), (track) async {
       _trackListService.addTrack(track);
       currentTrack.value = _trackListService.tracks.last;
+      await _handleTrackStorage(track);
     });
     currentIndex++;
     _resetStates();
@@ -126,5 +130,22 @@ class TrackDetailsController extends GetxController with TrackDetailsState {
       await Future.delayed(const Duration(milliseconds: 300))
           .then((_) => playTrack(currentTrack.value.previewUrl!));
     }
+  }
+
+  Future<void> _handleTrackStorage(Track track) async {
+    await _storageService.updateInstance();
+    const tracksKey = StorageKeys.libraryTracks;
+    final savedTracks = _storageService.readStringList(tracksKey);
+    if (savedTracks != null) {
+      await _storageService.setStringList(
+        tracksKey,
+        [...savedTracks, track.toJson()],
+      );
+      return;
+    }
+    await _storageService.setStringList(
+      tracksKey,
+      [track.toJson()],
+    );
   }
 }
