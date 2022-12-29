@@ -1,3 +1,4 @@
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:randomix/app/modules/base/presenter/bindings.dart';
@@ -35,6 +36,7 @@ class SplashController extends GetxController {
   @override
   void onInit() async {
     _notificationService.onTapStream.listen((e) => _onTapCallback(e.payload));
+    _notificationService.onPushStream.listen(_notificationPushCallback);
     await _getTracksFromStorage();
     _handleRedirect();
     _changeSystemNavigationBarColor();
@@ -46,6 +48,12 @@ class SplashController extends GetxController {
     _track = payload!["track"];
     if (_hasNavigatedToBase) {
       Get.toNamed(Routes.trackDetails, arguments: Track.fromJson(_track!));
+    }
+  }
+
+  void _notificationPushCallback(ReceivedNotification action) {
+    if (action.payload != null) {
+      _trackListService.addTrack(Track.fromJson(action.payload!["track"]!));
     }
   }
 
