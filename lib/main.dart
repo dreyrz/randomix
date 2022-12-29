@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,6 +15,7 @@ import 'app/core/utils/dispatcher_callback.dart';
 // top level function required
 @pragma('vm:entry-point')
 Future<void> _taskDispatcher() async {
+  DartPluginRegistrant.ensureInitialized();
   _backgroundTaskService.dispatcher(dispatcherCallback);
 }
 
