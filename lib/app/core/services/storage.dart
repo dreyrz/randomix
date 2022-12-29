@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class IStorageService {
   Future<void> init();
+  Future<void> updateInstance();
   Future<void> setString(String key, String value);
   String? readString(String key);
   Future<void> setBool(String key, bool value);
@@ -18,6 +19,11 @@ class StorageService extends GetxService implements IStorageService {
   @override
   Future<void> init() async {
     _shared = await SharedPreferences.getInstance();
+  }
+
+  @override
+  Future<void> updateInstance() async {
+    await _shared.reload();
   }
 
   @override
