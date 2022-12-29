@@ -58,6 +58,8 @@ class HomeController extends GetxController with HomeState {
       (track) async {
         _trackListService.addTrack(track);
         await handleTrackStorage(track);
+        Get.toNamed(Routes.trackDetails,
+            arguments: _trackListService.tracks.last);
       },
     );
   }
@@ -91,7 +93,6 @@ class HomeController extends GetxController with HomeState {
     } else {
       await _getRandomTrackByGenre(context, _selectedGenre);
     }
-    Get.toNamed(Routes.trackDetails, arguments: _trackListService.tracks.last);
   }
 
   Future<void> enableNotifications(BuildContext context) async {
