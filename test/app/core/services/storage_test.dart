@@ -10,9 +10,10 @@ main() {
     Get.put<IStorageService>(StorageService());
   }
 
-  setUpAll(() {
+  setUpAll(() async {
     injectDependencies();
     service = Get.find<IStorageService>();
+    await service.init();
   });
 
   group('Storage String methods', () {
@@ -55,6 +56,30 @@ main() {
       service.setBool('key', true);
       await service.remove('key');
       final value = service.readBool('key');
+      expect(value, null);
+    });
+  });
+
+  group('Storage List<String> methods', () {
+    final list1 = List.generate(10, (i) => i.toString());
+    final list2 = List.generate(20, (i) => i.toString());
+    test('Expect to be maintain the value when it has been saved', () async {
+      await service.setStringList('key', list1);
+      final value = service.readStringList('key');
+      expect(value, list1);
+    });
+
+    test('Expect to change the value', () async {
+      await service.setStringList('key', list1);
+      await service.setStringList('key', list2);
+      final value = service.readStringList('key');
+      expect(value, list2);
+    });
+
+    test('Expect to have a Bool value removed', () async {
+      service.setStringList('key', list2);
+      await service.remove('key');
+      final value = service.readStringList('key');
       expect(value, null);
     });
   });
