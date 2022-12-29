@@ -40,9 +40,11 @@ class TrackListService extends GetxService implements ITrackListService {
 
   @override
   void addTrack(Track track) {
-    _tracks.add(track);
-    _tracksAdded++;
-    _notifyListeners();
+    if (!_tracks.contains(track)) {
+      _tracks.add(track);
+      _tracksAdded++;
+      _notifyListeners();
+    }
   }
 
   @override
@@ -60,8 +62,10 @@ class TrackListService extends GetxService implements ITrackListService {
 
   @override
   void addAllTracks(List<Track> tracks) {
-    _tracks.addAll(tracks);
-    _tracksAdded = tracks.length;
+    for (final track in tracks) {
+      addTrack(track);
+      _tracksAdded++;
+    }
     _notifyListeners();
   }
 
