@@ -68,6 +68,7 @@ class SplashController extends GetxController {
     if (_track != null) {
       final track = Track.fromJson(_track!);
       _trackListService.addTrack(track);
+      _trackListService.clearTracksAdded();
       Get.toNamed(Routes.trackDetails, arguments: track);
     }
   }
