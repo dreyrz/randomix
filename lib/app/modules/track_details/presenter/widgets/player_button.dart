@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/services/_services.dart';
-import '../../../../core/widgets/circular_button.dart';
+import '../../../../core/widgets/_widgets.dart';
 
 class PlayerButton extends StatelessWidget {
   final VoidCallback onPlayPressed;

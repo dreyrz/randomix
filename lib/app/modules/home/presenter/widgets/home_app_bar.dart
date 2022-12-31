@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/utils/mixins/_mixins.dart';
-import '../../../../core/widgets/loading.dart';
+import '../../../../core/widgets/_widgets.dart';
 
 class HomeAppBar extends StatefulWidget implements PreferredSizeWidget {
   @override

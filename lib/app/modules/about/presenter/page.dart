@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
-import '../../../core/constants/strings.dart';
-import '../../../core/utils/svg_path.dart';
-
-import '../../../core/widgets/button.dart';
+import '../../../core/constants/_constants.dart';
+import '../../../core/widgets/_widgets.dart';
 import 'controller.dart';
 
 class AboutPage extends GetView<AboutController> {

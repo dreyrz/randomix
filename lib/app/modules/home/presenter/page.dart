@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constants/_constants.dart';
 import '../../../core/routes/routes.dart';
-import '../../../core/utils/svg_path.dart';
-import '../../../core/widgets/circular_button.dart';
-import 'widgets/home_app_bar.dart';
-import 'widgets/genres_dropdown.dart';
+import '../../../core/widgets/_widgets.dart';
 import 'controller.dart';
+import 'widgets/genres_dropdown.dart';
+import 'widgets/home_app_bar.dart';
 
 class HomePage extends GetView<HomeController> {
   const HomePage({Key? key}) : super(key: key);

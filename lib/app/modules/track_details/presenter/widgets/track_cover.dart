@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:randomix/app/core/widgets/custom_image.dart';
+import 'package:randomix/app/core/widgets/_widgets.dart';
 
 import '../../../../core/entities/_entities.dart';
 

@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
+import '../../../core/constants/_constants.dart';
 import '../../../core/routes/routes.dart';
-import '../../../core/utils/svg_path.dart';
 import '../widgets/track_tile.dart';
 import 'controller.dart';
 

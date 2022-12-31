@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 
 import '../../../core/entities/_entities.dart';
 import '../../../core/routes/_routes.dart';
-import '../../../core/widgets/custom_image.dart';
+import '../../../core/widgets/_widgets.dart';
 
 class TrackTile extends StatelessWidget {
   final Track track;
